@@ -11,3 +11,7 @@ not sure why you're reading this, but this is the place for my platformer projec
   -32 or 64 so I can pick and choose different colors per world
 3. ???
 3. profit
+
+here's mechanic ideas:
+1. allow player to shoot object that collides with walls and such
+  kaizo shelljump
