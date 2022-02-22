@@ -16,3 +16,16 @@ here's mechanic ideas:
 1. allow player to shoot object that collides with walls and such
   kaizo shelljump
 2. fans?
+
+world ideas:
+1. grasslands
+2. zombie castle
+3. office building
+4. chemical processing facility
+5. caverns
+6. grasslands 2 but this time fire
+7. hmm
+
+name ideas:
+1. slugbuddy
+2. Jerlo and the legend of the things
