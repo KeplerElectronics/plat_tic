@@ -15,3 +15,4 @@ not sure why you're reading this, but this is the place for my platformer projec
 here's mechanic ideas:
 1. allow player to shoot object that collides with walls and such
   kaizo shelljump
+2. fans?
