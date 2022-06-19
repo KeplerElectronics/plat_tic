@@ -5,26 +5,23 @@ uh hi
 
 not sure why you're reading this, but this is the place for my platformer project, here's a todo
 
-1. determine aesthetic
-  -figure out what theme/style I want
-2. find palette
-  -32 or 64 so I can pick and choose different colors per world
-3. ???
-3. profit
+1. finish world 1 vertical slice
 
 here's mechanic ideas:
 1. allow player to shoot object that collides with walls and such
   kaizo shelljump
-2. fans?
+2. fans
+3. water
+4. ice
 
 world ideas:
 1. grasslands
-2. zombie castle
+2. cyberspace
 3. office building
 4. chemical processing facility
 5. caverns
 6. grasslands 2 but this time fire
-7. hmm
+7. zombie castle
 
 name ideas:
 1. slugbuddy
