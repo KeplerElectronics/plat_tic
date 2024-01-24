@@ -123,7 +123,7 @@ function lerp(a,b,t) return (1-t)*a + t*b end
  
  --set level
 	world=1
-	level=3
+	level=4
 	
 	cam={
 	x=0,
@@ -376,7 +376,7 @@ function TIC()
 		if btnp(4) or btnp(5) then
 		 gamestate = "levelstart"
 			gt = 0
-			worldchange(2,1)
+			worldchange(2,4)
 		end
 		
 		cls()
@@ -482,11 +482,11 @@ function play()
  
  if cloud == false then
 	 if world == 1 then
-   clouds(30,false,5,3)
+   clouds(30,false,2,3)
    --rain()
   elseif world == 2 then
    
-   clouds(30,false,4,5)
+   clouds(30,false,2,3)
    --rain()
   elseif world == 5 then
    
@@ -590,13 +590,13 @@ function play()
 	end
 
 	if bganim == true then
-		if world == 1 then
+		if world == 2 then
 		 rect(60-p.x/100,50,20,150,11)
 			rect(100-p.x/100,40,20,150,11)
 			rect(230-p.x/100,90,20,150,11)
-	  clouds(280+cam.x,true,5,3)
+	  clouds(280+cam.x,true,2,3)
 		--	rain()
-		elseif world == 2 then
+		elseif world == 3 then
 		spr(338,40,20)
    clouds(280+cam.x,true,4,5)
    --rain()
@@ -638,10 +638,10 @@ function play()
 	end
 	
 	--bottomtrees
-	if world == 1 then
+	if world == 2 then
 		for i = 1,240,1 do
-		 circ(i*17-cam.x/2-50+math.sin(time()/600),200-cam.y/2+math.sin(i)*4+math.sin(time()/(800*i)),19,13)
-		 circ(i*17-cam.x/2-60+math.sin(time()/300),180-cam.y/2+math.sin(i)*4+math.sin(time()/(800*i)),15,4)
+		 circ(i*17-cam.x/2-50+math.sin(time()/600),200-cam.y/2+math.sin(i)*4+math.sin(time()/(800*i)),19,15)
+		 circ(i*17-cam.x/2-60+math.sin(time()/300),180-cam.y/2+math.sin(i)*4+math.sin(time()/(800*i)),15,14)
 	 end
 	elseif world == 4 then
 	 if math.sin(time()/9000) <0 then
@@ -1060,7 +1060,7 @@ function remap(tile,x,y)
 	if world == 1 then
 	 
 		
-	elseif world == 2 then
+	elseif world == 3 then
 	 
 	 if tile==45
 		and math.sin(time()/90) <0.5 then
@@ -1201,19 +1201,19 @@ function BDR(scnline)
 	elseif world == 2 and level == 4 then
 	 --clouds 1
 		pal(3,72,65,119)
-		pal(5,62,53,70)
+		pal(2,62,53,70)
 		--grass
-		pal(6,55,78,74)
-		pal(15,84,126,100)
-		pal(14,146,169,132)
+		pal(7,55,78,74)
+		pal(6,84,126,100)
+		pal(5,146,169,132)
 		--rocks
-		pal(1,110,39,39)
-		pal(8,158,69,57)
-		pal(2,205,104,61)
+		pal(8,110,39,39)
+		pal(9,158,69,57)
+		pal(10,205,104,61)
 		--trees
-		pal(13,179,56,49)
-		pal(4,234,79,54)
-		pal(12,245,125,74)
+		pal(15,179,56,49)
+		pal(14,234,79,54)
+		pal(13,245,125,74)
 		--buildings
 		pal(11,62,53,70)
 		if dither == 1 then
@@ -3301,9 +3301,9 @@ function entlogic()
 				 ent.xes[i] = math.random(20)-10
 					ent.yes[i] = math.random(20)-10
 					ent.rads[i] = math.random (7)+10
-					if world == 1 then
-					 ent.cols[i] = math.random(2)+11
-					elseif world == 2 then
+					if world == 2 then
+					 ent.cols[i] = math.random(2)+13
+					elseif world == 3 then
 					 ent.cols[i] = math.random(2)+5
 					end
 				end
@@ -4465,7 +4465,7 @@ function worldchange(w,l)
   
   }
   
- elseif world == 2 then
+ elseif world == 3 then
  
  solids={[1]=true,[2]=true,[3]=true,
          [4]=true,[5]=true,[6]=true,
@@ -4504,7 +4504,7 @@ function worldchange(w,l)
   
 
   
- elseif world == 3 then
+ --[[elseif world == 3 then
  
  solids={[1]=true,[2]=true,[3]=true,
 				        [17]=true,[18]=true,[19]=true,
@@ -4520,7 +4520,7 @@ function worldchange(w,l)
              [109]=true,[110]=true,
              [111]=true,[124]=true,
              [125]=true,[126]=true,
-             [127]=true}
+             [127]=true}]]
  
  elseif world == 8 then
 	 --set grav shift tiles
