@@ -275,7 +275,7 @@ function TIC()
 
 	if gamestate == "startup" then
 	-- gamestate = "menu"
-	 worldchange(2,4)
+	 worldchange(3,1)
 		gamestate = "play"
 		
 	elseif gamestate == "menu" then
@@ -404,7 +404,9 @@ function TIC()
 		
 		--Cut down part of entdraw to 
 		--allow me to use treecircles in map
-		for i,ent in ipairs(ents) do
+		for i=1, #ents do
+		 local ent = ents[i]
+			
 			if ent.ty == 216 
 			and ent.xes ~= nil then
 			 for v=1,10 do 
@@ -532,8 +534,8 @@ function TIC()
  local tim = tstamp()-starttime
  
  
- print(#ents,0,0,8)
-	print((mapcoords.y+4)//8,0,6,8)
+ print(#allparticles,0,0,8)
+	print(#ents,0,6,8)
 	--print(deathwipetimer,0,6,8)
  print((ctfr/tim)//1,0,12,8)
 
@@ -599,23 +601,25 @@ function play()
 	 --music()
  end
  
+ local camx = cam.x
+ local camy = cam.y
  
  
  if p.dead==false then
-  cam.x=lerp(cam.x,p.x-120,0.1)
+  cam.x=lerp(camx,p.x-120,0.1)
   
   
   --detect if player flies 
   --off top of screen and lock
  	if p.y>10 and p.y < 280 then
-   cam.y=lerp(cam.y,p.y-64,0.1)
+   cam.y=lerp(camy,p.y-64,0.1)
   end
   
   
 	else
 	 gt=gt+1
   if gt<80 then
-		 cam.x=lerp(cam.x,p.x-120,0.01)
+		 camx=lerp(camx,p.x-120,0.01)
 		elseif gt >=80 then
    gt=0
    --p.deadend = nil
@@ -643,9 +647,9 @@ function play()
 	
 	entlogic()
 	if ltt == 0 then
-	 control()
+	control()
  end
-	
+	local floor = math.floor
 				
  --Background
 	--map(0,102,90,34,-cam.x/2-70,-cam.y/2-260,0,2)
@@ -664,16 +668,16 @@ function play()
 		 rect(60-p.x/100,50,20,150,11)
 			rect(100-p.x/100,40,20,150,11)
 			rect(230-p.x/100,90,20,150,11)
-	  clouds(280+cam.x,true,2,3)
+	  clouds(280+camx,true,2,3)
 		--	rain()
 		elseif world == 2 then
 		 spr(338,40,20)
    --clouds(280+cam.x,true,4,5)
    --rain()
 	 elseif world == 6 then
-		 clouds(280+cam.x,true,5,15)
+		 clouds(280+camx,true,5,15)
 	 elseif world == 7 then
-	  clouds(280+cam.x,true,5,7)
+	  clouds(280+camx,true,5,7)
 		elseif world == 3 then
 		 tri(60-p.x/100,136,
 			    210-p.x/100,30,
@@ -682,7 +686,7 @@ function play()
 			    40-p.x/100,30,
 			    140-p.x/100,136,15)
    
-   bubbles(p.x+4,p.y,40,600,1)
+   --bubbles(p.x+4,p.y,40,600,1)
   elseif world == 4 then
 		 tri(60-p.x/100,136,
 			    210-p.x/100,30,
@@ -691,7 +695,7 @@ function play()
 			    40-p.x/100,30,
 			    140-p.x/100,136,15)
 							
-		 clouds(280+cam.x,true,2,10)
+		 clouds(280+camx,true,2,10)
    
   elseif world == 8 then
 	  lines()
@@ -702,7 +706,7 @@ function play()
   particlelogic()
   for i,particle in ipairs(allparticles) do
    if particle.layer == 2 then
-    circ(particle.x-cam.x,particle.y-cam.y,particle.rad,particle.clr)
+    circ(particle.x-camx,particle.y-camy,particle.rad,particle.clr)
    end
   end
 	end
@@ -710,8 +714,8 @@ function play()
 	--bottomtrees
 	if world == 2 then
 		for i = 1,240,1 do
-		 circ(i*17-cam.x/2-50+math.sin(time()/600),200-cam.y/2+math.sin(i)*4+math.sin(time()/(800*i)),19,15)
-		 circ(i*17-cam.x/2-60+math.sin(time()/300),180-cam.y/2+math.sin(i)*4+math.sin(time()/(800*i)),15,14)
+		 circ(i*17-camx/2-50+math.sin(time()/600),200-camy/2+math.sin(i)*4+math.sin(time()/(800*i)),19,15)
+		 circ(i*17-camx/2-60+math.sin(time()/300),180-camy/2+math.sin(i)*4+math.sin(time()/(800*i)),15,14)
 	 end
 	elseif world == 4 then
 	 if math.sin(time()/9000) <0 then
@@ -724,12 +728,12 @@ function play()
  
  
  --tiles and stuff
- map(0,0+(level-1)*34,240,33,-cam.x,-cam.y,0,1,remap)
+ map(0,0+(level-1)*34,240,33,-camx,-camy,0,1)
  
  if #allparticles~=0 then
   for i,particle in ipairs(allparticles) do
    if particle.layer == 3 then
-    circ(particle.x-cam.x,particle.y-cam.y,particle.rad,particle.clr)
+    circ(particle.x-camx,particle.y-camy,particle.rad,particle.clr)
    end
   end
 	end
@@ -739,76 +743,76 @@ function play()
 	 if world == 2 then
 	  if ent.ty == 454 or ent.ty == 199 
 		 or ent.ty == 471 then
-    circ(ent.ct-cam.x+3,ent.d-cam.y+5,6,5)
+    circ(ent.ct-camx+3,ent.d-camy+5,6,5)
    end
   end
 	
 	
   if ent.ty == 454 then
    
-   spr(198,ent.ct-cam.x,ent.d-cam.y,0,1,ent.fl,ent.rot)
-   line(ent.x-cam.x+4, ent.y-cam.y+4,ent.ct-cam.x+4, ent.d-cam.y+4,13)
-   line(ent.x-cam.x+3, ent.y-cam.y+4,ent.ct-cam.x+3, ent.d-cam.y+4,13)
+   spr(198,ent.ct-camx,ent.d-camy,0,1,ent.fl,ent.rot)
+   line(ent.x-camx+4, ent.y-camy+4,ent.ct-camx+4, ent.d-camy+4,13)
+   line(ent.x-camx+3, ent.y-camy+4,ent.ct-camx+3, ent.d-camy+4,13)
   
-		 spr(ent.ty,ent.x-cam.x,ent.y-cam.y,0,1,ent.fl,ent.rot)
+		 spr(ent.ty,ent.x-camx,ent.y-camy,0,1,ent.fl,ent.rot)
   elseif ent.ty == 199 then
-   spr(199,ent.ct-cam.x,ent.d-cam.y,0,1,ent.fl,ent.rot)
+   spr(199,ent.ct-camx,ent.d-camy,0,1,ent.fl,ent.rot)
 
-   line(ent.x-cam.x+4, ent.y-cam.y+4,ent.ct-cam.x+4, ent.d-cam.y+4,13)
-   line(ent.x-cam.x+3, ent.y-cam.y+4,ent.ct-cam.x+3, ent.d-cam.y+4,13)
+   line(ent.x-camx+4, ent.y-camy+4,ent.ct-camx+4, ent.d-camy+4,13)
+   line(ent.x-camx+3, ent.y-camy+4,ent.ct-camx+3, ent.d-camy+4,13)
 		
 		elseif ent.ty == 466 then
-		 line(ent.x+8-cam.x,ent.y+4-cam.y,ent.ct+8-cam.x,ent.d+8-cam.y,13)
-		 line(ent.x+9-cam.x,ent.y+4-cam.y,ent.ct+8+1-cam.x,ent.d+8-cam.y,13)
-		 line(ent.x+8-cam.x,ent.y+5-cam.y,ent.ct+8-cam.x,ent.d+8-cam.y+1,14)
-		 line(ent.x+9-cam.x,ent.y+5-cam.y,ent.ct+8+1-cam.x,ent.d+ 8-cam.y+1,14)
+		 line(ent.x+8-camx,ent.y+4-camy,ent.ct+8-cam.x,ent.d+8-cam.y,13)
+		 line(ent.x+9-camx,ent.y+4-camy,ent.ct+8+1-cam.x,ent.d+8-cam.y,13)
+		 line(ent.x+8-camx,ent.y+5-camy,ent.ct+8-cam.x,ent.d+8-cam.y+1,14)
+		 line(ent.x+9-camx,ent.y+5-camy,ent.ct+8+1-cam.x,ent.d+ 8-cam.y+1,14)
 		
 			
-			spr(466,ent.x-cam.x,ent.y-cam.y,0,1,0,ent.rot)
-   spr(466,ent.x+8-cam.x,ent.y-cam.y,0,1,1,ent.rot)
+			spr(466,ent.x-camx,ent.y-camy,0,1,0,ent.rot)
+   spr(466,ent.x+8-camx,ent.y-camy,0,1,1,ent.rot)
    
-   spr(268+(time()/100)%4,ent.x+4-cam.x,ent.y+3-cam.y,0,1,0,ent.rot)
+   spr(268+(time()/100)%4,ent.x+4-camx,ent.y+3-camy,0,1,0,ent.rot)
    
-   spr(268+(time()/100)%4,ent.ct+8-4-cam.x,ent.d+5-cam.y,0,1,0,ent.rot)
+   spr(268+(time()/100)%4,ent.ct+8-4-camx,ent.d+5-camy,0,1,0,ent.rot)
    
 		elseif ent.ty == 213 then
-		 spr(213,ent.x-cam.x,ent.y-cam.y,0,1,0,ent.rot)
-   spr(213,ent.x+8-cam.x,ent.y-cam.y,0,1,1,ent.rot)
+		 spr(213,ent.x-camx,ent.y-camy,0,1,0,ent.rot)
+   spr(213,ent.x+8-camx,ent.y-camy,0,1,1,ent.rot)
   
   --horizontal plat
   elseif ent.ty == 214 and ent.start ~= nil then
-   line(ent.start-4-cam.x,ent.y+3-cam.y,
-        ent.start+ent.range+20-cam.x,ent.y+3-cam.y,2)
-		 line(ent.start-4-cam.x,ent.y+4-cam.y,
-        ent.start+ent.range+20-cam.x,ent.y+4-cam.y,10)
+   line(ent.start-4-camx,ent.y+3-camy,
+        ent.start+ent.range+20-camx,ent.y+3-camy,2)
+		 line(ent.start-4-camx,ent.y+4-camy,
+        ent.start+ent.range+20-camx,ent.y+4-camy,10)
 		 
-			spr(214,ent.x-cam.x,ent.y-cam.y,0,1,0,ent.rot)
-   spr(214,ent.x+8-cam.x,ent.y-cam.y,0,1,1,ent.rot)
+			spr(214,ent.x-camx,ent.y-camy,0,1,0,ent.rot)
+   spr(214,ent.x+8-camx,ent.y-camy,0,1,1,ent.rot)
    if ent.move == "right" then
-			 spr(268+(ent.ct/10)%4,ent.x+4-cam.x,ent.y+3-cam.y,0,1,0,ent.rot)
+			 spr(268+(ent.ct/10)%4,ent.x+4-camx,ent.y+3-camy,0,1,0,ent.rot)
    else
-    spr(271-(ent.ct/10)%4,ent.x+4-cam.x,ent.y+3-cam.y,0,1,0,ent.rot)
+    spr(271-(ent.ct/10)%4,ent.x+4-camx,ent.y+3-camy,0,1,0,ent.rot)
     --this breaks if you use 272. I'm giving up and going to sleep so I can hopefully not screw up the GRE :)
    end
    
    --vert plat
   elseif ent.ty == 230 and ent.start ~= nil then
-   line(math.floor(ent.x+7-cam.x),ent.start-4-cam.y,
-        math.floor(ent.x+7-cam.x),ent.start+ent.range+12-cam.y,2)
-		 line(math.floor(ent.x+8-cam.x),ent.start+ent.range+12-cam.y,
-        math.floor(ent.x+8-cam.x),ent.start-4-cam.y,10)
+   line(floor(ent.x+7-camx),ent.start-4-camy,
+        floor(ent.x+7-camx),ent.start+ent.range+12-camy,2)
+		 line(floor(ent.x+8-camx),ent.start+ent.range+12-camy,
+        floor(ent.x+8-camx),ent.start-4-camy,10)
 		 
-			spr(230,ent.x-cam.x,ent.y-cam.y,0,1,0,ent.rot)
-   spr(230,ent.x+8-cam.x,ent.y-cam.y,0,1,1,ent.rot)
+			spr(230,ent.x-camx,ent.y-camy,0,1,0,ent.rot)
+   spr(230,ent.x+8-camx,ent.y-camy,0,1,1,ent.rot)
    
    if ent.move == "up" then
-			 spr(268+(ent.ct/10)%4,ent.x-cam.x,ent.y+3-cam.y,0,1,0,ent.rot)
-    spr(268+(ent.ct/10)%4,ent.x+8-cam.x,ent.y+3-cam.y,0,1,1,ent.rot)
+			 spr(268+(ent.ct/10)%4,ent.x-camx,ent.y+3-camy,0,1,0,ent.rot)
+    spr(268+(ent.ct/10)%4,ent.x+8-camx,ent.y+3-camy,0,1,1,ent.rot)
    
    else
-    spr(271-(ent.ct/10)%4,ent.x-cam.x,ent.y+3-cam.y,0,1,0,ent.rot)
+    spr(271-(ent.ct/10)%4,ent.x-camx,ent.y+3-camy,0,1,0,ent.rot)
     --this breaks if you use 272. I'm giving up and going to sleep so I can hopefully not screw up the GRE :)
-    spr(271-(ent.ct/10)%4,ent.x+8-cam.x,ent.y+3-cam.y,0,1,1,ent.rot)
+    spr(271-(ent.ct/10)%4,ent.x+8-camx,ent.y+3-camy,0,1,1,ent.rot)
     --this breaks if you use 272. I'm giving up and going to sleep so I can hopefully not screw up the GRE :)
    
    end
@@ -817,20 +821,20 @@ function play()
 		elseif ent.ty == 216 
 		and ent.xes ~= nil then
 		 for i=1,10 do 
-			 circ(ent.x+ent.xes[i]-cam.x,
-				     ent.y+ent.yes[i]-cam.y,
+			 circ(ent.x+ent.xes[i]-camx,
+				     ent.y+ent.yes[i]-camy,
 									ent.rads[i],ent.cols[i])
 			end
 		
 		
 		elseif ent.ty == 471 then
-		 spr(215,ent.ct-cam.x,ent.d-cam.y,0,1,ent.fl,ent.rot)
+		 spr(215,ent.ct-camx,ent.d-camy,0,1,ent.fl,ent.rot)
   
-   line(ent.x-cam.x+4, ent.y-cam.y+4,ent.ct-cam.x+4, ent.d-cam.y+4,13)
-   line(ent.x-cam.x+3, ent.y-cam.y+4,ent.ct-cam.x+3, ent.d-cam.y+4,13)
+   line(ent.x-camx+4, ent.y-camy+4,ent.ct-cam.x+4, ent.d-cam.y+4,13)
+   line(ent.x-camx+3, ent.y-camy+4,ent.ct-cam.x+3, ent.d-cam.y+4,13)
   
-		 spr(ent.ty,ent.x-cam.x-2,ent.y-cam.y,0,1,0,ent.rot)
-   spr(ent.ty,ent.x-cam.x+2,ent.y-cam.y,0,1,1,ent.rot)
+		 spr(ent.ty,ent.x-camx-2,ent.y-camy,0,1,0,ent.rot)
+   spr(ent.ty,ent.x-camx+2,ent.y-camy,0,1,1,ent.rot)
   
 		
 		
@@ -843,7 +847,8 @@ function play()
  poke(0x03FF8, 0)
  cls(0)
 	
- for i,ent in ipairs(ents) do
+ for i=1, #ents do
+		 local ent = ents[i]
   if ent.ty ~= 454 and ent.ty ~= 471
   and ent.inpipe == nil 
   and ent.ty ~= 211 
@@ -854,39 +859,39 @@ function play()
   and ent.ty ~= 230  
   and ent.ty ~= 512 then
 	
-			spr(ent.ty,ent.x-cam.x,ent.y-cam.y,0,1,ent.fl,ent.rot)
+			spr(ent.ty,ent.x-camx,ent.y-camy,0,1,ent.fl,ent.rot)
 	  
 	  --mirror sprite if moving plat
 	  
 			if ent.ty == 220 then
    --spr(220,ent.x-cam.x,ent.y-cam.y,0,1,0,0)
    
-   spr(220,ent.x+8-cam.x,ent.y-cam.y,0,1,0,1)
+   spr(220,ent.x+8-camx,ent.y-camy,0,1,0,1)
    
-   spr(220,ent.x-cam.x,ent.y+8-cam.y,0,1,0,3)
+   spr(220,ent.x-camx,ent.y+8-camy,0,1,0,3)
    
-   spr(220,ent.x+8-cam.x,ent.y+8-cam.y,0,1,0,2)
+   spr(220,ent.x+8-camx,ent.y+8-camy,0,1,0,2)
    
   
 			
 	  elseif ent.ty == 197 then
-	   spr(ent.ty,ent.x-cam.x+8,ent.y-cam.y,0,1,1)
+	   spr(ent.ty,ent.x-camx+8,ent.y-camy,0,1,1)
 	   
     if ent.ct<100 or ent.active == false then
-	    print("4",ent.x-cam.x+7,ent.y+1-cam.y,2,false,1,true)
+	    print("4",entx-cam.x+7,ent.y+1-camy,2,false,1,true)
 	   elseif ent.ct >100 and ent.ct<200 then
-	    print("3",ent.x-cam.x+7,ent.y+1-cam.y,2,false,1,true)
+	    print("3",ent.x-camx+7,ent.y+1-camy,2,false,1,true)
 	
 	   elseif ent.ct >200 and ent.ct<300 then
-	    print("2",ent.x-cam.x+7,ent.y+1-cam.y,2,false,1,true)
+	    print("2",ent.x-camx+7,ent.y+1-camy,2,false,1,true)
 	
 	   elseif ent.ct >300 and ent.ct<400 then
-	    print("1",ent.x-cam.x+7,ent.y+1-cam.y,2,false,1,true)
+	    print("1",ent.x-camx+7,ent.y+1-camy,2,false,1,true)
 	   else
-	    print("0",ent.x-cam.x+7,ent.y+1-cam.y,2,false,1,true)
+	    print("0",ent.x-camx+7,ent.y+1-camy,2,false,1,true)
 	   end
 			elseif ent.ty == 466 then
-			 spr(ent.ty,ent.x-cam.x+8,ent.y-cam.y,0,1,1)
+			 spr(ent.ty,ent.x-camx+8,ent.y-camy,0,1,1)
 	  
 			end
 		elseif ent.ty == 512 then
@@ -907,12 +912,13 @@ function play()
 		 print(string,(240-width)//2-1,ent.y-1,bg)
 		 print(string,(240-width)//2,ent.y-1,fg)
 		 
+	
 			 
 		end
  end
  
 	if p.onplat == false then
-	 spr(p.spr,math.floor(p.x-cam.x),(p.y-cam.y),0,1,p.fl,p.rot)
+	 spr(p.spr,floor(p.x-camx),(p.y-camy),0,1,p.fl,p.rot)
 	 
 		--hat
 		--spr(p.spr+4,math.floor(p.x-cam.x),(p.y-cam.y)-6,0,1,p.fl,p.rot)
@@ -921,7 +927,7 @@ function play()
 	 
 	else
 	 if ents[p.platent].ploc ~= nil then
-	  spr(p.spr,ents[p.platent].x-cam.x+ents[p.platent].ploc,ents[p.platent].y-cam.y-8,0,1,p.fl,p.rot)
+	  spr(p.spr,ents[p.platent].x-camx+ents[p.platent].ploc,ents[p.platent].y-camy-8,0,1,p.fl,p.rot)
 	 end
 	end
 	
@@ -929,12 +935,12 @@ function play()
   for i,particle in ipairs(allparticles) do
    if particle.layer >= 5 then
 	   if particle.rad == 0 then
-	    pix(particle.x-cam.x,particle.y-cam.y,particle.clr)
+	    pix(particle.x-camx,particle.y-camy,particle.clr)
 	   else
 				 if particle.typ == 3 then
-	     circb(particle.x-cam.x,particle.y-cam.y,particle.rad,particle.clr)
+	     circb(particle.x-camx,particle.y-camy,particle.rad,particle.clr)
 	    else
-					 circ(particle.x-cam.x,particle.y-cam.y,particle.rad,particle.clr)
+					 circ(particle.x-camx,particle.y-camy,particle.rad,particle.clr)
 	   
 					end
 				end
@@ -943,14 +949,14 @@ function play()
 	end
 	
 	if p.y <-10 then
-	 spr(511,p.x-cam.x,0)
+	 spr(511,p.x-camx,0)
 	elseif p.y > 260 then
-	 spr(511,p.x-cam.x,128)
+	 spr(511,p.x-camx,128)
 	end
 	
  vbank(0)
  if world == 1 or world == 7 then
-  leaves("left",13,4)
+  --leaves("left",13,4)
  elseif world == 3 then
   leaves("up",5)
  end
@@ -961,9 +967,9 @@ function play()
   for i,particle in ipairs(allparticles) do
    if particle.layer == 4 then
 	   if particle.rad ==0 then
-	    pix(particle.x-cam.x,particle.y-cam.y,particle.clr)
+	    pix(particle.x-camx,particle.y-camy,particle.clr)
 	   else
-	    circ(particle.x-cam.x,particle.y-cam.y,particle.rad,particle.clr)
+	    circ(particle.x-camx,particle.y-camy,particle.rad,particle.clr)
 	   end
 			end
   end
@@ -1078,7 +1084,8 @@ function remap(tile,x,y)
  
  ]]
 	local outTile,flip,rotate=tile,0,0
-	
+	local floor = math.floor
+	local sin = math.sin
 	
 	if tile == 240 then
   bubbles(x*8,y*8,30,100,6)
@@ -1112,7 +1119,7 @@ function remap(tile,x,y)
 		elseif tile == 180 and xon == true then
 		 outTile=181
 		end
-		
+		--[[
 		 if tile == 188 then
 			 bubbles(x*8,y*8,30,100,6)
 			end
@@ -1124,23 +1131,23 @@ function remap(tile,x,y)
 			end
 			if tile == 191 then
 			 bubbles(x*8,y*8,30,100,1)
-			end
+			end]]
 			
 			-- munchers
 		 if tile==49 
-			and math.sin(time()/90) <0.5 then
+			and sin(time()/90) <0.5 then
 				outTile=51
 			end
 			if tile==50 
-			and math.sin(time()/90) <0.5 then
+			and sin(time()/90) <0.5 then
 				outTile=52
 			end
 			if tile==65 
-			and math.sin(time()/90) <0.5 then
+			and sin(time()/90) <0.5 then
 				outTile=67
 			end
 		 if tile==66 
-			and math.sin(time()/90) <0.5 then
+			and sin(time()/90) <0.5 then
 				outTile=68
 			end
 		if world == 1 then
@@ -1149,24 +1156,24 @@ function remap(tile,x,y)
 		elseif world == 2 then
 		 
 		 if tile==45
-			and math.sin(time()/90) <0.5 then
+			and sin(time()/90) <0.5 then
 				outTile=46
 			end
 			
 			if tile==103
-			and math.sin(time()/90) <0.5 then
+			and sin(time()/90) <0.5 then
 				outTile=104
 			end
 			
 		elseif world == 4 then
 		 
 		 if tile==60
-			and math.sin(time()/90) <0.5 then
+			and sin(time()/90) <0.5 then
 				outTile=61
 			end
 			
 			if tile==76
-			and math.sin(time()/90) <0.5 then
+			and sin(time()/90) <0.5 then
 				outTile=77
 			end
 	
@@ -1186,7 +1193,7 @@ function remap(tile,x,y)
 		elseif world == 5 then
 		 -- fans
 			if tile==52 
-			and math.sin(time()/30) <0.5 then
+			and sin(time()/30) <0.5 then
 			 
 			outTile=53
 			end
@@ -1194,26 +1201,26 @@ function remap(tile,x,y)
 		elseif world == 6 then
 		 -- fans
 			if tile==52 
-			and math.sin(time()/30) <0.5 then
+			and sin(time()/30) <0.5 then
 				outTile=53
 			end
 			-- conveyor
 			if tile == 54 then
-			 outTile = math.floor(time()/300)%8+54
+			 outTile = floor(time()/300)%8+54
 			end
 			if tile == 61 then
-			 outTile = -math.floor(time()/300)%8+54
+			 outTile = -floor(time()/300)%8+54
 			end
 			--acid
 			if tile == 68 then
-			 outTile = math.floor(time()/300)%8+68
+			 outTile = floor(time()/300)%8+68
 			end
 			
 	 elseif world == 4 then
 	  if tile == 9 then
-	   if math.sin(time()/500) <0.34 then
+	   if sin(time()/500) <0.34 then
 			  outTile = 9
-				elseif math.sin(time()/500) <0.7 then
+				elseif sin(time()/500) <0.7 then
 			  outTile = 10
 				else
 				 outTile = 11
@@ -1221,9 +1228,9 @@ function remap(tile,x,y)
 			end
 			
 			if tile == 25 then
-	   if math.sin(time()/500) <0.34 then
+	   if sin(time()/500) <0.34 then
 			  outTile = 25
-				elseif math.sin(time()/500) <0.7 then
+				elseif sin(time()/500) <0.7 then
 			  outTile = 26
 				else
 				 outTile = 27
@@ -2315,6 +2322,7 @@ function spawnparticle(x,y,vx,vy,ax,ay,l,typ,clr,wall,rad,layer)
 end
 
 function particlelogic()
+ local floor = math.floor
 	for i,particle in ipairs(allparticles) do
 	  if particle.wall==false then
 	   particle.vx = particle.vx + particle.ax
@@ -2322,8 +2330,8 @@ function particlelogic()
     particle.x = particle.x + particle.vx
     particle.y = particle.y + particle.vy 
    else
-    particle.x = math.floor(particle.x)
-    particle.y = math.floor(particle.y)
+    particle.x = floor(particle.x)
+    particle.y = floor(particle.y)
    end
    
    particle.life = particle.life-1
@@ -2404,6 +2412,10 @@ function entmake(x,y,vx,vy,ty,ct,d,active,fl,rot,clawed,bns)
 end
 
 function entlogic()
+
+local floor = math.floor
+
+
  for i,ent in pairs(ents) do
   if ent.y < 0 then
    table.remove (ents,i)
@@ -2441,7 +2453,7 @@ function entlogic()
 					ent.vx=0
 				 ent.vy=0
 				 ent.stuck = true
-				 ent.y = math.floor(ent.y/8+0.5)*8+1
+				 ent.y = floor(ent.y/8+0.5)*8+1
 				end
 			end 
 		
@@ -2699,7 +2711,7 @@ function entlogic()
 	    if ents[i].y > ents[k].y-7 and  ents[i].y<ents[k].y+4 
 			  and k ~= i	and ents[i].vy > -2 then
 					 if ents[k].ty ~= 192 and ents[k].ty ~= 448 then 
-						 ents[k].vy = ents[k].vy -4
+						 ents[k].vy = -4
 							sfx(60,50,10,3)	
 						end
 					end
@@ -2751,7 +2763,7 @@ function entlogic()
 					and  ents[i].y<ents[k].y+4 
 			  and k ~= i	and ents[i].vy > -2 then
 						if ents[k].ty ~= 192 and ents[i].ct > 20
-					 and ents[k].ty ~= 448 then 
+					 and ents[k].ty ~= 448 and ents[k].ty ~= 208 and ents[k].ty ~= 464  then 
 						 ents[i].ct = 0
 						 ents[k].vx = -ents[k].vx 
 							ents[i].vx = -ents[i].vx
@@ -2845,6 +2857,9 @@ function entlogic()
 			
 			if ent.oy == nil then
 				ent.oy = ent.y
+				ents[i].on = false
+				--trace(i)
+				--trace(ent.on)
 			end
 		
 		 --ent will eat ent if link is null
@@ -2859,61 +2874,74 @@ function entlogic()
 		    if ents[i].y > ents[k].y-20 and  ents[i].y < ents[k].y+20 
 				  and k ~= i and ents[k].ty ~= 213 then
 	      ents[i].link = ents[k].ty
+							--trace(ents[i].link)
 							table.remove(ents,k)
 						end
 					end
 				end
-			--if ent.link is filled, and the x
-			--tp location is not filled, 
+				--I think this section works. 
+				--it runs twice as desired, once 
+				--for each plat
+				
+				
+				
+				
+			--if ent.link is filled,
 			--we look for another ent that
 			--has the same link type
 			--and store it's xy coords
-			elseif ent.lx == nil then
-			 for k,ent in pairs(ents) do
-     if ents[i].link == ents[k].link
-     and k~=i and ents[k].ty == 213 then
-						ents[i].lx = k
-						ents[k].lx = i
+			elseif ents[i].lx == nil then
+			 for j,ent in pairs(ents) do
+     if ents[i].link == ents[j].link
+     and j~=i and ents[j].ty == 213 then
+						ents[i].lx = j
+						ents[j].lx = i
+						trace(i)
+						trace(j)
+						trace(ents[i].lx)
+						trace(ents[j].lx)
+						ents[ents[i].lx].on = false
+						ents[ents[j].lx].on = false
+						trace(ents[ents[i].lx].on)
+						trace(ents[ents[j].lx].on)
 					end
 				end
-			end
-
-		 if (p.x+p.vx) < ent.x+16 
-			and (p.x+p.vx) > ent.x-7 
-			and p.y+8+p.vy > ent.y 
-   and p.y+p.vy < ent.y 
-			and p.vy > 0 then
-			 if ent.ploc == nil then
-				 ent.ploc = p.x-ent.x
-				 
-				end
-				p.platent = i
-    p.onplat = true
-				p.vy = 0
-				jump=false
-			 p.canjump = true
-			 p.cjct=7
-		  p.jct=0
-		  onground=true
-
-    if btn(2) then
-     ent.ploc = ent.ploc - 1
-    elseif btn(3) then
-     ent.ploc = ent.ploc + 1
-    end
-    
-    
-				p.x=math.ceil(ent.x+ent.ploc)
-				p.y=math.ceil(ent.y-8)
-				
-				
-				--trace(ents[i].linked)
-				
-				ent.y = ent.y+0.5
-			 ents[ents[i].lx].on = true
-			else 
-			 p.onplat = false
-			 ent.ploc = nil
+			else
+			 if (p.x+p.vx) < ent.x+16 
+				and (p.x+p.vx) > ent.x-7 
+				and p.y+8+p.vy > ent.y 
+	   and p.y+p.vy < ent.y 
+				and p.vy > 0 then
+				 if ent.ploc == nil then
+					 ent.ploc = p.x-ent.x
+					end
+					p.platent = i
+	    p.onplat = true
+					p.vy = 0
+					jump=false
+				 p.canjump = true
+				 p.cjct=7
+			  p.jct=0
+			  onground=true
+	
+	    if btn(2) then
+	     ent.ploc = ent.ploc - 1
+	    elseif btn(3) then
+	     ent.ploc = ent.ploc + 1
+	    end
+	    
+	    
+					p.x=math.ceil(ent.x+ent.ploc)
+					p.y=math.ceil(ent.y-8)
+					
+	
+					ent.y = ent.y+0.5
+					
+				 ents[ents[i].lx].on = true
+				else 
+				 p.onplat = false
+				 ent.ploc = nil
+	   end					
    end
 	
 	 --crashes on level transition if
@@ -3391,7 +3419,7 @@ function entlogic()
 		
 		--treecircles
 		elseif ent.ty == 216 then
-		
+		--[[
 		 if ent.xes == nil then
 			 ent.xes = {}
 				ent.yes = {}
@@ -3401,10 +3429,15 @@ function entlogic()
 				 ent.xes[i] = math.random(20)-10
 					ent.yes[i] = math.random(20)-10
 					ent.rads[i] = math.random (7)+10
-					if world == 1 then
-					 ent.cols[i] = math.random(2)+12
-					elseif world == 2 then
-					 ent.cols[i] = math.random(2)+5
+					if gamestate ~= "worldmap" then
+						if world == 1 then
+						 ent.cols[i] = math.random(2)+12
+						elseif world == 2 then
+						 ent.cols[i] = math.random(2)+5
+						end
+					else
+					 --do something to transition btwn worlds here
+					  ent.cols[i] = math.random(2)+12
 					end
 				end
 		 end
@@ -3418,7 +3451,7 @@ function entlogic()
 				 ent.yes[i] = ent.yes[i]+y/20
     end
 			end
-		 
+		 ]]
 		--linear bats
 		elseif ent.ty == 217 or ent.ty == 473 then
 		 if solid(ent.x+9,ent.y) then
@@ -4141,6 +4174,7 @@ function entcheck(x,y,k)
   
   --mystery for another time i guess
 	 local t,t2,t3
+		local floor = math.floor
 	
 		t =mget(x,k+y-8+(level-1)*34)
 	 t2=mget(x+1,k+y-8+(level-1)*34)
@@ -4158,7 +4192,7 @@ function entcheck(x,y,k)
 		   mset(x,k+y-8+(level-1)*34,0)
 				end
 			end
-	 	entmake(math.floor(x*8)+1,math.floor(k*8+y*8-64),0,0,t,0,0,false,0,0,false)
+	 	entmake(floor(x*8)+1,floor(k*8+y*8-64),0,0,t,0,0,false,0,0,false)
 			
 		elseif t == 64  or t == 80 then
 		 local dist = 0
@@ -4258,47 +4292,50 @@ function rain()
 end
 
 function clouds(loc,rnd,light,dark)
- local r = math.random(40)
- local y = math.random(130)
- local v = math.random(3)/10
+
+ local random = math.random
+
+ local r = random(40)
+ local y = random(130)
+ local v = random(3)/10
  if rnd == true then
 	 --low clouds
 		if r == 1 then
 		 for i=0,13,1 do
-	   spawnparticle(loc+math.random(60),y+math.random(40)+80,v-.5, 0,0,0,2000,1,light,false,math.random(13)+4,2)
-	   spawnparticle(loc+math.random(60),y+math.random(40)+80,v-.5, 0,0,0,2000,1,dark,false,math.random(13)+4,2)
+	   spawnparticle(loc+random(60),y+random(40)+80,v-.5, 0,0,0,2000,1,light,false,random(13)+4,2)
+	   spawnparticle(loc+random(60),y+random(40)+80,v-.5, 0,0,0,2000,1,dark,false,random(13)+4,2)
 			end
 	 --high clouds
 	 elseif r == 2 then
 		 for i=0,13,1 do
-	   spawnparticle(loc+math.random(60),y+math.random(40)-80,v-.5, 0,0,0,2000,1,light,false,math.random(13)+4,2)
-				spawnparticle(loc+math.random(60),y+math.random(40)-80,v-.5, 0,0,0,2000,1,dark,false,math.random(13)+4,2)
+	   spawnparticle(loc+random(60),y+random(40)-80,v-.5, 0,0,0,2000,1,light,false,random(13)+4,2)
+				spawnparticle(loc+random(60),y+random(40)-80,v-.5, 0,0,0,2000,1,dark,false,random(13)+4,2)
 	  end
 		--even lower clouds
 		elseif r == 2 then
 		 for i=0,16,1 do
-	   spawnparticle(loc+math.random(60),y+math.random(40)+100,v-.5, 0,0,0,2000,1,light,false,math.random(13)+4,2)
-				spawnparticle(loc+math.random(60),y+math.random(40)+100,v-.5, 0,0,0,2000,1,dark,false,math.random(13)+4,2)
+	   spawnparticle(loc+random(60),y+random(40)+100,v-.5, 0,0,0,2000,1,light,false,random(13)+4,2)
+				spawnparticle(loc+random(60),y+random(40)+100,v-.5, 0,0,0,2000,1,dark,false,random(13)+4,2)
 	  end
   end
  --startclouds
 	else
 	 loc = loc-100
 	  for i=0,13,1 do
-	   spawnparticle(loc+math.random(300),y+math.random(40)+30,v-.5, 0,0,0,2000,1,light,false,math.random(13)+4,2)
-				spawnparticle(loc+math.random(300),y+math.random(40)+30,v-.5, 0,0,0,2000,1,dark,false,math.random(13)+4,2)
+	   spawnparticle(loc+random(300),y+random(40)+30,v-.5, 0,0,0,2000,1,light,false,random(13)+4,2)
+				spawnparticle(loc+random(300),y+random(40)+30,v-.5, 0,0,0,2000,1,dark,false,random(13)+4,2)
 	  end
 			for i=0,20,1 do
-	   spawnparticle(loc+math.random(300),y+math.random(40)-80,v-.5, 0,0,0,2000,1,light,false,math.random(13)+4,2)
-				spawnparticle(loc+math.random(300),y+math.random(40)-80,v-.5, 0,0,0,2000,1,dark,false,math.random(13)+4,2)
+	   spawnparticle(loc+random(300),y+random(40)-80,v-.5, 0,0,0,2000,1,light,false,random(13)+4,2)
+				spawnparticle(loc+random(300),y+random(40)-80,v-.5, 0,0,0,2000,1,dark,false,random(13)+4,2)
 	  end
 			for i=0,20,1 do
-	   spawnparticle(loc+math.random(300),y+math.random(40),v-.5, 0,0,0,2000,1,light,false,math.random(13)+4,2)
-	   spawnparticle(loc+math.random(300),y+math.random(40),v-.5, 0,0,0,2000,1,dark,false,math.random(13)+4,2)
+	   spawnparticle(loc+random(300),y+random(40),v-.5, 0,0,0,2000,1,light,false,random(13)+4,2)
+	   spawnparticle(loc+random(300),y+random(40),v-.5, 0,0,0,2000,1,dark,false,random(13)+4,2)
 			end
    for i=0,20,1 do
-	   spawnparticle(loc+math.random(300),y+math.random(40)+130,v-.5, 0,0,0,2000,1,light,false,math.random(13)+4,2)
-	   spawnparticle(loc+math.random(300),y+math.random(40)+130,v-.5, 0,0,0,2000,1,dark,false,math.random(13)+4,2)
+	   spawnparticle(loc+random(300),y+random(40)+130,v-.5, 0,0,0,2000,1,light,false,math.random(13)+4,2)
+	   spawnparticle(loc+random(300),y+random(40)+130,v-.5, 0,0,0,2000,1,dark,false,math.random(13)+4,2)
 			end
  end
 end
@@ -4313,14 +4350,15 @@ end
 
 
 function wipelogic()
+ local random = math.random
  if ltt>0 or lst >0 then
-	 if math.random (2) == 1 then
-		 createwipe(260,math.random(140),math.random(5)+10,5)
-	  createwipe(260,math.random(140),math.random(5)+10,5)
+	 if random (2) == 1 then
+		 createwipe(260,random(140),random(5)+10,5)
+	  createwipe(260,random(140),random(5)+10,5)
 	 
 	 else
-	  createwipe(260,math.random(140),math.random(5)+10,11)
-	  createwipe(260,math.random(140),math.random(5)+10,11)
+	  createwipe(260,random(140),random(5)+10,11)
+	  createwipe(260,random(140),random(5)+10,11)
 	 end
  end
 
@@ -4601,6 +4639,10 @@ function worldchange(w,l)
  downflips={}
  
  stickys = {}
+ 
+ oldcrystals = {[45]=true,[46]=true,[47]=true, 
+                [61]=true,[62]=true,[63]=true,
+                [77]=true,[78]=true,[79]=true,}
  
  solids={[1]=true,[2]=true,[3]=true,
 				        [17]=true,[18]=true,[19]=true,
@@ -5248,6 +5290,9 @@ end
 -- 039:888888888999999a8999999a8999999a8999999a8999999a8999999aaaaaaaaa
 -- 040:8888888889999aba899aab9a89abb99a8ab9999a8ab9999a8b99999aaaaaaaaa
 -- 041:888888888999999a89bbbb9a89ba999a89babb9a89ba9b9a8999999aaaaaaaaa
+-- 045:111111111ccccccc1cddcccd1cdddddd1ccd00001ccd0e001cdd00001cd00000
+-- 046:11111111ccccccccdddddddd00000000000ee000e000000e00000000000ee000
+-- 047:11111111ccccccc1ddccddc10dddddc10000dcc100e0dcc10000dcc10000ddc1
 -- 048:cccccccccc0000dfc0c00d0fc00cd00fc00de00fc0d00e0fcd0000efcfffffff
 -- 049:0230023022300223222322232223222322222223022222300005600000056000
 -- 050:0005600000056000022222302222222322232223222322232230022302300230
@@ -5260,6 +5305,9 @@ end
 -- 057:8888888889999999899999998999999989999999899999998999999989999999
 -- 058:888888889999999999988a99998888a9998bb8a9998ba8a9998888a999988a99
 -- 059:888888889999999a9999999a9999999a9999999a9999999a9999999a9999999a
+-- 061:1cd00e001cd000001cd000001cd0e00e1cd0e00e1cd000001cd000001cd00e00
+-- 062:e000000e00000000000ee00000eeee0000eeee00000ee00000000000e000000e
+-- 063:00e00dc100000dc100000dc1e00e0dc1e00e0dc100000dc100000dc100e00dc1
 -- 064:0000000000000000000000000000000000050000000650000007600000077000
 -- 070:888888880899999a0089999a0008999a0000899a0000089a0000008a0000000a
 -- 071:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb9bbbbbba9abbbb9999abb9aaa9a9b
@@ -5267,6 +5315,9 @@ end
 -- 073:899999998999999989999999899999998999999989999999899999998aaaaaaa
 -- 074:888888888888888888a88a8888a88a8888a88a888a988a9899988a99aaaaaaaa
 -- 075:a999999aa999999aa999999aa999999aa999999aa999999a9999999aaaaaaaaa
+-- 077:1cdd00001ccd00001ccd0e001ccd00001cddddd01cddccdd1ccccccc11111111
+-- 078:000ee00000000000e000000e000ee00000000000ddddddddcccccccc11111111
+-- 079:00000dc10000ddc100e0dcc10000dcc1ddddddc1dcccddc1ccccccc111111111
 -- 082:999999009998999a9988899a9898989a9998999a0099999a000ab09a000ab000
 -- 083:099999900998999000998999aa999899bb9898980099888900099899000aaaaa
 -- 084:999999bb9988899a9898989a9888889a9989899abb99999abbb9ab9abbb9abbb
@@ -5336,7 +5387,7 @@ end
 -- 193:00bbb0000b0000b00000000bb000000bb000000bb00000000b0000b0000bbb00
 -- 194:0005e000005ffe0005ffffe05ff5effefffeeffc0fffffc000fffc00000fc000
 -- 195:0666666066777766677667766777767667777676677777766677776606666660
--- 196:0000000000444d00044444d004d4d4d004d4d4d0044444d000444d0000000000
+-- 196:0000000000888900088888900898989008989890088888900088890000000000
 -- 197:4444444444444888444488884444888844448888044488880044488800044444
 -- 198:0000000000000000000ee00000edde0000edde00000ee0000000000000000000
 -- 199:0000000000000000000dd00000deed0000deed00000dd0000000000000000000
@@ -5987,20 +6038,20 @@ end
 -- </SPRITES2>
 
 -- <SPRITES3>
--- 000:0677777067777777677878776778787767777777067777700060060000600600
--- 001:0000000006777770677777776778787767787877677777770677777000600600
--- 002:0677777067777777677878776778787767777777067777700060060006000060
--- 003:0677777067777777677878776778787767777777067777700060060006000060
--- 016:00000000000000000f777770f7757577f77575770f777770fff00fff00000000
--- 017:00f777000f7777700f7575700f7575700f77777000f77700000f0f00000f0f00
--- 018:0000000000000000000000000f777770f7757577f77575770f777770fff00fff
+-- 000:0766666076666666766868667668686676666666076666600070070000700700
+-- 001:0000000007666660766666667668686676686866766666660766666000700700
+-- 002:0766666076666666766868667668686676666666076666600070070007000070
+-- 003:0766666076666666766868667668686676666666076666600070070007000070
+-- 016:0000000000000000076666607669696676696966076666607770077700000000
+-- 017:0076660007666660076969600769696007666660007666000007070000070700
+-- 018:0000000000000000000000000766666076696966766969660766666077700777
 -- 048:00000000000000000000000000000000007557000777777000777700000ce000
 -- 049:000ec00000777700077777700075570000000000000000000000000000000000
 -- 127:0000000000000000000fff0f00fffff0000fff0f000000000000000000000000
 -- 192:0000000001111120111111121181811211818112111111120111112000200200
 -- 193:0000000000000000000000000000000000000000050001100558122000555855
 -- 194:000ce000000ce000000ce000000ce000000df000000df000000df000000df000
--- 196:000000000004d0000004d0000004d0000004d0000004d0000004d00000000000
+-- 196:0000000000089000000890000008900000089000000890000008900000000000
 -- 210:4444000445454544445554444556565604554665044666564555444644440004
 -- 242:d00d000d0dddddd00deeeef00dcecef0ddceceff0deeeef00dfffff0d000f00f
 -- 255:0000000000066000000660000006600000000000000660000000000000000000
@@ -6356,27 +6407,27 @@ end
 -- 100:000000000000000000000000657585758500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000065756474846575856474846465758552627262725262725262725262725262726171b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 101:000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006575850000006575856575855262727252627252627252627252627252626171b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 103:000000000000000000000000000000000000000000000000000000637383637383637383637383637383637383000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006373830000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 104:000000000000000000000000000000000000000000000000000000647484647484647484647484647484647484637383637383637383000000000000000000000000000000000000000000000000000000000000000000000000000000000000006373830063738363738374840000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 105:000000000000000000000000000000000000000000000000000000657585657585657585657585657585657585647484647484647484637383637383637383637383637383000000000000000000000000000000000000000000000000000000006463738364748464748475850000000000000000000000000000000000000000000000000000000000000000000000000000637383000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 106:00000000000000000000000000000000000000000000000000637383637383637383637383637383637383637365758565758565758564748464748464746373838464748400000063736373836373637383736373838363738363738363738363656474846373836373837383000000000000008d00008d008d8d008d00008d00000000000000000000000000000000000000647484000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 107:00000000000000000000000000000000000000000000006373837484647484647484647484647484647484647463738363738363738365758565758565756474848565758573836373836474846474647463738374846373838464637383748464636575856474846474847484000000000000000000c8d6e6d6e6000000000000000000000000000000000000000000006373837585000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 108:00000000000000000000000000000000000000000000006474847585657585657585657585657585657585657564748464748464748463738363738363736575856474846474846474846575856575657564748475856474848565647484758565647484836575856575857383000000000000000000c9d7e7d7e70000008d00008d0000000000000000000000000000006474847383000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 109:00000000000000000000000000000000000000000000006575850000637383000000637383637383637383637365758565758565758564748464748464748400006575856575856575850000000000000065758500006575850000657585000000657585846474637383647484000000000000008d00b6daead6e60000000000d6e60000000000000000000000000000006575857484000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 110:00000000000000000000000000000000000000000000000000000063738384000000647484647484647484647484647465758573836365758565758565758500000000000000000000000000000000000000000000000000000000000000000000006575856575647484657585000000000000000000b7c7e7d7e700000000b6d7e700008d0000000000000000000000006373837585000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 111:00000000000000000000000000000000000000000000000000000064748485000000657585657585657585657563738363738374846474846474840000000000000000000000000000000000000000000000000000000000000000000000000000006373839494657585637383000000000000000000b8c8e8d8e800080000b7d8e80000000000000000000000000000006474847383000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 112:00000000000000000000000000000000000000000000000000000065758500000000000000637383637383637364748464748475856575856575850000000000000000000000000000000000000000000000000000000000000000000000000000006474849494949494637383000000000000000000b9c9e9d9e900090000aad9e9b900000000000000000000000000006575857484000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 113:00000000000000000000000000000000000000000000000000000000000000000000000000647484647484637365758565758500000000000000000000000000000000000000000000000000000063738363738300000000000000000000000000006575859494949494647484000000000000000000bacaeadaea000900aa80daeaba00000000000000000000000000006373837585000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 114:000000000000000000000000000000000000000000000000000000000000000000000000006575856575856474637383637383000000000000000000000000004c4c4c00000000000063738363736474846474637300000000000000000000000000637383949494949465758500000e0000000000006373836373836373637383637383830000000000000000000000006474847383000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 115:0000000000000000000000000000000000000000000000000000000000000000000000000063738363738365756474846474840000000000000000000000004c000000000000000000647484647465758565756474637383637300000e000000000064748494949494946373837b7b7b7b7b7b7b7b7b6474846474846474647484647484840000000000000000000000006575857484000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 116:0000000000000000000000000000000000000000000000000000000000000000000000000064748464748463736575856575850000000000000000000000004c00000063738363738365758565758594949494657564748464747b7b7b7b7b7b7b7b657585949494949464748438383838383838383865758565758565756575856575858500000000000000000000000063738383850000000000004c0000637383000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 117:0000000000000000000000000000000000000000000000000000000000000000000000000065758565758564748465758500000000000000000000000000004c000000647484647484647484647484949494949494657585657538383838383838386373839494949494657585000000000000000000637383647484000000000000006373830000000000000000000000647484848300000000004c000000647484000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 118:0000000000000000000000000000000000000000000000000000000000000000000000000063738363738365758500000000000000000000000000000000004c000000657585657585657585657585949494949494949463738300000000000000006474849494949494637383000000000000000000647484657585000000000000006474848300000000000000000000657585858400000000004c000000657585000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 119:0000000000000000000000000000000000000000000000000000000000000000000000000064748464748463738300000000000000000000000000000000004c000000637383949494949494949494949494949494949464748400000000000000006575859494949494647484000000000000637383657585637383000000000000006575858400000000000000000000000065758500000000004c000000637383000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 120:000000000000000000000000000000000000000000000000000000492a000000000000000065758565758564748400000000000000000000000000000000004c000000647484949494949494949494949494949494949465758500000000000000006373839494949494657585000000000000657585637383647484000000000000000065758573830000000000000000000000000000000000004c000000647484000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 121:0000000000000000000000000000000000000000000000000000498059000000000000000063738363738365758500000000000000000000000000000000004c000000657585949494949494949494949494949494949463738300000000000000006474849494946373830000000000000000006373837484657585000000000000000000006474840000000000270000000000000000000000004c000000657585000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 122:000000000000000000000000000000000000000000000000000039805900000000000000006474846474846373830000000000000000000000000000000000000000006373839494949494949494949494949494949494647484000000000000000065758594949464748400000000000000000064748475850000000000000000000000000065756373837383637383000000000000000000000000000000637383000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 123:000000000000000000000000000000000000000000000000000039275900000d00000d00006575856575856474840000000000000000000000000000000c0c0c0000006474849494949494949494949494949494949494657585000000000000000063738363738365758563738300000000000065758500000000000000000000000000000064746474847484647484000000000000000000000000000000647484000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 124:000000000000000000000000000000000000000000000000000063738300000000000000006373836373836575851a1a1a1a1a1a6373837b7b7b7b7b7b7b7b7b7b7b7b65758594949494949494949494949494949494946373830000000000000000647484647463738374647484000000000000637383000000000000000000000000000000657565758575856575850000000000000000000000000d0000657585000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+-- 104:00000000000000000000000000000000000000000000000000000064748464748464748464748464748464748463738363738363738300000000000000000000000000000000000000000000000000000000000000000000000000000000000000637383006373836373837484000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000491a1a1a1a1a1a2a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+-- 105:0000000000000000000000000000000000000000000000000000006575856575856575856575856575856575856474846474846474846373836373836373836373836373830000000000000000000000000000000000000000000000000000000064637383647484647484758500000000000000000000000000000000000000000000000000000000000000000000000000006373830000000000000000000000000000000000000000000000000000004980808080808080802a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+-- 106:00000000000000000000000000000000000000000000000000637383637383637383637383637383637383637365758565758565758564748464748464746373838464748400000063736373836373637383736373838363738363738363738363656474846373836373837383000000000000008d00008d008d8d008d00008d0000000000000000000000000000000000000064748400000000000000000000000000491a1a1a1a1a1a1a1a1a2a000000398080808080808080590000000000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000
+-- 107:00000000000000000000000000000000000000000000006373837484647484647484647484647484647484647463738363738363738365758565758565756474848565758573836373836474846474647463738374846373838464637383748464636575856474846474847484000000000000000000c8d680d6e60000000000000000000000000000000000000000000063738375851a1a1a1a1a1a1a1a1a1a1a1a1a80808080808080808080801a1a1a808080808080808080590000000000000000000000000000000000000000000000000000000000000000000000000700000000000000000000000000000000
+-- 108:00000000000000000000000000000000000000000000006474847585657585657585657585657585657585657564748464748464748463738363738363736575856474846474846474846575856575657564748475856474848565647484758565647484836575856575857383000000000000000000c9d780d7e70000008d00008d0000000000000000000000000000006474847383808080808080808080808080808080808080808080808080808080808080808080808080801a1a1a1a1a1a2a00000000000000000000000000000000000000000000000000000000000700000000000000000000000000000000
+-- 109:00000000000000000000000000000000000000000000006575850000637383000000637383637383637383637365758565758565758564748464748464748400006575856575856575850000000000000065758500006575850000657585000000657585846474637383647484000000000000008d00b6da80d6e60000000000d6e680f600000000000000000000000000657585748480808080808080808080808080808080808080808080806373637363736373637363738380808080808080801a1a2a00000000000000000000000000000000000000000000000000000700000000000000000000000000000000
+-- 110:00000000000000000000000000000000000000000000000000000063738384000000647484647484647484647484647465758573836365758565758565758500000000000000000000000000000000000000000000000000000000000000000000006575856575647484657585000000000000000000b7c780d7e700000000b6d7e780f78d0000000000000000000000006373837585808080808080808080808080808080808080808080808064746474647464746474647484808080808080808080805900000000000000000000000000000000000000000000000000000700000000000000000000000000000000
+-- 111:00000000000000000000000000000000000000000000000000000064748485000000657585657585657585657563738363738374846474846474840000000000000000000000000000000000000000000000000000000000000000000000000000006373839494657585637383000000000000000000b8c880d8e800080000b7d8e880f8000000000000000000000000006474847383808080808080808080808080808080808080808080808065756575657565756575657585808080808080808080805900000000000000000000000000000000000000000000000000637383000000000000000000000000000000
+-- 112:00000000000000000000000000000000000000000000000000000065758500000000000000637383637383637364748464748475856575856575850000000000000000000000000000000000000000000000000000000000000000000000000000006474849494949494637383000000000000000000b9c980d9e900090000aad9e980000000000000000000000000000065758574844a4a4a4a4a4a4a4a4a80808080808080808080808080802380238023802380238023802380808080808080808045590000000e000000000000000e00000000000000000000006373837463738300000000000000000000000000
+-- 113:00000000000000000000000000000000000000000000000000000000000000000000000000647484647484637365758565758500000000000000000000000000000000000000000000000000000063738363738300000000000000000000000000006575859494949494647484000000000000000000baca80daea000900aa80daea80a90000000000000000000000000063738375850000000000000000003a4a4a808080808080808080808080808080808080808080808080808080808080808063738300000000000000000000000000000000000063738363736474847564748463738300000000000000000000
+-- 114:000000000000000000000000000000000000000000000000000000000000000000000000006575856575856474637383637383000000000000000000000000004c4c4c00000000000063738363736474846474637300000000000000000000000000637383949494949465758500000e0000000000006373836373836373637383637383830000000000000000000000006474847383000000000000000000000000398080808080808080808080808080808080808080808080808080808080808083748400000000000000000000000000000000000083748464637383858465758564748400000000000000000000
+-- 115:0000000000000000000000000000000000000000000000000000000000000000000000000063738363738365756474846474840000000000000000000000004c000000000000000000647484647465758565756474637383637300000e000000000064748494949494946373837b7b7b7b7b7b7b7b7b6474846474846474647484647484840000000000000000000000006575857484000000000000000000000000398080808080808080808080808080808080808080808080808080808080637383748400000000000000000000000000000000000064748463738363738363736373838500000000000000000000
+-- 116:0000000000000000000000000000000000000000000000000000000000000000000000000064748464748463736575856575850000000000000000000000004c00000063738363738365758565758594949494657564748464747b7b7b7b7b7b7b7b657585949494949464748438383838383838383865758565758565756575856575858500000000000000000000000063738383850000000000004c00006373836373836373836373836b6b6b6b6b6b6b6b6b6b6b6b6b6b6b63738363738364748475856b6b6b6b6b6b6b6b6b6b6b6b6b6b6b6b6b6b65758564748464748464746474840000000000000000000000
+-- 117:0000000000000000000000000000000000000000000000000000000000000000000000000065758565758564748465758500000000000000000000000000004c000000647484647484647484647484949494949494657585657538383838383838386373839494949494657585000000000000000000637383647484000000000000006373830000000000000000000000647484848300000000004c000000647484647484647484647484000000000000000000000000000000647484647484657585738300000000000000000000000000000000000063738365758565758583756575850000000000000000000000
+-- 118:0000000000000000000000000000000000000000000000000000000000000000000000000063738363738365758500000000000000000000000000000000004c000000657585657585657585657585949494949494949463738300000000000000006474849494949494637383000000000000000063738384657585000000000000006474848300000000000000000000657585858400000000004c000000657585657585657585657585000000000000000000000000000000657585657585657585748400000000000000000000000000000000000064748463738384647463736474840000000000000000000000
+-- 119:0000000000000000000000000000000000000000000000000000000000000000000000000064748464748463738300000000000000000000000000000000004c000000637383949494949494949494949494949494949464748400000000000000006575859494949494647484000000000000637383748485637383000000000000006575858400000000000000000000000065758500000000004c000000637383637383637383637383001e001e001e001e001e001e001e006373830000000000657585000c00000c00000c00000c00000c00000c0065758564748485637364746575850000000000000000000000
+-- 120:000000000000000000000000000000000000000000000000000000492a000000000000000065758565758564748400000000000000000000000000000000004c000000647484949494949494949494949494949494949465758500000000000000006373839494949494657585000000000000657585637383647484000000000000000065758573830000000000000000000000000000000000004c000000647484647484647484647484830101010101010101010101010183647484000000000063738363738363738363738363738363738363738363738365756373647465636474840000000000000000000000
+-- 121:0000000000000000000000000000000000000000000000000000498059000000000000000063738363738365758500000000000000000000000000000000004c000000657585949494949494949494949494949494949463738300000000000000006474849494946373830000000000000000006373837484657585000000000000000000006474840000000000270000000000000000000000004c000000657585657585657585657585846474846474846474846474846484657585000000000064748464748464748464748464748464748464748464748463736474657585646575850000000000000000000000
+-- 122:000000000000000000000000000000000000000000000000000039805900000000000000006474846474846373830000000000000000000000000000000000000000006373839494949494949494949494949494949494647484000000000000000065758594949464748400000000000000000064748475850000000000000000000000000065756373837383637383000000000000000000000000000000637383637383000000006575856575856575856575856575856585000000000000000065758565758565758565758565758565758565758565758564746575850000657585000000000000000000000000
+-- 123:000000000000000000000000000000000000000000000000000039275900000d00000d00006575856575856474840000000000000000000000000000000c0c0c0000006474849494949494949494949494949494949494657585000000000000000063738363738365758563738300000000000065758500000000000000000000000000000064746474847484647484000000000000000000000000000000647484647484000000000000000000000000000000000000000000000000000000000065758500000000000000000000000000000000000000000065758500000000000000000000000000000000000000
+-- 124:000000000000000000000000000000000000000000000000000063738300000000000000006373836373836575851a1a1a1a1a1a6373837b7b7b7b7b7b7b7b7b7b7b7b65758594949494949494949494949494949494946373830000000000000000647484647463738374647484000000000000637383000000000000000000000000000000657565758575856575850000000000000000000000000d0000657585657585000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 125:00000000000000000000000000000000000000000000000000006474847b7b7b7b7b7b7b7b6474846474848080808080808080806474843737373737373737373737376373839494949494949494949494949494949494647484000000000000000065758565756474847565758500000000000064748400000000000000000000000000000000000000000000637383000000000000000000000000000000637383000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 126:0000000000000000000000000063736373836373836373830000657585383838383838383865758565758580808080808080808065758538383838383838383838383864746373838394949494949494949494949494946575850000000000000000000000000065758500000000000000006373657585000000000000000000000000000000000000000000006474846b6b6b6b6b6b6b6b6b6b6b6b6b6b6b647484000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 127:000000000000000000000000006474647484646363738384637363738300000000000000003980808080808080808080806373836373830000000000000000000000006575647484849494949494949494949494949494637383000000000000000000000000000000000000000000000000647484000000000000000000000000000000000000000000000000657585000000000000000000000000000000657585000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -6401,11 +6452,11 @@ end
 -- 009:0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004c4c00cb00cb0000000000102030124032ebebdb10404040403010203010203012223200000000000000104040404040405040404031c8c8c8c8c8c8c8104040404040402232000000000000b8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8d800000000000000000000000000000012112132000000000000000000000000111c2131000000000000000000000000000000000000000007000000000000000000000000000000000000
 -- 010:000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004c4ccb0000cb00000000000000114040404030ebebdb114040404040404040404031fbfb0000000000000000124040404040514140404031c8c8c8c8c8c820114040404040403100000000000000b8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c9c9c9c9c8c8c8c8c8c8c8c8c8d80000000000102020300000000000000012223000000000000000000000000012222232000000102030102030000000000000000000001020300000000000000000000000000000000000
 -- 011:00000000000000000000000000000000000000000000000000000000000000fb102030102030102030000000000000cb00cb00cb00000000000000db0000124040404031ebebdb124040404040404040404032fbfbfbfb000000000000001140404040404140404031c8c8c8c8c8c820124040404040403200000000000000b8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8d9ebebebebb9c8c8c8102030c8c8d80000000000111c21310000000000000000213100001020202030000000000000002131000000112131112131000000000010203010201121311020300000000000000000000000000000
--- 012:000000000000000000000000000000000000000000000000000000000000fbfb114040404040404031000000000000cb00cb000000000000000000db0000124040404030ebdbdb104040404040404040404030fbfbfbfb000000000000001140404040404040404031c8c8c8c8c8c8c8104040404040223200000000000000b8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c845c8d8ebebebebebebc8c8c8112131c8c8d800000013131222223200000000000000002030000011211c4031000000000000002232000000121020122232000010203011213111211222321121313000000000000000000000000000
--- 013:000000000000000000000000000000000000000000000000000000000000fbfb124040404040402232000000000000cb0000000000000000000000db0000104040404031ebdbdb114040404040404040404031fbfbfbfb000000000000001140405140404040404031c820c8c8c8c8c8114040404040320000000000000000102030102030102030102030102030102030102030102030ebebebebebeb1020301222321020300000001020310000000000000000000020303100001222224031000000000000000000000000001121310000000011213112223212223211211222323100000000000000000000000000
--- 014:000000000000000000000000000000000000000000000000000000000000fbfb114040404040403000000000000000000000000000000000000000db0000114040404032ebdbdb122232122232122232122232fbfbfbfb001020202020204040404150404040404031c8c8c8c820c8c8124040404040310000000000000000114040404040404040404040404040404040404040404031ebebebebebeb1121311121311121310000001140310000000000000000000011213020302030114031130000000000000000000000001222320000000012223212223212223212223212223200000000000000000000000000
--- 015:000000000000000000000000000000000000000000000000000000000000fbfb124040404040403113000010203000000000000000000000000000db0000124040404031000000cbcbcbcbcbcbcbcbcbcbcbcbfbfbfbfb102232404040404040414140404040404031c8c8c8c8c8c8c8104040404040320000000000131313124040404040403032122232122232122232122232124032ebebebebebeb1222321222321222320000001141310000000000000000000012223121112131114140300000000000000000000000000000000000000010203010203010203010203010203000000000000000000000000000
--- 016:000000000000000000000000000000000000000000000000000000000000fbfb104040404040404030000011102030000000000000000000000000db0000104040404032000000cbcbcbcbcbcbcbcbcbcbcbfbfbfbfbfb102030404040404040404040404040404031c8c8c8c8c8c8c8114040404031000000000000102030104040404040403100000000000000000000000000104030ebebebebebeb1020300000000000000000001222320000000000000000000000112120212121212141310000000000000000000000000000000000000011213111213111213110203011213100000000000000000000000000
+-- 012:00000000000000e3e3e3e3e3e3e3e3e30000000000000000000000000000fbfb114040404040404031000000000000cb00cb000000000000000000db0000124040404030ebdbdb104040404040404040404030fbfbfbfb000000000000001140404040404040404031c8c8c8c8c8c8c8104040404040223200000000000000b8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c845c8d8ebebebebebebc8c8c8112131c8c8d800000013131222223200000000000000002030000011211c4031000000000000002232000000121020122232000010203011213111211222321121313000000000000000000000000000
+-- 013:00000000000000e3e3e3e3e3e3e3e3e30000000000000000000000000000fbfb124040404040402232000000000000cb0000000000000000000000db0000104040404031ebdbdb114040404040404040404031fbfbfbfb000000000000001140405140404040404031c820c8c8c8c8c8114040404040320000000000000000102030102030102030102030102030102030102030102030ebebebebebeb1020301222321020300000001020310000000000000000000020303100001222224031000000000000000000000000001121310000000011213112223212223211211222323100000000000000000000000000
+-- 014:00000000000000e3e3e3e3e3e3e3e3e30000000000000000000000000000fbfb114040404040403000000000000000000000000000000000000000db0000114040404032ebdbdb122232122232122232122232fbfbfbfb001020202020204040404150404040404031c8c8c8c820c8c8124040404040310000000000000000114040404040404040404040404040404040404040404031ebebebebebeb1121311121311121310000001140310000000000000000000011213020302030114031130000000000000000000000001222320000000012223212223212223212223212223200000000000000000000000000
+-- 015:00000000000000e3e3e3e3e3e3e3e3e30000000000000000000000000000fbfb124040404040403113000010203000000000000000000000000000db0000124040404031000000cbcbcbcbcbcbcbcbcbcbcbcbfbfbfbfb102232404040404040414140404040404031c8c8c8c8c8c8c8104040404040320000000000131313124040404040403032122232122232122232122232124032ebebebebebeb1222321222321222320000001141310000000000000000000012223121112131114140300000000000000000000000000000000000000010203010203010203010203010203000000000000000000000000000
+-- 016:00000000000000e3e3e3e3e3e3e3e3e30000000000000000000000000000fbfb104040404040404030000011102030000000000000000000000000db0000104040404032000000cbcbcbcbcbcbcbcbcbcbcbfbfbfbfbfb102030404040404040404040404040404031c8c8c8c8c8c8c8114040404031000000000000102030104040404040403100000000000000000000000000104030ebebebebebeb1020300000000000000000001222320000000000000000000000112120212121212141310000000000000000000000000000000000000011213111213111213110203011213100000000000000000000000000
 -- 017:000000000000000000000000000000000000000000000000000000000000fbfb114040404040404031130012404031000000000000000000000000000000114040404030000000cbcbcbcbcbfbfbfbfbfbfbfbfbfbfbfb112131404040404040404040222222102030c8c8c8c8c8c8c8122232122232000000000000114040404040404040313200000000000000000000000000114031ebebebebebeb1121310000000000000000000000000000000000000000000000122221222222221131000000000000000000000000000000000000000012223210203012223211213112223200000000000000000000000000
 -- 018:000000000000000000000000000000000000000000000000000000250000fbfb1240404040404040203010204040323010200000000000000000000000001240404040310c0000fbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfb122222222222222222222232000000112131c8c8c801c8c8c8c8c8d8000000000000000000124040404040402232320000000000000000000000000000122232ebebebebebeb1222320000000000000000000000000000000000000000000000001121000000001121000000000000000000000000000000000000000000000011213120301012223200000000000000000000000000000000
 -- 019:000000000000000000009000000000000000000000000010203010203010203010404040404040404040404040404040402100000000000000000000000010403012223200000000000000000000000000000000000000000000000000000000000000000000122232c8c8c81cc8c8c8c8c8d8000000000000000000114040404040403100000000000000000000000000000000000000ebebebebebeb0000000000000000000000000000000000000000000000000000001222000000001121000000000000000000000000000000000000000000000012223221311121310000000000000000000000000000000000
@@ -6443,7 +6494,7 @@ end
 -- 053:000000000000000000000000000000000000000000000085e0e0e0e0e085002b0000000000000000000000000000004b000000000000000057677795557556667657677795576777557595576777000000000000000000000000000072720000000000005666764b4b4b4b4b576777e0e0e0e0e0e0e0556575e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e05767774b4b4b4b4b5666760000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 054:000000000000000000000000000000860000000000005565756070805565754b4b4b4b4b4b4b4b4b4b4b4b4b4b4b4b4b000000000000000055657595577756667655657595556575577795556575000000000000000000000000000072720000000000005767770000000000556575e0e0e0e0e0e0e0566676e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e055657500000000005666760000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 055:000000000000000000000000000000870000000000005666766171815666760000000000000000000000000000000000000000000000000056667695608056667656667695566676608095566676000000000000000000000000000072000000000000005565750b00000000566676e0e0e0e0e0e0e0576777e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e05666760b000000005666760000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 056:0000000000000000000000000000008700000000000057677793a3b3576777000000000000000000000000000000000000000000000000005767777261815666765767779557677761819557677700000000000000000000000000007200000000000000566676000000000057677772556575556575556575e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e057677700000000005666760000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+-- 056:0600000000000000000000000000008700000000000057677793a3b3576777000000000000000000000000000000000000000000000000005767777261815666765767779557677761819557677700000000000000000000000000007200000000000000566676000000000057677772556575556575556575e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e057677700000000005666760000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 057:1020202020202020202020202020202020300000000055657594a4b4556575000000000000000000000000000000000000000000000000000000000000645767775565759555657555657555657500000000000000000000000000000000000000000000576777000000000055657572566676566676566676e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e055657500000000005666760000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 058:11404040404041515040404051404040403100000000566676607080566676000000000000000000000000000000000000000000000000000000000000000000645666769556667656667656667600000000000000000000000000000000000000000000556575000000000056667672576777576777576777e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e056667600000000005666760000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 059:124040404040404140404040514040312232000000005767776171815767770000000000000000000000000000000000000000000000000000000000000000000057677792576777576777576777000000000000000000000000000000000000000000005666762b2b2b2b2b576777c8c8f0c8c8c8c8c8c8c8e0e0e0e0e0e0e0e0e0e0e0e0e0e1e0e0e0e0e0e0e0e05767772b2b2b2b2b5666760000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -6846,7 +6897,7 @@ end
 
 -- <PALETTE3>
 -- 000:323353ffffff73172d3b17250000001ebc73239063165a4cfbb954e6904ecd683d9e45398fd3ff4d9be64d65b4484a77
--- 001:000000000000000000000000ae2334e83b3b831c5dc324549e4539000000000000c7dcd09babb27f708a6255652e222f
+-- 001:000000000000000000000000ae2334e83b3b905ea96b3e75f9c22bf79617000000c7dcd09babb27f708a6255652e222f
 -- </PALETTE3>
 
 -- <PALETTE4>
