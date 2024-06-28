@@ -627,7 +627,7 @@ function TIC()
  
  print("alpha screenshot June 2024",0,0,8)
  --print(world,0,0,8)
-	print(p.vy,0,6,8)
+	print(solid(p.x-3,p.y),0,6,8)
 	--print(deathwipetimer,0,6,8)
  --print((ctfr/tim)//1,0,12,8)
 
@@ -3466,7 +3466,7 @@ local floor = math.floor
 			end
 			
 
-	 --circlin spikeboi (deathboi)
+	 --e spikeboi (deathboi)
 	 elseif ent.ty == 201 then
 		 if ent.active == false then
 			 ent.vx = 0.3
@@ -3596,8 +3596,8 @@ local floor = math.floor
      else
 	     if btn(2) then
 						 if not
-							solid(p.x-5,p.y)and not 
-							solid(p.x-5,p.y+8) then
+							solid(p.x-3,p.y)and not 
+							solid(p.x-3,p.y+8) then
 	       ent.ploc = ent.ploc - 1
 							end
 	     elseif btn(3) then
@@ -3613,10 +3613,20 @@ local floor = math.floor
 					p.x=math.ceil(ent.x+ent.ploc)
 					p.y=math.ceil(ent.y-8)
 					
+				 if solid(p.x-3,p.y) 
+					or	solid(p.x-3,p.y+8) 
+					or solid(p.x-6,p.y+4)then
+					 p.vx=0
+				 end
+					
 				else 
 			  ent.ploc = nil
 					p.onplat = false
 					onground = false
+					
+
+					
+					--bonk
 					if p.vy<0 and p.y+p.vy<ent.y+8
 					and p.y+p.vy>ent.y then
 					 p.vy=0
