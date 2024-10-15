@@ -405,17 +405,17 @@ function TIC()
 		--sped up for testing
 		
 		--local mapspeed=1
-		local mapspeed=3
+		local mapspeed=2
 		
-		if btn(3) then
+		if btn(3)  then
 		 mapcoords.x = mapcoords.x+mapspeed
-		elseif btn(2) then
+		elseif btn(2) and mapcoords.x>0 then
 		 mapcoords.x = mapcoords.x-mapspeed
 		end
 		
-		if btn(0) then
+		if btn(0) and mapcoords.y >0 then
 		 mapcoords.y = mapcoords.y-mapspeed
-		elseif btn(1) then
+		elseif btn(1) and mapcoords.y < 200 then
 		 mapcoords.y = mapcoords.y+mapspeed
 		end
 		
@@ -1003,7 +1003,7 @@ function play()
   and ent.ty ~= 204 
   and ent.ty ~= 205 then
 	
-			spr(ent.ty,ent.x-camx,ent.y-camy,0,1,ent.fl,ent.rot)
+			spritebdr(ent.ty,ent.x-camx,ent.y-camy,0,1,ent.fl,ent.rot)
 	  
 	  --mirror sprite if moving plat
 	  
@@ -1067,6 +1067,16 @@ function play()
 		end
  end
  
+  local jev = 0
+  if p.sprct>16 then jev = 1 end
+ 
+  spr(260+jev,floor(p.x-camx-4),(p.y-camy-5),0,1,0,p.rot)
+	 spr(260+jev,floor(p.x-camx+4),(p.y-camy-5),0,1,1,p.rot)
+		spr(262+jev,floor(p.x-camx-4),(p.y-camy+3),0,1,0,p.rot)
+	 spr(262+jev,floor(p.x-camx+4),(p.y-camy+3),0,1,1,p.rot)
+	
+	
+	
   spr(p.spr,floor(p.x-camx),(p.y-camy),0,1,p.fl,p.rot)
 	 
 		--hat
@@ -2619,6 +2629,25 @@ function dustpoofs()
  spawnparticle(p.x+1,p.y+8,0,0,0,0,100,5,10,false,3,4)
 end
 
+function spritebdr(id,x,y,ky,scl,fl,rt)
+	
+	for i = 2,15 do
+		poke4(0x3FF0*2+i , 1)
+	end
+
+	spr(id,x+1,y,ky,scl,fl,rt)
+	spr(id,x-1,y,ky,scl,fl,rt)
+	spr(id,x,y+1,ky,scl,fl,rt)
+	spr(id,x,y-1,ky,scl,fl,rt)
+	
+	for i = 2,15 do
+		poke4(0x3FF0*2+i , i)
+	end
+
+	spr(id,x,y,ky,scl,fl,rt)
+
+end
+
 function entmake(x,y,vx,vy,ty,ct,d,active,fl,rot,clawed,bns)
  ent={x=x,
       y=y,
@@ -2807,7 +2836,7 @@ local floor = math.floor
 		if ent.ty==192 
 		or ent.ty==448 
 		or ent.ty == 449 then
-  
+		
 			if p.x>ent.x-8 and p.x<ent.x+8 then
     if p.y>ent.y-10 and p.y<ent.y+4 then
 					if ent.fl == 0 
@@ -6379,7 +6408,7 @@ end
 -- 026:0000000000000000000077700007777700075757007757577777777766666666
 -- 027:0077776067777770777777777757757777577577777777770777777606777700
 -- 028:0007760007777770677577707757777777777577077757760777777000677000
--- 032:0ffffff0f555777ff577777fff7777ff0ff77ff000ffff00000ff000000ff000
+-- 032:055555505cc442255c4422255542225505522550005555000005500000055000
 -- 048:0000000000000000000000000000000000c554000c4444d0004ddd00000ef000
 -- 049:000fe00000cccc000c44ddd000455d0000000000000000000000000000000000
 -- 080:ffffffff0fffffff00ffffff000fffff0000ffff00000fff000000ff0000000f
@@ -6431,6 +6460,10 @@ end
 -- 001:000000000f777770f7777777f7757577f7757577f77777770f77777000f00f00
 -- 002:0f777770f7777777f7757577f7757577f77777770f77777000f00f000f0000f0
 -- 003:0f777770f7777777f7757577f7757577f77777770f77777000f00f000f0000f0
+-- 004:000000000000000000000000000000000000bbbb000bbbbb000bbbbb000bbbbb
+-- 005:00000000000000000000000000000000000000000000bbbb000bbbbb000bbbbb
+-- 006:000bbbbb000bbbbb000bbbbb0000bbbb00000bbb00000bbb0000000000000000
+-- 007:000bbbbb000bbbbb000bbbbb000bbbbb0000bbbb00000bbb0000000000000000
 -- 016:00000000000000000f777770f7757577f77575770f777770fff00fff00000000
 -- 017:00f777000f7777700f7575700f7575700f77777000f77700000f0f00000f0f00
 -- 018:0000000000000000000000000f777770f7757577f77575770f777770fff00fff
@@ -6512,6 +6545,16 @@ end
 -- 018:0000000000000000000000000f777770f77b7b77f77b7b770677777066600666
 -- 048:00000000000000000000000000000000007557000777777000777700000ce000
 -- 049:000ec00000777700077777700075570000000000000000000000000000000000
+-- 128:0aaaaac0aaaaaaacaa4a4aacaa4a4aacaaaaaaac0aaaaac000c00c0000c00c00
+-- 129:0055500005000050000000055000000550000005500000000500005000055500
+-- 130:0005e000005ffe0005ffffe05ff5effefffeeffc0fffffc000fffc00000fc000
+-- 131:0666666066777766677667766777767667777676677777766677776606666660
+-- 144:0eeeeef0eeeeeeefee4e4eefee4e4eefeeeeeeef0eeeeef000f00f0000f00f00
+-- 145:000000000ddddd0ddceceededceceeeedeeeeefe0fffff0f0000000000000000
+-- 146:00eeeee0e0000000e000000ee0eeee0ee0eeee0ee00ee00e0000000e0eeeee00
+-- 147:7777777767777776677777766777777667777776677777767777777707777770
+-- 160:0230023022300223222322232223222322222223022222300030030000300300
+-- 161:0000000002300230223002232223222322222223022222300030030000300300
 -- 192:000000000aaaaac0aaaaaaacaa4a4aacaa4a4aacaaaaaaac0aaaaac000c00c00
 -- 193:00000000000000000000000000000000000000000a000bb00aa4baa000aaa4cc
 -- 194:0005f0000005f0000005f0000005f000000ec000000ec000000ec000000ec000
@@ -7520,7 +7563,7 @@ end
 
 -- <PALETTE1>
 -- 000:4d9be64d65b4c7dcd0ffffffe83b3bd5e04ba2a94767663345293f9e4539cd683de6904e6e2727f79617fb6b1d000000
--- 001:0c0400e6904ee83b3bae2334f9c22bfffffffff975905ea99e4539cd863d484a77c7dcd0323353f79617bc419b6b3e75
+-- 001:ffffff000000e83b3bae2334f9c22bfffffffff975905ea99e4539cd863d484a77000000323353f79617bc419b6b3e75
 -- </PALETTE1>
 
 -- <PALETTE2>
