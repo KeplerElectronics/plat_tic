@@ -321,7 +321,7 @@ function TIC()
 
 	if gamestate == "startup" then
 	-- gamestate = "menu"
-	 worldchange(1,1)
+	 worldchange(5,1)
 		--gamestate="worldmap"
 		gamestate = "play"
 		
@@ -907,8 +907,8 @@ function play()
    line(ent.x-camx+4, ent.y-camy+4,ent.ct-camx+4, ent.d-camy+4,13)
    line(ent.x-camx+3, ent.y-camy+4,ent.ct-camx+3, ent.d-camy+4,13)
   
-		 spr(ent.ty,ent.x-camx,ent.y-camy,0,1,ent.fl,ent.rot)    
-	 	spr(198,ent.ct-camx,ent.d-camy,0,1,ent.fl,ent.rot)
+		 spritebdr(ent.ty,ent.x-camx,ent.y-camy,0,1,ent.fl,ent.rot,0)    
+	 	spr(198,ent.ct-camx,ent.d-camy,0,1,ent.fl,ent.rot,0)
   
   elseif ent.ty == 199 then
    spr(199,ent.ct-camx,ent.d-camy,0,1,ent.fl,ent.rot)
@@ -991,8 +991,12 @@ function play()
 		 
   --store signs specific
 		elseif ent.ty == 203 then
-		 print("CLOTHES",ent.x-camx,ent.y-camy+2,12)
+		 print("CLOTHES",ent.x-camx-1,ent.y-camy+2+1,5)
+			print("CLOTHES",ent.x-camx,ent.y-camy+2,12)
+		
 		elseif ent.ty == 204 then
+		
+		 print("Beer",ent.x-camx-1,ent.y-camy+2+1,5)
 		 print("Beer",ent.x-camx,ent.y-camy+2,12)
 		
 		--random signs
@@ -1010,7 +1014,7 @@ function play()
 			 ent.str = opt[j] 	
 				ent.color = copt[c]		
 			end
-
+			print(ent.str,floor(ent.x+8-print(ent.str,0,-6)/2-camx)-1,ent.y-camy+2+1,5)
 			print(ent.str,floor(ent.x+8-print(ent.str,0,-6)/2-camx),ent.y-camy+2,ent.color)
 
 		
@@ -2665,10 +2669,15 @@ function dustpoofs()
  spawnparticle(p.x+1,p.y+8,0,0,0,0,100,5,10,false,3,4)
 end
 
-function spritebdr(id,x,y,ky,scl,fl,rt)
-	
-	for i = 2,15 do
-		poke4(0x3FF0*2+i,1)
+function spritebdr(id,x,y,ky,scl,fl,rt,bank)
+	if bank == 0 then
+	 for i = 1,15 do
+			poke4(0x3FF0*2+i,5)
+		end
+	else
+		for i = 2,15 do
+			poke4(0x3FF0*2+i,1)
+		end
 	end
 
 	spr(id,x+1,y,ky,scl,fl,rt)
@@ -6141,8 +6150,8 @@ end
 -- 135:8800009988000099888009908088990080899900889009908900009909999999
 -- 136:8800009988800999008899090008900900099009009999099990099999999990
 -- 137:8800009988800999808899098008900980089009808899098880099908889990
--- 142:eeeeeeeecccfcfcfceefcfcfcccfcfcfeecfcfcfcccfcccfeeefeeef44444444
--- 143:eeeeeeeecccfcfcfceefcfefcccfcccfeecfcecfcccfcfcfeeefefef44444444
+-- 142:eeeeeeeecccfcfcfc55fcfcfcccfcfcf55cfcfcfcccfcccf555f555f44444444
+-- 143:eeeeeeeecccfcfcfc55fcf5fcccfcccf55cfc5cfcccfcfcf555f5f5f44444444
 -- 144:0000000500000005000000050000000500000005000000050000000500000005
 -- 150:cccccccdcddddddecddddddeeeeeeeee055555555ffff5ff5f4445f454444544
 -- 151:cccccccdcddddddeeeeeeeee5ff55ff555555555ff5fffff445f444444544444
@@ -6633,7 +6642,7 @@ end
 -- 018:0000000000000000000000000766666076696966766969660766666077700777
 -- 048:00000000000000000000000000000000007557000777777000777700000ce000
 -- 049:000ec00000777700077777700075570000000000000000000000000000000000
--- 198:00cccc000cddddc0cddeeddccdceecdccc0ee0ccc000000c0000000000000000
+-- 198:05cccc505cddddc5cddeeddccdceecdccc5ee5ccc500005c5000000500000000
 -- 255:0000000000066000000660000006600000000000000660000000000000000000
 -- </SPRITES5>
 
