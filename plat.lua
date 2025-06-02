@@ -4385,17 +4385,16 @@ local floor = math.floor
 				end
 		 end
 			
+			local timer = math.sin(time()/600)*8
 			
+			ent.y = ent.y + timer/64
 			
-			if ent.ct<16 then
-    ent.vy=.1
-    ent.ty = 194
-	 	elseif ent.ct>16 and ent.ct<32 then
-		  ent.vy=-.1
-				ent.ty = 450
-		 elseif ent.ct>32 then
-		  ent.ct=0
-		 end
+			if timer <=4 then
+			 ent.ty = 194
+				ent.fl = 0
+			elseif timer >4  then
+			 ent.ty = 450
+			end
 		
 		--treecircles
 		elseif ent.ty == 216 then
