@@ -347,7 +347,9 @@ function init()
 				incrystal = false,
 				ononeway = false,
 				moveleft = true,
-			 moveright = true
+			 moveright = true,
+				legx=2,
+				legy=8
       }
 				
 				
@@ -932,7 +934,7 @@ function TIC()
 		
 		
 		
-		spr(288,mapcoords.x-cam.x,mapcoords.y-cam.y) 
+		spr(292+math.sin(time()/600)*3.5,mapcoords.x-cam.x,mapcoords.y-cam.y) 
 		vbank(0)
 		
 		
@@ -1044,8 +1046,8 @@ function TIC()
  if gamestate ~= "menu" then
   print("Beta Demo July 2025",0,130,3)
  end
- print(p.stuckceil,0,0,8)
-	print(p.stuck,0,6,8)
+ --print(p.legx,0,0,8)
+	--print(p.legy,0,6,8)
 	--print(deathwipetimer,0,6,8)
  --print((ctfr/tim)//1,0,12,8)
 
@@ -1661,9 +1663,36 @@ function play()
  
   local jev = 0
   if p.sprct>16 then jev = 1 end 
+  if btn(4) and p.vy >0 then
+  
+   p.legx=lerp(p.legx,-5,0.1)
+   p.legy=lerp(p.legy, 5,0.1)
+   
+   line(floor(p.x+2-camx),(p.y+5-camy),math.floor(p.legx+p.x-camx),(p.y+p.legy-1-camy),1)
+   line(floor(p.x+2-camx),(p.y+7-camy),math.floor(p.legx+p.x-camx),(p.y+p.legy+1-camy),1)
+   line(floor(p.x+2-camx),(p.y+6-camy),math.floor(p.legx+p.x-camx),(p.y+p.legy-camy),15)
 
+	 	line(floor(p.x+5-camx),(p.y+5-camy),math.floor(6-p.legx+p.x-camx),(p.y+p.legy-1-camy),1)
+	 	line(floor(p.x+5-camx),(p.y+7-camy),math.floor(6-p.legx+p.x-camx),(p.y+p.legy+1-camy),1)
+	 	line(floor(p.x+5-camx),(p.y+6-camy),math.floor(6-p.legx+p.x-camx),(p.y+p.legy-camy),15)
+	
+  else
+   p.legx=2
+   p.legy=8
+  
+   line(floor(p.x+2-camx)-1,(p.y+6-camy+1),math.floor(-1+p.x+2+2*math.sin(time()*p.vx/100)-camx),(p.y+8-camy),1)
+   line(floor(p.x+2-camx)+1,(p.y+6-camy+1),math.floor(1+p.x+2+2*math.sin(time()*p.vx/100)-camx),(p.y+8-camy),1)
+   line(floor(p.x+2-camx),(p.y+6-camy),math.floor(p.x+2+2*math.sin(time()*p.vx/100)-camx),(p.y+8-camy),15)
+		
+	 	line(floor(p.x+5-camx)-1,(p.y+6-camy+1),math.floor(-1+p.x+5+2*math.sin(time()*p.vx/100+math.pi)-camx),(p.y+8-camy),1)
+	 	line(floor(p.x+5-camx)+1,(p.y+6-camy+1),math.floor(1+p.x+5+2*math.sin(time()*p.vx/100+math.pi)-camx),(p.y+8-camy),1)
+	 	line(floor(p.x+5-camx),(p.y+6-camy),math.floor(p.x+5+2*math.sin(time()/100*p.vx+math.pi)-camx),(p.y+8-camy),15)
+		end
+  
   spritebdr(p.spr,floor(p.x-camx),(p.y-camy),0,1,p.fl,p.rot)
 	 
+		
+		
 		--hat
 		--spr(p.spr+4,math.floor(p.x-cam.x),(p.y-cam.y)-6,0,1,p.fl,p.rot)
 	 --sunglasses w8
@@ -7794,6 +7823,13 @@ end
 -- 027:0077776067777770777777777757757777577577777777770777777606777700
 -- 028:0007760007777770677577707757777777777577077757760777777000677000
 -- 032:055566605ee77ff65e77fff6557fff66055ff660005566000005600000056000
+-- 033:0005666005557f6005ee7f6005e7f660055ff600005566000005600000056000
+-- 034:0055660000556600005ee600005e7600005ff600005566000005600000056000
+-- 035:0555600005f7666005f7ee60055f7e60005ff660005566000005600000056000
+-- 036:055566605ff77ee65fff77e655fff766055ff660005566000005600000056000
+-- 037:000566600555ee6005f77e6005ff7660055ff600005566000005600000056000
+-- 038:0055660000556600005ff600005ff600005ff600005566000005600000056000
+-- 039:0555600005ee666005e77f600557ff60005ff660005566000005600000056000
 -- 048:0000000000000000000000000000000000c554000c4444d0004ddd00000ef000
 -- 049:000fe00000cccc000c44ddd000455d0000000000000000000000000000000000
 -- 082:000000010011111e111eeeee11ee777711e777551ee775771e7775771ee77777
@@ -7866,17 +7902,17 @@ end
 -- </SPRITES>
 
 -- <SPRITES1>
--- 000:0f777770f7777777f7757577f7757577f77777770f77777000f00f0000f00f00
--- 001:000000000f777770f7777777f7757577f7757577f77777770f77777000f00f00
--- 002:0f777770f7777777f7757577f7757577f77777770f77777000f00f000f0000f0
--- 003:0f777770f7777777f7757577f7757577f77777770f77777000f00f000f0000f0
+-- 000:0f777770f7777777f7757577f7757577f77777770f7777700000000000000000
+-- 001:000000000f777770f7777777f7757577f7757577f77777770f77777000000000
+-- 002:0f777770f7777777f7757577f7757577f77777770f7777700000000000000000
+-- 003:0f777770f7777777f7757577f7757577f77777770f7777700000000000000000
 -- 004:000000000000000000000000000000000000bbbb000bbbbb000bbbbb000bbbbb
 -- 005:00000000000000000000000000000000000000000000bbbb000bbbbb000bbbbb
 -- 006:000bbbbb000bbbbb000bbbbb0000bbbb00000bbb00000bbb0000000000000000
 -- 007:000bbbbb000bbbbb000bbbbb000bbbbb0000bbbb00000bbb0000000000000000
--- 016:00000000000000000f777770f7757577f77575770f777770fff00fff00000000
+-- 016:00000000000000000f777770f7757577f77575770f7777700000000000000000
 -- 017:00f777000f7777700f7575700f7575700f77777000f77700000f0f00000f0f00
--- 018:0000000000000000000000000f777770f7757577f77575770f777770fff00fff
+-- 018:0000000000000000000000000f777770f7757577f77575770f77777000000000
 -- 048:00000000000000000000000000000000004cc400044444400044440000076000
 -- 049:000670000044440004444440004cc40000000000000000000000000000000000
 -- 082:00eed0000edd0000edd00000edd00000dde00000dde000000dde000000dde000
