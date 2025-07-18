@@ -85,3 +85,7 @@ steam/steam_gameserver.h
 steam/steamclientpublic.h
 steam/steamencryptedappticket.h
 luasteam.dll
+thwimbly.html.zip
+thwimbly.html/index.html
+thwimbly.html/tic80.js
+thwimbly.html/tic80.wasm
