@@ -76,6 +76,8 @@ function lerp(a,b,t) return (1-t)*a + t*b end
 	world=1
 	level=1
 	
+	basiccoins=0
+	
 	spcoins={false,
 	         false, 
 										false, 
@@ -949,6 +951,13 @@ function TIC()
 		 spritebdr(288+math.floor(gt/10),mapcoords.x-cam.x,mapcoords.y-cam.y-ltt/2,-1,1,0,0,0,0,0) 
 		end
 		
+		rect(200,123,70,10,1)
+		rect(199,124,70,8,1)
+		rect(200,123,70,10,1)
+		
+		
+		spritebdr(495,200,124,-1,1,0,0,0,0,0)
+  print(basiccoins,210,125,5)		
 		
 		vbank(0)
 		
@@ -1209,7 +1218,7 @@ function play()
 				y=0,
 				}
 				for l in ipairs(coinx) do
-				 if mget(coinx[l],coiny[l])~= 0 then
+				 if mget(coinx[l]+1,coiny[l])~= 0 then
 					 local right = mget(coinx[l]+1,coiny[l])
 					 mset(coinx[l],coiny[l],right)
 					else
@@ -1755,8 +1764,8 @@ function play()
 		 	line(floor(p.x+5-camx)+1,(p.y+6-camy+1),math.floor(p.x+5+2*math.sin(time()*p.vx/100+math.pi)-camx)+1,(p.y+8-camy),1)
 		 	line(floor(p.x+5-camx),(p.y+6-camy),math.floor(p.x+5+2*math.sin(time()/100*p.vx+math.pi)-camx),(p.y+8-camy),15)
 			end
-  end
-  spritebdr(p.spr,floor(p.x-camx),floor(p.y-camy),0,1,p.fl,p.rot)
+			
+			 spritebdr(p.spr,floor(p.x-camx),floor(p.y-camy),0,1,p.fl,p.rot)
 	 
 		
 		if p.spr == 272 then p.hatset = 2 end
@@ -1767,12 +1776,13 @@ function play()
 		--abe lincoln
 		--spr(267,floor(p.x-camx),floor(p.y-camy)+p.hatset-8,0,1,p.fl,p.rot)
 	 
-		
 		--cowboy
 		--spr(271,floor(p.x-camx),floor(p.y-camy)+p.hatset-8,0,1,p.fl,p.rot)
 	 --sunglasses
 		spr(270,floor(p.x-camx),floor(p.y-camy)+p.hatset,0,1,p.fl,p.rot)
 	 
+  end
+ 
 		
 		
 	if #allparticles~=0 then
@@ -4395,6 +4405,12 @@ function entlogic()
 		elseif ent.ty==196 or ent.ty==452 
 		or ent.ty == 432 or ent.ty == 433 
 		or ent.ty == 434 then
+		
+		 if ent.omx == nil then
+			 ent.omx = (ent.x)//8
+			 ent.omy = (ent.y)//8
+			end
+		
 		 local timer = math.sin(time()/600)*8
 			
 			ent.y = ent.y + timer/128
@@ -4414,12 +4430,14 @@ function entlogic()
 			
 			if p.x>ent.x-8 and p.x<ent.x+8 then
     if p.y>ent.y-5 and p.y<ent.y+4 then
+     
+     basiccoins = basiccoins+1
+     
+     table.insert(coinx,ent.omx)
+					table.insert(coiny,ent.omy)
+					
      table.remove(ents,i)
 					sfx(61,'G-6',3,3)	
-					
-					table.insert(coinx,(ent.x+4)//8)
-					table.insert(coiny,(ent.y+4)//8)
-					
 					return
 			 end
 		 end
@@ -7994,6 +8012,7 @@ end
 -- 217:0000f00000ffff000ffffff07fffffff75700000777000000000000000000000
 -- 224:0023230002232230222322232223222322222223022222300030030000033000
 -- 225:0000000000000000022322302223222322232223222222230222223000300300
+-- 239:0000000000444d00044444d004d4d4d004d4d4d0044444d000444d0000000000
 -- 242:2002000202222220028888300258583022888833028888300233333020003003
 -- 255:0000000000066000000660000006600000000000000660000000000000000000
 -- </SPRITES>
