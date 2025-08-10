@@ -321,7 +321,8 @@ function lerp(a,b,t) return (1-t)*a + t*b end
 	      [20]={img=297,os=-9,cost=500,text="Ears of a description",border=false, owned=false, showplyr=true},
        [21]={img=302,os=-9,cost=200,text="Yes Chef",border=false, owned=false, showplyr=true},						
 						 [21]={img=302,os=-9,cost=200,text="Yes Chef",border=false, owned=false, showplyr=true},						
-						 [22]={img=319,os=-2,cost=200,text="nerd",border=false, owned=false, showplyr=true},						
+						 [22]={img=319,os=-2,cost=200,text="Neil",border=false, owned=false, showplyr=true},						
+						 [23]={img=318,os=-2,cost=160,text="Ninja",border=false, owned=false, showplyr=true},						
 						
 						}
  
@@ -1343,7 +1344,7 @@ function TIC()
  
  deltatime=time()-framestart
  
- --print(xct,0,0,8)
+ print(p.vx,0,0,8)
 	--print(p.pipedir,0,6,8)
 	--print(p.pipeoff,0,12,8)
  --print(p.pct,0,18,8)
@@ -1643,11 +1644,14 @@ function play()
 	--could eek more perf out if i cull
 	--tiles on top/bottom, but thats
 	--probably another for loop
+ local off = 20
+ 
+ --if p.vx>5 then off = 70 end
 
-	local low = p.x//8-20
+	local low = p.x//8-off-math.abs(math.ceil((5*p.vx)))
 	if low<0 then low=0 end
+	
 	local high = p.x//8+20
-
 	if high>239 then high = 239 end
 
  for i=low,high do
@@ -9327,6 +9331,7 @@ end
 -- 047:0065550006500650065006500650065089999999899889998999899908999990
 -- 048:00000000000000000000000000000000004cc400044444400044440000076000
 -- 049:000670000044440004444440004cc40000000000000000000000000000000000
+-- 062:bbbb35bbbbbb53bb000000000000000000bbbbb0bbbbbbbb0000000000000000
 -- 063:0000000000000000bb55b55bb055055000000000000000000000000000000000
 -- 096:0004d0000004d0000004d0000004d0000004d0000004d0000004d0000004d000
 -- 097:004d0000044d0000044dd0000004d0000004dd0000004d0000004dd0000004d0
