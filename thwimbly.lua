@@ -299,30 +299,31 @@ function lerp(a,b,t) return (1-t)*a + t*b end
 	--hat.border to control whether it 
 	--has sprborder
 	
-	hats={[1]={img=256,os=-2,cost=0,text="simple and not classic",border = true, owned=true, showplyr=true},
-      	[2]={img=268,os=-9,cost=164,text="Plumber",border = false, owned=false, showplyr=true},
-      	[3]={img=266,os=-2,cost=599,text="Blue Eyed Skellington",border=true, owned=false, showplyr=false},
-      	[4]={img=281,os=-2,cost=360,text="Chicken Child",border=true, owned=false, showplyr=false},
-      	[5]={img=265,os=-2,cost=380,text="Corporal VHS",border=true, owned=false, showplyr=false},
-       [6]={img=270,os=-2,cost=120,text="Cool Sunglasses",border=false, owned=false, showplyr=true},
-      	[7]={img=282,os=-2,cost=540,text="Space Crew Person Thing",border=true, owned=false, showplyr=false},
-      	[8]={img=269,os=-9,cost=230,text="Propeller Hat",border=false, owned=false, showplyr=true},
-      	[9]={img=285,os=-9,cost=330,text="Wah!",border=false, owned=false, showplyr=true},
-      	[10]={img=284,os=-9,cost=364,text="Definitely not a vampire plumber",border=false, owned=false, showplyr=true},
-      	[11]={img=267,os=-5,cost=120,text="Snorkle",border=false, owned=false, showplyr=true},
-      	[12]={img=271,os=-9,cost=120,text="i wanna be the cowboy baby",border=false, owned=false, showplyr=true},
-      	[13]={img=283,os=-4,cost=799,text="sbeve",border=true, owned=false, showplyr=false},
-      	[14]={img=287,os=-2,cost=300,text="extremely shy lil guy",border=true, owned=false, showplyr=false},
-      	[15]={img=286,os=-3,cost=140,text="the stache of legends",border=false, owned=false, showplyr=true},
-      	[16]={img=300,os=-9,cost=888,text="Lou Wiggy",border=false, owned=false, showplyr=true},
-      	[17]={img=301,os=-9,cost=321,text="7 Grand Dad",border=false, owned=false, showplyr=true},
-      	[18]={img=299,os=-9,cost=989,text="Distressed Princess",border=false, owned=false, showplyr=true},
-      	[19]={img=298,os=-7,cost=200,text="Beautiful Bow",border=false, owned=false, showplyr=true},              	
-	      [20]={img=297,os=-9,cost=500,text="Ears of a description",border=false, owned=false, showplyr=true},
-       [21]={img=302,os=-9,cost=200,text="Yes Chef",border=false, owned=false, showplyr=true},						
-						 [21]={img=302,os=-9,cost=200,text="Yes Chef",border=false, owned=false, showplyr=true},						
-						 [22]={img=319,os=-2,cost=200,text="Neil",border=false, owned=false, showplyr=true},						
-						 [23]={img=318,os=-2,cost=160,text="Ninja",border=false, owned=false, showplyr=true},						
+	hats={[1]={img=256,os=-2,cost=0,text="simple and not classic",border = "no", owned=true, showplyr=true},
+      	[2]={img=268,os=-9,cost=164,text="Plumber",border = "out", owned=false, showplyr=true},
+      	[3]={img=266,os=-2,cost=599,text="Blue Eyed Skellington",border="yes", owned=false, showplyr=false},
+      	[4]={img=281,os=-2,cost=360,text="Chicken Child",border="yes", owned=false, showplyr=false},
+      	[5]={img=265,os=-2,cost=380,text="Corporal VHS",border="yes", owned=false, showplyr=false},
+       [6]={img=270,os=-2,cost=120,text="Cool Sunglasses",border="no", owned=false, showplyr=true},
+      	[7]={img=282,os=-2,cost=540,text="Space Crew Person Thing",border="yes", owned=false, showplyr=false},
+      	[8]={img=269,os=-9,cost=230,text="Propeller Hat",border="out", owned=false, showplyr=true},
+      	[9]={img=285,os=-9,cost=330,text="Wah!",border="out", owned=false, showplyr=true},
+      	[10]={img=284,os=-9,cost=364,text="Definitely not a vampire plumber",border="out", owned=false, showplyr=true},
+      	[11]={img=267,os=-5,cost=120,text="Snorkle",border="no", owned=false, showplyr=true},
+      	[12]={img=271,os=-9,cost=120,text="i wanna be the cowboy baby",border="out", owned=false, showplyr=true},
+      	[13]={img=283,os=-4,cost=799,text="sbeve",border="yes", owned=false, showplyr=false},
+      	[14]={img=287,os=-2,cost=300,text="extremely shy lil guy",border="yes", owned=false, showplyr=false},
+      	[15]={img=286,os=-3,cost=140,text="the stache of legends",border="no", owned=false, showplyr=true},
+      	[16]={img=300,os=-9,cost=888,text="Lou Wiggy",border="out", owned=false, showplyr=true},
+      	[17]={img=301,os=-9,cost=321,text="7 Grand Dad",border="out", owned=false, showplyr=true},
+      	[18]={img=299,os=-9,cost=989,text="Distressed Princess",border="out", owned=false, showplyr=true},
+      	[19]={img=298,os=-7,cost=200,text="Beautiful Bow",border="no", owned=false, showplyr=true},              	
+	      [20]={img=297,os=-9,cost=500,text="Ears of a description",border="out", owned=false, showplyr=true},
+       [21]={img=302,os=-9,cost=200,text="Yes Chef",border="out", owned=false, showplyr=true},						
+						 [22]={img=319,os=-2,cost=200,text="Neil",border="no", owned=false, showplyr=true},						
+						 [23]={img=318,os=-4,cost=160,text="Ladders, i go up and i go down",border="no", owned=false, showplyr=true},						
+						 [24]={img=317,os=-2,cost=160,text="3-Dimensional!!",border="no", owned=false, showplyr=true},						
+						 [25]={img=316,os=-4,cost=160,text="Goggle-dy gook",border="no", owned=false, showplyr=true},						
 						
 						}
  
@@ -415,6 +416,36 @@ function init()
 end
 
 init() --call init before start
+
+ playstart = 0
+ playend = 0
+ 
+ begincontrol = 0
+ endcontrol = 0
+ 
+ bgentdrawstart = 0
+ bgentdrawend = 0
+ 
+ fgentdrawstart = 0
+ fgentdrawend = 0
+ 
+ beginentlogic = 0
+ endentlogic = 0
+ 
+ beginmapdraw = 0
+ endmapdraw = 0
+ 
+ beginparticlelogic=0
+ endparticlelogic=0
+ 
+ bgprtdwbegin=0
+ bgprtdwend=0
+ 
+ ly3ptdwbegin = 0 
+ ly3ptdwend = 0
+
+ fgprtdwbegin=0
+ fgprtdwend=0
 
 function TIC()
 
@@ -891,15 +922,13 @@ function TIC()
    
    local rec = 0
    
-   rec = tostring((records[indexer])/1000)
+   rec = tonumber(string.format("%.2f",tostring((records[indexer])/1000)))
 
    
    print(rec,9,4,8)
    print(rec,8,3,2)
    
-   --too lazy to truncate so just
-   --putting thing over
-   rect(34,0,240,12,9)
+
    
    print("sec",38,4,8) 
    print("sec",37,3,2) 
@@ -1156,8 +1185,15 @@ function TIC()
 
 
 	 for bleem in ipairs(hats) do
-	  spritebdr(hats[bleem].img,112+30*(bleem-hatindex),140+136/2+2*hats[bleem].os-gt,-1,2,0,0,0,0,0) 
-		 if hats[bleem].owned == false then
+	  if hats[bleem].border == "yes" then 
+			 spritebdr(hats[bleem].img,112+30*(bleem-hatindex),140+136/2+2*hats[bleem].os-gt,-1,2,0,0,0,0,0) 
+		 elseif hats[bleem].border == "out" then
+			 hatbdr(hats[bleem].img,112+30*(bleem-hatindex),140+136/2+2*hats[bleem].os-gt,0,2,0,0,0,0,0) 
+			else 
+			 spr(hats[bleem].img,112+30*(bleem-hatindex),140+136/2+2*hats[bleem].os-gt,0,2,0,0,1,1) 
+			end
+			
+			if hats[bleem].owned == false then
 			 spritebdr(303,112+30*(bleem-hatindex),140+136/2-gt-38,-1,2,0,0,0,0,0) 
 			end
 		
@@ -1319,7 +1355,9 @@ function TIC()
 	 play()
 	end
 	
-	--debug prints
+	
+	
+	-- prints
 	local entct = 0
 	local parts = 0
 	
@@ -1333,22 +1371,66 @@ function TIC()
 	
 	vbank(1)
 	
- local fps 
- 
- ctfr = ctfr+1
- 
- local tim = tstamp()-starttime
  if gamestate ~= "menu" then
-  --print("Beta Demo July 2025",0,130,3)
+  print("Beta Demo Aug 2025",0,130,3)
  end
  
- deltatime=time()-framestart
+ debug = true
  
- print(p.vx,0,0,8)
-	--print(p.pipedir,0,6,8)
-	--print(p.pipeoff,0,12,8)
- --print(p.pct,0,18,8)
-
+ if debug == true then
+	 
+	 deltatime = tonumber(string.format("%.3f",time()-framestart))
+	 
+	 deltafgent = tonumber(string.format("%.3f",fgentdrawend-fgentdrawstart))
+	
+	 deltabgent = tonumber(string.format("%.3f",bgentdrawend-bgentdrawstart))
+	
+	 deltaentlogic = tonumber(string.format("%.3f",endentlogic-beginentlogic))
+	 
+	 deltaplay = tonumber(string.format("%.3f",playend-playstart))
+	 
+	 deltamap = tonumber(string.format("%.3f",endmapdraw-beginmapdraw))
+	 
+	 deltactrl = tonumber(string.format("%.3f",endcontrol-begincontrol))
+	 
+	 deltaptc = tonumber(string.format("%.3f",endparticlelogic-beginparticlelogic))
+	 
+	 deltabgpt = tonumber(string.format("%.3f",bgprtdwend-bgprtdwbegin))
+	 
+	 deltal3pt = tonumber(string.format("%.3f",ly3ptdwend-ly3ptdwend))
+	 
+	 deltafgpt = tonumber(string.format("%.3f",fgprtdwend-fgprtdwbegin))
+	 
+	 rect(0,0,60,60,1)
+	 print("total:",0,0,8)
+	 print(deltatime,34,0,8)
+	 print("play:",0,6,8)
+		print(deltaplay,34,6,8)
+		print("bgent:",0,12,8)
+		print(deltabgent,34,12,8)
+		print("fgent:",0,18,8)
+	 print(deltafgent,34,18,8)
+	 print("mapdw:",0,24,8)
+	 print(deltamap,34,24,8)
+	 print("entlg:",0,30,8)
+	 print(deltaentlogic,34,30,8)
+	 print("prtlg:",0,36,8)
+	 print(deltaptc,34,36,8)
+	 
+	 print("bgprt:",0,42,8)
+	 print(deltabgpt,34,42,8)
+	 print("l3prt:",0,48,8)
+	 print(deltal3pt,34,48,8)
+	 print("fgprt:",0,54,8)
+	 print(deltafgpt,34,54,8)
+	 --notes:
+	 
+	 --control is fine, like 0.02ms 
+	 --consistent.
+	 
+	 --entlogic between 0.5ms and 2.2ms
+	 --depending on stage
+ end
 	vbank(0)
 	
 	
@@ -1359,6 +1441,7 @@ end
 
 
 function play()
+ playstart = time()
  local hasspcoin = false
  camshake()
 
@@ -1490,7 +1573,10 @@ function play()
 		end					
 	end
 	
+	beginentlogic = time()
 	entlogic()
+	endentlogic = time()
+	
 	if ltt == 0 then
 	control()
  end
@@ -1601,15 +1687,14 @@ function play()
 		end
 	end
  
+ bgprtdwbegin = time()
  if #allparticles~=0 then
   particlelogic()
   for i,particle in ipairs(allparticles) do
    if particle.layer == 2 then
 	   if particle.typ == 7 then
 	    local letters = {"a","b","c","d","e","f","g","h","i","j","k","l"}
-					
-					
-					
+
 					print(letters[math.floor(math.abs(math.sin(time()/1000))*#letters)+1], particle.x-90, particle.y,7)
 	   else
 	    circ(particle.x-camx,particle.y-camy,particle.rad,particle.clr)
@@ -1617,6 +1702,8 @@ function play()
    end
   end
 	end
+	
+	bgprtdwend = time()
 	
 	--bottomtrees
 	if world == 1 then
@@ -1639,27 +1726,39 @@ function play()
 		--seabglogic()
  end
  
- 
+ beginmapdraw = time()
  --draw columns on each side of player
 	--could eek more perf out if i cull
 	--tiles on top/bottom, but thats
 	--probably another for loop
- local off = 20
- 
- --if p.vx>5 then off = 70 end
 
-	local low = p.x//8-off-math.abs(math.ceil((5*p.vx)))
-	if low<0 then low=0 end
+	local xlow = (p.x+p.vx)//8-20
+	if xlow<0 then xlow=0 end
 	
-	local high = p.x//8+20
-	if high>239 then high = 239 end
+ local xrange = 39 + math.ceil(math.abs(p.vx))
+ 
 
- for i=low,high do
-  map(i,0+(level-1)*34,1,33,-camx+8*i,-camy,0,1,remap)
+ if xlow+xrange>240 then
+  xrange = 240-xlow
  end
  
+ local ylow = (p.y-p.vy)//8-14
+
+ local yrange = 26 + math.ceil(math.abs(p.vx))
+ 
+ if ylow+yrange>34 then
+  yrange = 34-ylow
+ end
+ 
+ if ylow<0 then ylow = 0 end
+ if p.y>240 then ylow = 17 end
+
+ map(xlow,ylow+(level-1)*34,xrange,yrange,-camx+8*xlow,-camy+8*ylow,0,1,remap)
 
  
+ endmapdraw = time()
+
+ ly3ptdwbegin = time()
  if #allparticles~=0 then
   for i,particle in ipairs(allparticles) do
    if particle.layer == 3 then
@@ -1667,7 +1766,9 @@ function play()
    end
   end
 	end
+	ly3ptdwend = time()
 	
+	bgentdrawstart=time()
 	-- not vbank 1 lol
 	for i,ent in ipairs(ents) do
 	 if world == 2 then
@@ -1865,6 +1966,8 @@ function play()
   end
  end
  
+ bgentdrawend=time()
+ 
  --draw bulge in pipe
  if p.inpipe == true then 
 
@@ -1904,7 +2007,7 @@ function play()
 	
 	end
  
- 
+ fgprtdwbegin =time()
  if #allparticles~=0 then
   for i,particle in ipairs(allparticles) do
    if particle.layer >= 5 then
@@ -1920,9 +2023,9 @@ function play()
 			end
   end
 	end
+ fgprtdwend=time()
  
- 
-	
+	fgentdrawstart = time()
  for i=1, #ents do
 		 local ent = ents[i]
   if ent.ty ~= 454 and ent.ty ~= 471
@@ -2179,6 +2282,7 @@ function play()
 		end
  end
  
+ fgentdrawend = time()
  
  
   local jev = 0
@@ -2239,9 +2343,11 @@ function play()
 
 	  if phat ~= 1 then
 			 if grv>0 then
-				 if hats[phat].border == true then
+				 if hats[phat].border == "yes" then
 				  spritebdr(hats[phat].img,floor(p.x-camx),floor(p.y-camy+hats[phat].os+p.hatset+2),0,1,p.fl,p.rot)
-		   else
+		   elseif hats[phat].border == "out" then
+					 hatbdr(hats[phat].img,floor(p.x-camx),floor(p.y-camy+hats[phat].os+p.hatset+2),0,1,p.fl,p.rot)
+					else
 					 spr(hats[phat].img,floor(p.x-camx),floor(p.y-camy+hats[phat].os+p.hatset+2),0,1,p.fl,p.rot)
 					end
 				else
@@ -2454,7 +2560,7 @@ function play()
 			end
 		vbank(0)
 		end
-		
+	playend = time()
 end
 
 function remap(tile,x,y)
@@ -3075,7 +3181,7 @@ end
 function control()
  --really more of a player centric function
  
- 
+ begincontrol = time() 
  
  if p.dead==false then
   
@@ -3473,7 +3579,7 @@ function control()
 		--end
  end
 	p.sprct=p.sprct+1
-	
+	endcontrol = time()
 end
 
 function landing()
@@ -4227,7 +4333,11 @@ function spawnparticle(x,y,vx,vy,ax,ay,l,typ,clr,wall,rad,layer)
 end
 
 function particlelogic()
+ beginparticlelogic = time()
+ 
+ local tstall = time()
  local floor = math.floor
+ local sin = math.sin
 	for i,particle in ipairs(allparticles) do
 	  if particle.wall==false then
 	   particle.vx = particle.vx + particle.ax
@@ -4238,8 +4348,10 @@ function particlelogic()
     particle.x = floor(particle.x)
     particle.y = floor(particle.y)
    end
-   
-   particle.life = particle.life-1
+   --clouds don't despawn
+   if particle.typ ~= 1 then
+    particle.life = particle.life-1
+   end
    
    if particle.life <=0 
    or particle.y>300 then
@@ -4248,12 +4360,20 @@ function particlelogic()
    
 			if particle.typ==0 then
 			 if solid(particle.x,particle.y) and particle.y >10 then
-     particle.wall = true
+     table.remove(allparticles,i)
+     --particle.wall = true
      
 	   end
+			elseif particle.typ == 1 then
+			 if particle.x-cam.x <-50 then
+				 particle.x = particle.x+300
+				elseif particle.x-cam.x>300 then
+				 particle.x = particle.x-350
+				end
+			 
 			else if particle.typ == 2 then
-			 particle.ax = math.sin(tstamp()+math.random(50))/50
-			 particle.ay = math.sin(tstamp())/200
+			 particle.ax = sin(tstall+math.random(50))/50
+			 particle.ay = sin(tstall)/200
 			
 			 if particle.y < waterlevel then
 				 table.remove(allparticles,i)
@@ -4263,8 +4383,8 @@ function particlelogic()
 			 --bubbles
 				
 				--accelerate based on sin
-			 particle.ax = math.sin(tstamp()+math.random(50))/50
-			 particle.ay = -0.00005+math.sin(tstamp())/200
+			 particle.ax = sin(tstall+math.random(50))/50
+			 particle.ay = -0.00005+sin(tstall)/200
 				--change radius as life decreases
 				if particle.rad < 3 then
 				 particle.rad = particle.rad+2/particle.life
@@ -4315,11 +4435,12 @@ function particlelogic()
 					
 					
 			elseif particle.typ == 8 then
-				particle.ax = math.sin(time()/100)/80
+				particle.ax = sin(tstall/100)/80
 			
 			end
 		end
 	end
+	endparticlelogic=time()
 end
 
 function dustpoofs()
@@ -4336,6 +4457,23 @@ function spritebdr(id,x,y,ky,scl,fl,rt,bank)
 	spr(id,x+1,y,0,scl,fl,rt)
 	spr(id,x-1,y,0,scl,fl,rt)
 	spr(id,x,y+1,0,scl,fl,rt)
+	spr(id,x,y-1,0,scl,fl,rt)
+	
+	for i = 2,15 do
+		poke4(0x3FF0*2+i,i)
+	end
+
+	spr(id,x,y,0,scl,fl,rt)
+end
+
+function hatbdr(id,x,y,ky,scl,fl,rt,bank)
+
+	for i = 2,15 do
+		poke4(0x3FF0*2+i,1)
+	end
+
+	spr(id,x+1,y,0,scl,fl,rt)
+	spr(id,x-1,y,0,scl,fl,rt)
 	spr(id,x,y-1,0,scl,fl,rt)
 	
 	for i = 2,15 do
@@ -6945,26 +7083,7 @@ function clouds(loc,rnd,light,dark)
  local y = random(130)
  local v = random(3)/10
  if rnd == true then
-	 --low clouds
-		if r == 1 then
-		 for i=0,13,1 do
-	   spawnparticle(loc+random(60),y+random(40)+80,v-.5, 0,0,0,2000,1,light,false,random(13)+4,2)
-	   spawnparticle(loc+random(60),y+random(40)+80,v-.5, 0,0,0,2000,1,dark,false,random(13)+4,2)
-			end
-	 --high clouds
-	 elseif r == 2 then
-		 for i=0,13,1 do
-	   spawnparticle(loc+random(60),y+random(40)-80,v-.5, 0,0,0,2000,1,light,false,random(13)+4,2)
-				spawnparticle(loc+random(60),y+random(40)-80,v-.5, 0,0,0,2000,1,dark,false,random(13)+4,2)
-	  end
-		--even lower clouds
-		elseif r == 2 then
-		 for i=0,16,1 do
-	   spawnparticle(loc+random(60),y+random(40)+100,v-.5, 0,0,0,2000,1,light,false,random(13)+4,2)
-				spawnparticle(loc+random(60),y+random(40)+100,v-.5, 0,0,0,2000,1,dark,false,random(13)+4,2)
-	  end
-  end
- --startclouds
+	
 	else
 	 loc = loc-100
 	  for i=0,13,1 do
@@ -9199,7 +9318,7 @@ end
 -- 003:0f777770f7777777f7757577f7757577f77777770f77777000f00f00000ff000
 -- 009:bbbbbbbbbbbbbbbbbb55555bbb55555bbbbbbbbbbbbbbbbb0000000000000000
 -- 010:065555506555555565bb5aa565bb5aa565555555065666500000000000000000
--- 011:000000ca000000ca000000ca000000ca0caaaaaaca0000caca0000ca0caaaaa0
+-- 011:0000003200000032000000320000003203222222320000323200003203222220
 -- 012:0000000000000000000000000000000000222200022255202222222022333333
 -- 013:5555555500065000000650000023230002232230223322232233222322332223
 -- 014:0000000000000000bbbbbbbbb0bb0bb000000000000000000000000000000000
@@ -9230,6 +9349,9 @@ end
 -- 045:0000000000000000000000000000000000222200022255202222222022dddddd
 -- 046:0655655065565555655655556556555506556550065565500655655006556550
 -- 047:0089990008900890089008900890089065555555655665556555655505555550
+-- 060:0099099009569569886586580088088000000000000000000000000000000000
+-- 061:000000000000000055335aa550330aa000000000000000000000000000000000
+-- 062:06560056565bbbb5bbbb65bbbbbb56bb000003000000030000bbbbb0bbbbbbbb
 -- 063:0000000000000000bb55b55bb055055000000000000000000000000000000000
 -- 082:000000110011111e011eeeee01ee777711e777551ee775771e7775771ee77777
 -- 083:11111111eeeeeee17777777e5557777777777771777777117777711e777711ee
@@ -9308,7 +9430,7 @@ end
 -- 008:0000000000000000000000000000000009d4d9009d4456909d4465909d488888
 -- 009:bbbbbbbbbbbbbbbbbb55555bbb55555bbbbbbbbbbbbbbbbb0000000000000000
 -- 010:065555506555555565bb5aa565bb5aa565555555065666500000000000000000
--- 011:000000ca000000ca000000ca000000ca0caaaaaaca0000caca0000ca0caaaaa0
+-- 011:0000003200000032000000320000003203222222320000323200003203222220
 -- 012:0000000000000000000000000000000000322200032255203222222032333333
 -- 013:5555555500065000000650000032320003223220322233223222332232223322
 -- 014:0000000000000000bbbbbbbbb0bb0bb000000000000000000000000000000000
@@ -9331,7 +9453,9 @@ end
 -- 047:0065550006500650065006500650065089999999899889998999899908999990
 -- 048:00000000000000000000000000000000004cc400044444400044440000076000
 -- 049:000670000044440004444440004cc40000000000000000000000000000000000
--- 062:bbbb35bbbbbb53bb000000000000000000bbbbb0bbbbbbbb0000000000000000
+-- 060:0099099009569569886586580088088000000000000000000000000000000000
+-- 061:000000000000000055335aa550330aa000000000000000000000000000000000
+-- 062:0000000000000000bbbb65bbbbbb56bb000003000000030000bbbbb0bbbbbbbb
 -- 063:0000000000000000bb55b55bb055055000000000000000000000000000000000
 -- 096:0004d0000004d0000004d0000004d0000004d0000004d0000004d0000004d000
 -- 097:004d0000044d0000044dd0000004d0000004dd0000004d0000004dd0000004d0
@@ -9842,11 +9966,11 @@ end
 -- 081:0000000000000000000000000000000000000000000000000000000000000000004c000000000000000000000000000000004c0000000000004c4c4c000000000000000000000000000000b70000000000000000000000000000000000000000b70000000000090000000000000000000000000000000000000000000000000000f90000000000000000001020202020308686861020202020308696000027000010203010202020202020202020512121626262212131122250212121213100000000000000001250212121318686868665102030122250212121212121212131000000000000000000000000000000
 -- 082:0000000000000000000000000000000000000000000000000000000000000000004c000000000000000000000000000000004c0000000000004c4c4c000000000000697989000000000000b70000000000000000000000000000000000000000b700000000000900000000000000000000000000000000c9d9d9d9e90000000000f9000000c9d9e900000011626221214130d686112121212141202020202020205140321121212121212121212121212121626221214120301250212140326878687888e2e3e3f211212121311313131310512141203012225021402222222232000000000000000000000000000000
 -- 083:00000000000000000000000000000000000000000000000000000000004c0000004c000000004c00000000000000000000000000000000000000000000000000000000f900000000000000b70000000000000000000000000000000000000000b7041054545454203000000000000000006979797989000000f900000000000000f900000000f900000000125062212121413087125021212121212121212121212131105121402222225021212121212121622121212121413012222232e3e3e3e3e3f2e3e3e3e312222250412020202051212121214120301121310000000000000000000000000000000000000000
--- 084:00000000000000000000000000000000000000000000000000000000004c00000000000000004c0000000000000000000000000000000099a9a9a9a9a9b90000000000f900000000000000b7000000000000000000000000000000000000001054301250212121213100000000cadadadaea00f900000000aa9a000099a9a9a9a9a9b90000008afaba00000011622121212131000011212121212121212121212121311121213100000012502121212121216221212121212131000000f2e3e3e3e3e3f4e5e5e5f400000011212121212121212121212121311222320000000000000000000000000000000000000000
--- 085:00007373730000000000000000000000000000000000000000000000004c00000000000000004c00000000000000000000697989000000000000f90000000000000000f9000000000064543000000000004c4c4c4c4c4c4c4c4c000000001051214130122222504032000000000000f9000000f900000000f9000000000000f900f9000000000000f900000011212121214032000012222222225021212121402222321121213100000000122222502121212121212121212131e20000e3e3e3e3e5e5f5000000f500000012225021212121212121212121413000000000000000000000000000000000000000000000
--- 086:0000102030000000000000000000000000000000000000000000000000000000c9d9e9000000000000001020300000000000f900000000000000f90000000000000000f9000000001051213100000000004c4c4c4c4c4c4c4c4c0000000011212121310000001232a6859500000000f9000000f90000e700f9000000000000f900f9007585858585a785858512225021213100000000e3e3e2001222222222320000001222223200000000000000122222502121214022222232687888686878880000000000000000000000001222225021214022222250213100000000000000000000000000000000000000000000
--- 087:000011623100000000000000000000000000000000000000000000000000000000f900000000000000001163310000000000f900000000000000f90000000000000000f900000010516221318585858585858585858585858585858585851121212131858585b68686868685859500f9000000f91020202030858585858585a785a785b61313138686860e86103012225031e20000f3e3e300000000e3e3f30000000000000000000000000000000000e31222222232000000e3f2e3e3e3e3f4000000000000000000000000000000001222223200000012223200000000000000000000000000000000000000000000
--- 088:0010516231000000000000000000000027c700000000000000000000c9d9e90000f9000000c9d9e900751250413000000000f900000000000000f90000000000000000f900000011212121413086860e868686868686c6868686860e86105121212131678686868686868686869600f9001020205121212131c6868667868686868686861020306586868686114120301232e3e3e3e3f2e300000000e3e3000000000000000000000000000000000000e3e3e3000000000000e3e3e3e3e5e5f5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+-- 084:00000000000000000000000000000000000000000000000000000000004c00000000000000004c0000000000000000000000000000000099a9a9a9a9a9b90000000000f900000000000000b7000000000000000000000000000000000000001054301250212121213100000000cadaea000000f900000000aa9a000099a9a9a9a9a9b90000008afaba00000011622121212131000011212121212121212121212121311121213100000012502121212121216221212121212131000000f2e3e3e3e3e3f4e5e5e5f400000011212121212121212121212121311222320000000000000000000000000000000000000000
+-- 085:00007373730000000000000000000000000000000000000000000000004c00000000000000004c00000000000000000000697989000000000000f90000000000000000f9000000000064543000000000004c4c4c4c4c4c4c4c4c0000000010512141301222225040320000000000f900000000f900000000f9000000000000f900f9000000000000f900000011212121214032000012222222225021212121402222321121213100000000122222502121212121212121212131e20000e3e3e3e3e5e5f5000000f500000012225021212121212121212121413000000000000000000000000000000000000000000000
+-- 086:0000102030000000000000000000000000000000000000000000000000000000c9d9e9000000000000001020300000000000f900000000000000f90000000000000000f9000000001051213100000000004c4c4c4c4c4c4c4c4c0000000011212121310000001232a68595000000f900000000f90000e700f9000000000000f900f9007585858585a785858512225021213100000000e3e3e2001222222222320000001222223200000000000000122222502121214022222232687888686878880000000000000000000000001222225021214022222250213100000000000000000000000000000000000000000000
+-- 087:000011623100000000000000000000000000000000000000000000000000000000f900000000000000001163310000000000f900000000000000f90000000000000000f900000010516221318585858585858585858585858585858585851121212131858585b686868686858595f900000000f91020202030858585858585a785a785b61313138686860e86103012225031e20000f3e3e300000000e3e3f30000000000000000000000000000000000e31222222232000000e3f2e3e3e3e3f4000000000000000000000000000000001222223200000012223200000000000000000000000000000000000000000000
+-- 088:0010516231000000000000000000000027c700000000000000000000c9d9e90000f9000000c9d9e900751250413000000000f900000000000000f90000000000000000f900000011212121413086860e868686868686c6868686860e861051212121316786868686868686868696f900001020205121212131c6868667868686868686861020306586868686114120301232e3e3e3e3f2e300000000e3e3000000000000000000000000000000000000e3e3e3000000000000e3e3e3e3e5e5f5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 089:00112162413000000000000000000010203000c7000000c9d9e9000000f9000000f900000000f90000768611213100000000f900000000000014f91400000000aafafa9a000000125021626241545454545454545454202020545454205121212140328686868686658686868610203085112121622121214120202020203010202020205121412020202020512121310000e5e5e5e3e3e3e20000dde3e3000000000000000000000000000000000000e3e3e3000000000000e3e3e3e5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 090:001121626231000000000000001020516241203000000000f900000000f90000008aba000000f90000768611213100000000f900000000000010203000000000f9000000000000e71121622121626262216262626221212121626262626221212131868686868686868686868611214120512121622121212121622121213112225021212121212121212121212121310000000000e5e5e3e3000000e3e3000000000000000000000000000000000000e3e3e3e200006878687888e500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 091:001121622141307373737300001162626221213100000000f900000000f900000000f9000000f97585b6861121412030fafa9a00004c4c0000112131fafafafa9a0000000000001051216221212162212121216262212121212121622162212140328686658686878787878667125021212121216262212121212162212141203011212121212121212121212121213100000000000000e3e3e3e300e3e30000000000000000000000000000000000e3e3f2e3e3e3e3e3f2e3f4e40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
