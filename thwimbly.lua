@@ -1805,31 +1805,53 @@ function play()
 			    40-p.x/100,30,
 			    140-p.x/100,136,15)
    
-
-   --caustics
-   tri(160-cam.x/2,-80-cam.y,
-   100-cam.x/2+math.sin(time()/600)*5,
-   120-cam.y,
-   110-cam.x/2+math.sin(time()/600)*5,
-   120-cam.y,14)
+   for i=0,30 do
+    x=math.cos(time()/2000)*100+math.cos(i/5)*40+math.sin(math.pi/3-i/2)*80
+    d=-math.sin(time()/2000)
+    y=80+math.cos(time()/2000+i/70)+math.sin(i/8)*40+math.sin(time()/900-i/100)*30+i-camy/2
+    spr(351,x,y,0,1,d/4+1)
+   end
    
-   tri(165-cam.x/2,-80-cam.y,
-   115-cam.x/2+math.sin(time()/600)*5,
-   120-cam.y,
-   118-cam.x/2+math.sin(time()/600)*5,
-   120-cam.y,14)
+   for i=0,30 do
+    x=60+math.cos(time()/5000+math.pi/3)*100+math.cos(i/8)*40+math.sin(math.pi/3-i/3)*80
+    d=-math.sin(time()/5000+math.pi/3)
+    y=80+math.cos(time()/2000+i/70)+math.sin(i/7)*40+math.sin(time()/1100-i/80)*40+i-camy/2
+    spr(367,x,y,0,1,d/4+1)
+   end
    
-   tri(280-cam.x/2,-80-cam.y,
-   255-cam.x/2+math.sin(time()/600)*5,
-   120-cam.y,
-   257-cam.x/2+math.sin(time()/600)*5,
-   120-cam.y,13)
+   for i=0,30 do
+    x=100+math.cos(time()/3000+math.pi/6)*100+math.cos(i/9)*40+math.sin(math.pi/7-i/2)*40
+    d=-math.sin(time()/3000+math.pi/6)
+    y=100+math.cos(time()/6000+i/55)+math.sin(i/7)*40+math.sin(time()/1100-i/80)*40+i-camy/2
+    spr(383,x,y,0,1,d/4+1)
+   end
    
-   tri(285-cam.x/2,-80-cam.y,
-   260-cam.x/2+math.sin(time()/600)*5,
-   120-cam.y,
-   265-cam.x/2+math.sin(time()/600)*5,
-   120-cam.y,13)
+   for i=0,1800,240 do
+	   --caustics
+	   tri(i+160-cam.x/2,-80-cam.y,
+	   i+100-cam.x/2+math.sin(time()/600)*5,
+	   120-cam.y,
+	   i+110-cam.x/2+math.sin(time()/600)*5,
+	   120-cam.y,14)
+	   
+	   tri(i+165-cam.x/2,-80-cam.y,
+	   i+115-cam.x/2+math.sin(time()/600)*5,
+	   120-cam.y,
+	   i+118-cam.x/2+math.sin(time()/600)*5,
+	   120-cam.y,14)
+	   
+	   tri(i+280-cam.x/2,-80-cam.y,
+	   i+255-cam.x/2+math.sin(time()/600)*5,
+	   120-cam.y,
+	   i+257-cam.x/2+math.sin(time()/600)*5,
+	   120-cam.y,13)
+	   
+	   tri(i+285-cam.x/2,-80-cam.y,
+	   i+260-cam.x/2+math.sin(time()/600)*5,
+	   120-cam.y,
+	   i+265-cam.x/2+math.sin(time()/600)*5,
+	   120-cam.y,13)
+   end
    
    --waves
    for i=0,250,8 do
@@ -9830,10 +9852,12 @@ end
 -- 047:0065550006500650065006500650065089999999899889998999899908999990
 -- 048:0000000000000000000000000000000000233200022222200022220000056000
 -- 049:000ec00000777700077777700075570000000000000000000000000000000000
+-- 095:0000000000000000044004004444400044444000004004000000000000000000
 -- 096:0004d0000004d0000004d0000004d0000004d0000004d0000004d0000004d000
 -- 097:004d0000044d0000044dd0000004d0000004dd0000004d0000004dd0000004d0
 -- 098:00d00000000d000040dd0000044dd0000004dd0000004dd00000040d00000044
--- 127:0000000000000000000fff0f00fffff0000fff0f000000000000000000000000
+-- 111:00000000000000000aaa0aa0abbbab00bbbbb0004bbb4b000444044000000000
+-- 127:0000000000000000000555050056665000077707000000000000000000000000
 -- 139:0088880008151180811511188115999889995118811151180811518000888800
 -- 140:0088880008115180811151188999511881159998811511180815118000888800
 -- 141:0088880008111580899115188119511881159118815119980851118000888800
