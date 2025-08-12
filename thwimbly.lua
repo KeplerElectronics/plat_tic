@@ -390,7 +390,7 @@ function init()
 				
 				ents={}
 				plants = {}
-				seabgs={}
+				
 				
     k=0
     
@@ -1592,12 +1592,7 @@ function play()
 	   --clouds(30,false,5,7)
 				--digirain()
 	  elseif world == 4 then
-	   --[[seabgmake(40,40)
-	   seabgmake(100,70)
-	   seabgmake(200,40)
-	   seabgmake(0,40)
-	   seabgmake(70,37)
-	   seabgmake(-37,10)]]
+
 			end
 	 end
 		
@@ -1803,7 +1798,7 @@ function play()
 			tri(-80-p.x/100,136,
 			    40-p.x/100,30,
 			    140-p.x/100,136,15)
-   
+   --fish
    for i=0,30 do
     x=math.cos(time()/2000)*100+math.cos(i/5)*40+math.sin(math.pi/3-i/2)*80
     d=-math.sin(time()/2000)
@@ -1824,6 +1819,34 @@ function play()
     y=100+math.cos(time()/6000+i/55)+math.sin(i/7)*40+math.sin(time()/1100-i/80)*40+i-camy/2
     spr(383,x,y,0,1,d/4+1)
    end
+   
+   --plant
+   local xoff = math.floor(math.sin(time()/700)+0.5)*8
+   local topsin=math.sin(time()/800)*30
+   
+   ttri(100-cam.x/2+topsin,
+   100-cam.y/2,
+   100-cam.x/2,
+   260-cam.y/2,
+   180-cam.x/2,
+   260-cam.y/2,
+   
+   80+xoff,0,
+   80+xoff,16,
+   88+xoff,16,
+   0,0)
+   
+   ttri(100-cam.x/2+topsin,
+   100-cam.y/2,
+   180-cam.x/2+topsin,
+   100-cam.y/2,
+   180-cam.x/2,
+   260-cam.y/2,
+   
+   80+xoff,0,
+   88+xoff,0,
+   88+xoff,16,
+   0,0)
    
    for i=0,1800,240 do
 	   --caustics
@@ -1928,7 +1951,7 @@ function play()
 	 else
 		 spr(383,math.cos(time()/9000)*160+120,40+math.sin(time()/10000)*10,0,1,0)
 		end
-		--seabglogic()
+		
 		
 	elseif world == 5 then
 	 --poor attempt at bg cars
@@ -2664,7 +2687,7 @@ function play()
  end	
 
 --foreground elements would go here
-	
+
  vbank(0)
  
  
@@ -4845,12 +4868,13 @@ function entlogic()
   and ent.ty ~= 232 then
    table.remove (ents,i)
    --trace("rem")
-   return
+   --return
   elseif ent.y > 272
   and ent.ty ~= 232 then
    table.remove (ents,i)
    --trace("rem")
-   return
+   --return
+   goto skipent
   end
   
  
@@ -5929,7 +5953,8 @@ function entlogic()
      --anti ear fatigue random pitching
 					local rsfx = math.random(6)-3
 					sfx(61,71+2*rsfx,10,3,15,0)	
-					return
+					--return
+					goto skipent
 			 end
 		 end
 			
@@ -5958,7 +5983,8 @@ function entlogic()
      hasspcoin = true
      table.remove(ents,i)
 					sfx(61,'G-6',3,3)	
-					return
+					--return
+					goto skipent
 			 end   
 		 end
 			
@@ -5979,7 +6005,7 @@ function entlogic()
 				  and k ~= i and ents[k].ty ~= 200 then
 	      ents[i].link = ents[k].ty
 							table.remove(ents,k)
-							return
+							break
 						end
 					end
 				end
@@ -6379,13 +6405,10 @@ function entlogic()
     if p.y>ent.y-8 and p.y<ent.y+8 
     or p.y+p.vy>ent.y-8 and p.y+p.vy <ent.y+8 then
      
-    if btnp(4) then
-     p.vy = -4
-     sfx(4,'A-4',6,3)	
-    end
-    
-    -- table.remove(ents,i)
-					
+	    if btnp(4) then
+	     p.vy = -4
+	     sfx(4,'A-4',6,3)	
+	    end
 				end
 		 end
 			
@@ -6491,7 +6514,6 @@ function entlogic()
 			and p.y < ent.y+8 then
 			 p.x = ent.x-8
 				p.vx = 0
-				trace("229")
 			end
 			
 		elseif ent.ty == 245 then
@@ -6733,7 +6755,8 @@ function entlogic()
    false,0,0)
 		
 	  table.remove(ents,i)
-		 return
+		 --return
+					goto skipent
 			
 		--clawwwwww
 		
@@ -6852,7 +6875,8 @@ function entlogic()
    false,0,0)
 		 
 	  table.remove(ents,i)
-			return 
+			--return
+					goto skipent 
 			
 		--swinging axe
 		
@@ -6896,7 +6920,8 @@ function entlogic()
    false,0,0,0,0)
    
    table.remove(ents,i)
-   return
+   --return
+					goto skipent
    
   --rotating platforms
   elseif ent.ty == 466 then
@@ -7015,7 +7040,9 @@ function entlogic()
    false,0,0)
    
    table.remove(ents,i)
-   
+   --return
+					goto skipent
+					
   --mines
   elseif ent.ty == 498 then
    --[[ngl this bad boi is completely
@@ -7049,7 +7076,8 @@ function entlogic()
 		 or solid(ent.x+6,ent.y+2) 
 			or	solid(ent.x+2,ent.y+6) then
 			 table.remove(ents,i)
-				return
+				--return
+					goto skipent
 			end
 			
 		--feesh
@@ -7129,7 +7157,8 @@ function entlogic()
     if p.y>ent.y-5 and p.y<ent.y+2 then
 			  speed=true
 					table.remove(ents,i)
-					return
+					--return
+					goto skipent
 			 end
 		 end
 			
@@ -7165,7 +7194,8 @@ function entlogic()
 				  and k ~= i and ents[i].clawed == false then
 	      ents[i].lty = ents[k].ty
 							table.remove(ents,k)
-							return
+							--return
+					goto skipent
 						end
 					end
 				end
@@ -7267,7 +7297,7 @@ function entlogic()
    ent.x = ents[ent.clawtarget].x
    ent.y = ents[ent.clawtarget].y
   end
-		
+		::skipent::
 	end
 end
 
@@ -7334,61 +7364,6 @@ function linemult(x,y,x2,y2,c,d)
  end
 end
 
-function seabgmake(x,y)
- seabg={x=x,y=y}
- table.insert(seabgs,seabg)
-end
-
-function seabglogic()
-
- if next(seabgs) == nil  then
-  for i=0,128,1 do
-   seabgmake (i*64-40+math.random(20),math.random(40+20))
-  end
- end
-
- --[[if #seabgs < 10 then
-	 if p.vx >0 then
-	  local c = math.random(40)
-	  if c == 1 then
-	   seabgmake (cam.x/2+280,math.random(70+20))
-	  end
-	 elseif p.vx <0 then
-	  local c = math.random(40)
-	  if c == 1 then
-	   seabgmake (cam.x/2-40,math.random(70+20))
-	  end
-	 end
-	end]]
-
- for i,seabg in ipairs(seabgs) do
-  --[[
-  for k,seabg in pairs(seabgs) do
-   if seabgs[i] ~= nil 
-   and seabgs[k] ~= nil then
-		  if seabgs[i].x > seabgs[k].x -30
-				and seabgs[i].x < seabgs[k].x +30 
-				and k ~= i then
-					table.remove(seabgs,i)
-				end
-			end
-		end
-		--[[
-  if seabg.x > (cam.x/2+300)
-  or seabg.x < (cam.x/2-150) then
-   table.remove(seabgs,i)
-  end]]
-
-	 for j=seabg.y,136,1 do
-	  line(seabg.x-cam.x/2+math.sin(time()/1000+j%10*100)*2,
-		  seabg.y+j,
-				seabg.x+20-cam.x/2+math.sin(time()/1000+j%10*100)*2,
-		  seabg.y+j,
-				5+(seabg.y+j)/50)
-				--6+math.abs(math.sin(i))*2 also looks decent
-	 end
-	end
-end
 
 function rain()
  local color = 13
@@ -8720,8 +8695,6 @@ end
 -- 058:9999999999999999999bb99999baa89999baa89999baa89999baa89999baa899
 -- 059:9999999999999999999bbbbb99baaaaa99baaaaa999888889999999999999999
 -- 060:0000000050000000050550757550056005650500060575757676767577767676
--- 061:fffffffffeeeeeffeeeeeeeeeeeeeeeeeeeeeeeefeeeeeefffeeffff00fff000
--- 062:fffffffffeefffffeeeeeeffeeeeeeeeeeeeeeeefeeffeefffffffff000fff00
 -- 064:0000000000000000000000000000000000050000000650000007600000077000
 -- 065:b44bb44b42344234422322344223223442222234b422234bbb4564bbbb4564bb
 -- 066:bb4564bbbb4564bbb422234b42222234422322344223223442344234b44bb44b
@@ -8735,8 +8708,6 @@ end
 -- 074:99baa89999baa899bbaaa899aaaaa899aaaaa899888889999999999999999999
 -- 075:9999999999999999bbbbbb99aaaaaa89aaaaaa89888888999999999999999999
 -- 076:99baa89999baa89999baa89999baa89999baa89999baa8999998899999999999
--- 077:eeedddddeeddddddedddddddedddddddeeddddddeeeeedde0eeeeeee00000000
--- 078:dddddeeeddddddeedddddddedeeddddeeeeedddeeeeeeeee000eee0000000000
 -- 082:999999009998999a9988899a9898989a9998999a0099999a000ab09a000ab000
 -- 083:099999900998999000998999aa999899bb9898980099888900099899000aaaaa
 -- 084:999999bb9988899a9898989a9888889a9989899abb99999abbb9ab9abbb9abbb
@@ -8748,8 +8719,6 @@ end
 -- 090:bbbbbbbbbaaaaaaabaaaaaaabaaaaaaabaaaaaaabaaaaaaabaaaaaaabaaaaaaa
 -- 091:bb888bbbb88888bbb88abbbbb88aabbbb8899bbab98888aabb99999bbb8aa8bb
 -- 092:bbb888bbbb88888bbbbba88bbbbaa88babb9988baa88889bb99999bbbb8aa8bb
--- 093:dddddddddddddddddddddddddddd1111dd111111d1111111dddddddd00000ddd
--- 094:dddddddddddddddddddddddd111111dd1111111d1111111d111111dddddddd00
 -- 096:00000091000099a10099aaa199aaaaa100bbaaa10000bba1000000b100000001
 -- 097:999999009889999a9998989a9999889a9998889a0099999a000ab09a000ab000
 -- 098:999999009989899a9999999a9899989a9988899a0099999a000ab09a000ab000
@@ -9928,6 +9897,10 @@ end
 -- 097:004d0000044d0000044dd0000004d0000004dd0000004d0000004dd0000004d0
 -- 098:00d00000000d000040dd0000044dd0000004dd0000004dd00000040d00000044
 -- 111:00000000000000000aaa0aa0abbbab00bbbbb0004bbb4b000444044000000000
+-- 123:0000000000000000100010001000110010111100111100011111111111111111
+-- 124:0000000000000000000000000110000111001011100010111110111111111111
+-- 125:0011100000011100110111000111100010001110100111111011111111111111
+-- 126:0000000000000000000000010010001101100011011001110011111111111111
 -- 127:0000000000000000000555050056665000077707000000000000000000000000
 -- 139:0088880008151180811511188115999889995118811151180811518000888800
 -- 140:0088880008115180811151188999511881159998811511180815118000888800
