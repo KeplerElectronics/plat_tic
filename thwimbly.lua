@@ -2106,7 +2106,7 @@ function play()
   
 		 spritebdr(ent.ty,ent.x-camx,ent.y-camy,0,1,ent.fl,ent.rot,0)    
 	 	spr(198,ent.ct-camx,ent.d-camy,0,1,ent.fl,ent.rot,0)
-  
+   print(ent.clawtimer,ent.x-camx+20,ent.y-camy,6)
   elseif ent.ty == 199 then
    spr(199,ent.ct-camx,ent.d-camy,0,1,ent.fl,ent.rot)
 
@@ -7102,6 +7102,7 @@ function entlogic()
 		elseif ent.ty == 491 then
 		
 		 local len,damp = 32,1
+
 		 
 			if ent.ang == nil then
 			 ent.ang = 3.14
@@ -7112,6 +7113,13 @@ function entlogic()
 				ent.clawed = false
 
 			else
+			
+				if p.clawed == false then 
+				 damp = 0.9
+					ent.angv = ent.angv + (math.pi-ent.ang)
+			
+				
+				end
 							
 				ent.angv = damp*(ent.angv + ent.anga)
 				
@@ -7134,7 +7142,11 @@ function entlogic()
 			if p.clawed == true then
 	   
 				if btnp(4) then
+				 --jump out
 				 buttoning = false
+					p.clawed = false
+					ents[p.entkey].clawed = false
+					ents[p.entkey].clawtimer = 1
 				end
 	
 				if btn(3) or btn(2) then
@@ -7143,6 +7155,15 @@ function entlogic()
 				 if buttoning ~= nil then
 				  buttoning = false
 					end
+				end
+				
+				if math.abs(ents[p.entkey].angv)>2 then
+				 p.clawed = false
+					ents[p.entkey].clawed = false
+					ents[p.entkey].angv = ents[p.entkey].angv
+					p.vx = ents[p.entkey].angv*math.cos(ents[p.entkey].ang)*4
+				 p.vy = -ents[p.entkey].angv*math.sin(ents[p.entkey].ang)*2
+				 ents[p.entkey].clawtimer = 1
 				end
 				
 				if buttoning == true then
@@ -7156,15 +7177,14 @@ function entlogic()
 	    end
 					
 				elseif buttoning == false then
-				 p.insling = false
-     ents[p.entkey].clawtimer = 1
-					buttoning = nil
+    	ents[p.entkey].angv = (math.pi-ents[p.entkey].ang)*2.5
 				end
+				
 				p.x = ents[p.entkey].x
 				p.y = ents[p.entkey].y
 			end
 				
-			if ent.clawtimer >= 1 then
+			if ents[i].clawtimer >= 1 then
 			 ents[i].clawtimer= ents[i].clawtimer + 1
 				if ents[i].clawtimer >7 then
 				 ents[i].clawtimer = 0
