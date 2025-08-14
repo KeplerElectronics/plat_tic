@@ -891,7 +891,7 @@ function TIC()
 			pal(10,205,104,61)
 		 pal(11,230,144,78)
 		 
-			
+		-- city
 		elseif mapcoords.x >920 then
 		 pal(8,62,53,70)
 			pal(9,98,85,101)
@@ -901,6 +901,8 @@ function TIC()
 			pal(13,84,126,100)
 			pal(14,55,78,74)
 			pal(15,49,54,56)
+			
+		
 			
 		end
 		
@@ -1113,6 +1115,36 @@ function TIC()
   pix(mx+2,my,1)
   
   line(mx-1,my+4,mx,my+4,1)
+  
+  --map rain
+  if mapcoords.x>900 then
+	  for j=0,18 do
+				for b=0,300 do
+		   if math.cos(time()/1200+b/1000+j/2.5)>0 then
+					 pix(1020+math.cos(b/100)*40-cam.x,
+					     -1+130+math.cos(b*b/200)*40+math.sin(time()/1200+b/1000+j/2.5)*200-cam.y,6)
+		   
+						pix(1020+math.cos(b/100)*40-cam.x,
+					     130+math.cos(b*b/200)*40+math.sin(time()/1200+b/1000+j/2.5)*200-cam.y,6)
+		   
+					end
+				end
+			end
+		end
+		
+	if mapcoords.x>984 
+	and mapcoords.x < 1060 then	
+	 rect(0,33,240,16,9)
+	 if -math.sin(time()/7200)<0 then
+		 print("THE NATIONAL WEATHER SERVICE OF NORTH SPAGHETTI COUNTY HAS ISSUED A SEVERE THUNDERSTORM	WARNING! TAKE SHELTER	IMMEDIATELY!"
+									,math.cos(time()/7200)*800-550,36,1,false,2)
+		end
+		
+		if -math.sin(time()/7200+math.pi)<0 then
+		 print("THE NATIONAL WEATHER SERVICE OF NORTH SPAGHETTI COUNTY HAS ISSUED A SEVERE THUNDERSTORM	WARNING! TAKE SHELTER	IMMEDIATELY!"
+									,math.cos(time()/7200+math.pi)*800-550,36,1,false,2)
+		end
+	end
   
 		--display special coin sprite next to level
 		--for whatever reason I can't overlay 
@@ -1745,7 +1777,21 @@ function play()
 		 rect(60-p.x/100,50,20,150,1)
 			rect(100-p.x/100,40,20,150,1)
 			rect(230-p.x/100,90,20,150,1)
-		--	rain()
+			
+			-- birds
+			for i=0,30 do
+    y=80+math.cos(time()/2000+i/70)+math.sin(i/8)*40+math.sin(time()/900-i/100)*30+i-camy/2
+    
+    x=math.cos(time()/2000)*100+100
+    +math.cos(i/5)*40
+    +math.sin(math.pi/3-i/2)*80
+    d=-math.sin(time()/2000)
+    
+    if -math.sin(time()/2000) >0 then
+     line(x,y,x+4,y,1)
+     line(x+2,y,x,y+math.sin(time()/300)*2,1)
+    end
+   end
 		elseif world == 2 then
 		 spr(338,40,20)
    --rain()
@@ -10252,6 +10298,15 @@ end
 -- 125:7577eee17577777775777777757777777777777777777777ffffffff11111111
 -- 126:11e77ee11e77777e1e7557771e75777711e7777771e77777f11fffff11111111
 -- 127:11e777f1ee7777f1777777f1777777f1777777f177777ff1fffff11011111000
+-- 135:999dd99999dd999d9dd999dddd999dd9d999dd99999dd99999dd999d9dd999dd
+-- 136:dd999dd9d999dd99999dd99999dd999d9dd999dddd999dd9d999dd99999dd999
+-- 137:99dd999d9dd999dddd999dd9d999dd99999dd99999dd999d9dd999dddd999dd9
+-- 138:d999dd99999dd99999dd999d9dd999dddd999dd9d999dd99999dd99999dd999d
+-- 139:ddd999dddd999dd9d999dd99999dd99999dd999d9dd999dddd999dd9d999dd99
+-- 140:999dd99999dd999d9dd999dddd999dd9d999dd99999dd99999dd999d9dd999dd
+-- 141:dd999dd9d999dd99999dd99999dd999d9dd999dddd999dd9d999dd99999dd999
+-- 142:99dd999d9dd999dddd999dd9d999dd99999dd99999dd999d9dd999dddd999dd9
+-- 143:d999dd99999dd99999dd999d9dd999dddd999dd9d999dd99999dd99999dd999d
 -- 153:000000007777777775557555757575757555755575ff755f757775f57f777f7f
 -- 154:00000000777777777555755575ff75ff7555755575ff7ff5755575557fff7fff
 -- 155:00000000777777777555775575ff77ff755577757ff5775f755577557fff77ff
@@ -10316,6 +10371,7 @@ end
 -- 061:000000000000000055235ac550330cc000000000000000000000000000000000
 -- 062:0000000000000000bbbb65bbbbbb56bb000003000000030000bbbbb0bbbbbbbb
 -- 063:0000000000000000bb56b56bb066066000000000000000000000000000000000
+-- 095:0100000000100000000100000111111000011000000010000000110000000000
 -- 096:0004d0000004d0000004d0000004d0000004d0000004d0000004d0000004d000
 -- 097:004d0000049d00000499d0000009d00000049d0000009d00000049d0000004d0
 -- 098:00d00000000d0000409d00000449d00000049d00000049d00000040d00000049
