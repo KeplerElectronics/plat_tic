@@ -3227,7 +3227,8 @@ function play()
  
  
   local jev = 0
-  if p.sprct>16 then jev = 1 end 
+  if p.sprct>16 then jev = 1 end
+   
   if p.dead == false 
   and p.inpipe == false then
 	  if btn(4) or btn(7) and p.vy >0 then
@@ -3298,8 +3299,26 @@ function play()
 					 spr(hats[phat].img,floor(p.x-camx),floor(p.y-camy)-4-hats[phat].os+p.hatset,0,1,p.fl,p.rot)
 					end
 				end
-			end
 			
+			end
+		elseif p.dead == true then
+
+				 rotspr(258,floor(p.x-camx-deathwipetimer),floor(p.y-camy-math.sin(deathwipetimer/20)*80),deathwipetimer/20,deathwipetimer/20+2,deathwipetimer/20+2,0,0,8,8)
+
+					--spritebdr(259,floor(p.x-camx),floor(p.y-camy-math.sin(deathwipetimer/20)*80),0,deathwipetimer/10,p.fl,deathwipetimer/10)
+
+				
+				rotspr(hats[phat].img,floor(p.x-camx+deathwipetimer),floor(p.y-camy-math.sin(deathwipetimer/20)*80),deathwipetimer/20,deathwipetimer/20+2,deathwipetimer/20+2,0,0,8,8)
+  
+				
+				--[[if hats[phat].border == "yes" then
+				 spritebdr(hats[phat].img,floor(p.x-camx+deathwipetimer),floor(p.y-camy+hats[phat].os+p.hatset+2-math.sin(deathwipetimer/20)*80),0,deathwipetimer/10,p.fl,p.rot)
+		  elseif hats[phat].border == "out" then
+				 hatbdr(hats[phat].img,floor(p.x-camx+deathwipetimer),floor(p.y-camy+hats[phat].os+p.hatset+2-math.sin(deathwipetimer/20)*80),0,deathwipetimer/10,p.fl,p.rot)
+				else
+					
+					spr(hats[phat].img,floor(p.x-camx+deathwipetimer),floor(p.y-camy+hats[phat].os+p.hatset+2-math.sin(deathwipetimer/20)*80),0,deathwipetimer/10,p.fl,p.rot)
+				end]]
   end
  
 		
@@ -9539,7 +9558,40 @@ function wline(x1,y1,x2,y2,c,w)
  end
 end
 
-
+function rotspr(s,x,y,r,w,h,fx,fy,sw,sh)
+    if not w then
+        w=1
+    end
+    if not h then
+        h=1
+    end
+    if not sw then
+        sw=8
+    end
+    if not sh then
+        sh=8
+    end
+    local p={}
+    local v=math.sqrt(32)
+    for i=0,4 do
+        p[i*2+1]=x+4+math.cos((0.375+i/4+(r/math.pi/2))*math.pi*2)*v*w
+        p[i*2+2]=y+4+math.sin((0.375+i/4+(r/math.pi/2))*math.pi*2)*v*h
+    end
+    local x1=s%16*8
+    local y1=math.floor(s/16)*8
+    local x2=x1+sw
+    local y2=y1+sh
+    if fx then
+        x1=x1+sw
+        x2=x2-sw
+    end
+    if fy then
+        y1=y1+sh
+        y2=y2-sh
+    end
+    ttri(p[1],p[2],p[3],p[4],p[5],p[6],x1,y2,x1,y1,x2,y1,0)
+    ttri(p[1],p[2],p[7],p[8],p[5],p[6],x1,y2,x2,y2,x2,y1,0)
+end
 
 function tablereset(tab)
 	for i,v in ipairs(tab) do
@@ -11657,8 +11709,9 @@ end
 -- </SPRITES>
 
 -- <SPRITES1>
--- 000:0f777770f7777777f7757577f7757577f77777770f7777700000000000000000
--- 001:000000000f777770f7777777f7757577f7757577f77777770f77777000000000
+-- 000:0e7777f0e777777fe775757fe775757fe777777f0e7777f00000000000000000
+-- 001:000000000e7777f0e777777fe775757fe775757fe777777f0e7777f000000000
+-- 002:00eee0000e777700e7577770e555777fe757577f0775557f007757f0000fff00
 -- 004:ccaaccaacaaccaacaaccaaccaccaaccaccaaccaacaaccaacaaccaaccaccaacca
 -- 005:ccaaccaacaaccaacaaccaaccaccaaccaccaaccaacaaccaacaaccaaccaccaacca
 -- 006:ccaaccaacaaccaacaaccaaccaccaaccaccaaccaacaaccaacaaccaaccaccaacca
@@ -11670,7 +11723,7 @@ end
 -- 013:5555555500065000000650000032320003223220322233223222332232223322
 -- 014:0000000000000000bbbbbbbbb0bb0bb000000000000000000000000000000000
 -- 015:0000000000000000000000000000000000898900008999008999999900000000
--- 016:00000000000000000f777770f7757577f77575770f7777700000000000000000
+-- 016:00000000000000000e7777f0e775757fe775757f0e7777f00000000000000000
 -- 017:00f777000f7777700f7575700f7575700f77777000f777000000000000000000
 -- 020:ccaaccaacaaccaacaaccaaccaccaaccaccaaccaacaaccaacaaccaaccaccaacca
 -- 021:ccaaccaacaaccaacaaccaaccaccaaccaccaaccaacaaccaacaaccaaccaccaacca
@@ -11729,6 +11782,7 @@ end
 -- 224:0023230002232230222322232223222322222223022222300030030000033000
 -- 225:0000000000000000022322302223222322232223222222230222223000300300
 -- 226:0000000000000000eeeeeeefeefefeefeefefeef0eeeeef000f00f0000f00f00
+-- 231:0f777770f7777777f75575b7f75b7557f77777770f7777700000000000000000
 -- 232:0000220000002320000023322222222223232000223320000223200000222000
 -- 234:0849990084988990890008908994999008849880008998000089990000088000
 -- 240:0000490000004990000449900004900000449000004900000449000004900000
