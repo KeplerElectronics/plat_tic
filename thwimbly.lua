@@ -8351,16 +8351,13 @@ function entlogic()
    if ent.ang == nil then
 			 ent.ang = 0
     ent.angv = 0.01
-    ent.ang=math.pi/2	
-				ent.anga = 0
+    ent.ang=math.pi/2
 			
 				ent.clawed = false
 			else
 			
 			 if ent.angv ~= nil then
-					
-					--ent.angv = (ent.angv + ent.anga)
-					
+
 				 ent.ang = ent.ang + ent.angv
 					
 					local bigv = ent.angv*len 
@@ -9670,11 +9667,10 @@ function platlogic(id)
 				 ents[id].y = ents[id].y-0.5
 				end
 				
-				p.y = ents[id].y-8
+				
 				p.x = p.x+ents[id].vx
 
-				p.vy = p.vy+ents[id].vy
-				
+				p.y = ents[id].y-7+ents[id].vy
 			else 
 
 				if ents[id].ty == 213 then
