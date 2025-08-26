@@ -6168,6 +6168,37 @@ function entlogic()
    
    end
  end
+ 
+ canland = {[208]=true, 
+									   [464]=true,
+									   [224]=true,
+									   [480]=true, 
+									   [225]=true,
+									   [481]=true, 
+									   [212]=true, 
+									   [231]=true, 
+									   [241]=true, 
+									   [497]=true, 
+									   [243]=true,
+									   [499]=true,
+												[244]=true,
+												[500]=true}
+												
+	canfall = {[208]=true, 
+									   [464]=true,
+									   [224]=true,
+									   [480]=true, 
+									   [225]=true,
+									   [481]=true, 
+									   [212]=true, 
+									   [231]=true, 
+									   [241]=true, 
+									   [497]=true, 
+									   [243]=true,
+												[242]=true,
+									   [499]=true,
+												[244]=true,
+												[500]=true}
 	
 --falling and landing and bonking
 	if solid(ent.x+7,ent.y+7+ent.vy)
@@ -6180,18 +6211,7 @@ function entlogic()
  or mget((ent.x)//8,(ent.y+7+ent.vy)//8+(level-1)*34) == 183
  then
  --mgets above for 1f0 type thing
-   if ent.ty==208 
-   or ent.ty==464 
-   or ent.ty == 224
-   or ent.ty == 480 
-   or ent.ty == 225
-   or ent.ty == 481 
-   or ent.ty == 212 
-   or ent.ty == 231 
-   or ent.ty == 241 
-   or ent.ty == 497 
-   or ent.ty == 243
-   or ent.ty == 499 then
+   if canland[ent.ty]==true then
     if mget((ent.x+7)//8,(ent.y+6+ent.vy)//8+(level-1)*34) == 68 
     or mget((ent.x)//8,(ent.y+6+ent.vy)//8+(level-1)*34) == 68 then
      sfx(32,30+math.random(6)*2,10,3)
@@ -6212,19 +6232,7 @@ function entlogic()
 		or oneway(ent.x+8,ent.y+ent.vy) then
 		
 		--mgets above for 1f0 type thing
-   if ent.ty==208 
-   or ent.ty==464 
-   or ent.ty == 224
-   or ent.ty == 480 
-   or ent.ty == 225
-   or ent.ty == 481 
-   or ent.ty == 212 
-   or ent.ty == 231 
-   or ent.ty == 241 
-   or ent.ty == 497 
-   or ent.ty == 243
-   or ent.ty == 499 
-   or ent.ty == 242 then
+   if canland[ent.ty]==true then
     if ent.vy > 0 then
      ent.vy=0
     end
@@ -6232,19 +6240,7 @@ function entlogic()
    
   else
    --ents falling
-   if ent.ty==208 
-   or ent.ty==464 
-			or ent.ty == 224
-   or ent.ty == 480 
-   or ent.ty == 225
-   or ent.ty == 481 
-   or ent.ty == 212 
-   or ent.ty == 231 
-   or ent.ty == 241 
-   or ent.ty == 497 
-   or ent.ty == 243 
-   or ent.ty == 499 
-   or ent.ty == 242 then
+   if canfall[ent.ty]==true then
 			 if ent.clawed == false then
      ent.vy = ent.vy + 0.2
     end
@@ -6254,28 +6250,30 @@ function entlogic()
 
 	deathys[144]=true
   
+ cansplat={[232]=true, 
+									  [471]=true, 
+									  [498]=true, 
+									  [192]=true, 
+									  [448]=true, 
+									  [454]=true,  
+									  [234]=true,  
+									  [490]=true, 
+											[336]=true,  
+											[337]=true, 
+										 [338]=true,  
+											[466]=true, 
+											[491]=true,  
+											[240]=true, 
+											[496]=true,  
+											[352]=true, 
+											[353]=true, 
+											[354]=true}
+  
   --splat if stuck in block
   if solid(ent.x+3,ent.y+3)
   and solid(ent.x+5,ent.y+5)
   and ent.inpipe == false
-  and ent.ty ~= 232 
-  and ent.ty ~= 471 
-  and ent.ty ~= 498 
-  and ent.ty ~= 192
-  and ent.ty ~= 448
-  and ent.ty ~= 454 
-  and ent.ty ~= 234 
-  and ent.ty ~= 490
-		and ent.ty ~= 336 
-		and ent.ty ~= 337
-	 and ent.ty ~= 338 
-		and ent.ty ~= 466
-		and ent.ty ~= 491 
-		and ent.ty ~= 240
-		and ent.ty ~= 496 
-		and ent.ty ~= 352
-		and ent.ty ~= 353
-		and ent.ty ~= 354 then
+  and cansplat[ent.ty]==true then
     splat(ent.x+4,ent.y+4)
     table.remove(ents,i)
     ---trace("splat")
@@ -6925,52 +6923,41 @@ function entlogic()
 			
 			if ent.carried~= nil then
 			 if btn(5) or btn(6) then
-				 if p.vy<0 then
-      p.vy = p.vy*2
+				 if p.jump == true then
+      ent.air = true
      end
-    else
-     if not solid(ent.x,ent.y+4)
-					and not solid(ent.x+7,ent.y+4) then
-				  ent.vy = -1
-					else
-					 ent.vy = 0
+     
+     if p.onground ==true then
+      ent.air = nil
      end
-     ent.vx = p.vx-7*(p.fl-0.5)
-				 ent.carried = nil
-				 p.carry = nil
-				end
-			else
+     
+     if ent.air ~= nil then
+      if not solid(p.x+4,p.y-6) then
+       p.vy = -4
+      else
+       p.vy=-0.2
+      end
+     end
+    end
+   else
+    ent.air = nil
+			end
 			
+			if solid(ent.x+ent.vx+8,ent.y) 
+			or solid(ent.x+ent.vx+8,ent.y+6) then
+			 ent.vx = 0
+			elseif solid(ent.x+ent.vx,ent.y)
+			or solid(ent.x+ent.vx,ent.y+6) then
+			 ent.vx = 0
+			else
+			 ent.vx = ent.vx*0.94
+			end
 			
 		--bomb
 	 elseif ent.ty == 242 then
 			
 			carrylogic(i)
 			
-			if ent.carried~= nil then
-			 if btn(5) or btn(6) then
-				 ent.x = p.x
-					ent.y = p.y-8
-				else
-				 if not solid(ent.x,ent.y+4)
-					and not solid(ent.x+7,ent.y+4) then
-				  ent.vy = -1
-					else
-					 ent.vy = 0
-						ent.y = ((ent.y+4)//8)*8+8
-						if not solid(p.x+4,p.y+10) then
-						 p.y = p.y+6
-						end
-					end
-					
-					ent.vx = p.vx-7*(p.fl-0.5)
-				 ent.carried = nil
-				 p.carry = nil
-					if ent.ct <1 then
-					 ent.ct = 400
-					end
-				end
-			end  
 			
 			if ent.ct>1 then
 			 ent.ct = ent.ct-1
@@ -10054,7 +10041,41 @@ function carrylogic(id)
 			end
 		end
 	end
+ 
+ if ents[id].carried~= nil then
+	 if btn(5) or btn(6) then
+		 ents[id].x = p.x
+			ents[id].y = p.y-8
+		else
+		 if not solid(ents[id].x,ents[id].y+4)
+			and not solid(ents[id].x+7,ents[id].y+4) then
+		  ents[id].vy = -1
+			elseif solid(ents[id].x,ents[id].y-4)
+			or solid(ents[id].x+7,ents[id].y-4) then
+			 ents[id].vy = 0
+				ents[id].y = ((ents[id].y+4)//8)*8+8
+				if not solid(p.x+4,p.y+10) then
+				 p.y = p.y+10
+				end
 
+			else
+			 ents[id].vy = 0
+				ents[id].y = ((ents[id].y+4)//8)*8+8
+				if not solid(p.x+4,p.y+10) then
+				 p.y = p.y+6
+				end
+			end
+			
+			ents[id].vx = p.vx-7*(p.fl-0.5)
+		 ents[id].carried = nil
+		 p.carry = nil
+			if ents[id].ct <1 then
+			 ents[id].ct = 400
+			end
+		end
+	end  
+	
+ 
 end
 
 --platforms
