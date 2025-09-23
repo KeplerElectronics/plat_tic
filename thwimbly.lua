@@ -3673,15 +3673,29 @@ function play()
 		  end		
 		 --boss draw
 			elseif ent.ty == 248 then
-			 rotspr(462,
-				       ent.x-camx,
-				       ent.y-camy-ent.headoff,
-										 ent.rot,
-										 2,
-										 2,0,0,8,8)
+			 circ(ent.x-camx+1,1+ent.y-ent.headoff-camy,
+				12,8)
+				circ(ent.x-camx,ent.y-ent.headoff-camy,
+				12,3)
+				
+	   --eyes
+	 
+	   rect(ent.x-camx-5,ent.y-ent.headoff-camy-4+math.sin(time()/600)*2,2,4-math.sin(time()/600)*2,11)
+		  rect(ent.x-camx-5,ent.y-ent.headoff-camy-4+math.sin(time()/600)*2,3,1,11)
+				
+				rect(ent.x-camx+5,ent.y-ent.headoff-camy-4+math.sin(time()/600)*2,2,4-math.sin(time()/600)*2,11)
+		  rect(ent.x-camx+5,ent.y-ent.headoff-camy-4+math.sin(time()/600)*2,3,1,11)
+		  
+				--mouth
+				pix(ent.x-camx,  ent.y-ent.headoff-camy+5,11)
+				pix(ent.x-camx-1,ent.y-ent.headoff-camy+5,11)
+				pix(ent.x-camx+1,ent.y-ent.headoff-camy+5,11)
+				pix(ent.x-camx-2,ent.y-ent.headoff-camy+5,11)
+				pix(ent.x-camx+2,ent.y-ent.headoff-camy+5,11)
+				
 				if ent.state == "launch" then
-				 circb(ent.x+6-camx,ent.y-8-camy,45-ent.ct/2,2)
-		   circb(ent.x+6-camx,ent.y-8-camy,40-ent.ct/2,2)
+				 circb(ent.x-camx,ent.y-ent.headoff-camy,45-ent.ct/2,2)
+		   circb(ent.x-camx,ent.y-ent.headoff-camy,40-ent.ct/2,2)
 		  elseif ent.state == "dying" then 
 				 for i=0,4 do
 						tri(ent.x+6-camx,
@@ -6794,6 +6808,9 @@ function entlogic()
   or ent.ty == 200 
   or ent.ty == 242 then
 	 
+		elseif ent.ty == 212 then
+		 ent.ct = ent.ct-1
+		
 		else
 			ent.ct = ent.ct+1
 		end
@@ -7704,7 +7721,8 @@ function entlogic()
 	elseif ent.ty == 212 then
 	 --if natural spawn then do the
 		--vine thing  
-	 if ent.active == false then
+	 if ent.active == false 
+		and ent.ox == nil then
 		 ent.ox = ent.x
 		 ent.oy = ent.y
 			entmake(ent.x,
@@ -7721,6 +7739,8 @@ function entlogic()
            0 --bonus
            )
 		end
+		
+		
 	
 	 if mget((ent.x+8+ent.vx)//8,(ent.y+6+ent.vy)//8+(level-1)*34) == 176 
   or mget((ent.x-1+ent.vx)//8,(ent.y+6+ent.vy)//8+(level-1)*34) == 176 then
@@ -8014,8 +8034,8 @@ function entlogic()
 	           ent.y+ent.vy-12,
 	           3*math.cos(ent.rot),--vx
 	           3*math.sin(ent.rot), --vy
-	           243, --ty
-	           0, --ct
+	           212, --ty
+	           15, --ct
 	           0, --d
 	           true, --active
 	           0, --flip
@@ -8068,9 +8088,10 @@ function entlogic()
  
    
    for k,ent in pairs(ents) do
-   	if ents[k].ty == 212 then
-    	dist = math.sqrt((ents[k].x-ents[i].x)^2+(ents[k].y-ents[i].y)^2) 
-     if dist<16 then
+   	if ents[k].ty == 212 
+    and ents[k].ct <=0 then
+    	dist = math.sqrt((ents[k].x-ents[i].x)^2+(ents[k].y-ents[i].y-ents[i].headoff)^2) 
+     if dist<12 then
 						ents[i].health = ents[i].health-1
 						splat(ents[i].x+4,ents[i].y+4,2,3)
 					 table.remove(ents,k)
@@ -8082,7 +8103,7 @@ function entlogic()
    
    
    dist = math.sqrt((p.x-ent.x)^2+(p.y-ent.y)^2) 
-   if dist<16 
+   if dist<12 
    and ent.state ~= "dying" then
     death()
    end
