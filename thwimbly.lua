@@ -2104,8 +2104,8 @@ function TIC()
  
   elseif debugb == "rand" then
 	  rect(0,0,60,60,1)
-		 print("ents",0,0,8)
-		 print(#ents,34,0,8)
+		 print("cary",0,0,8)
+		 print(p.carry,34,0,8)
 	  print("lpdir",0,6,8)
 			print(p.lastpipedir,34,6,8)
 			print("jump",0,12,8)
@@ -3360,7 +3360,6 @@ function play()
 			
 	   end
 				
-	
 				spritebdr(ent.ty,ent.x-camx,ent.y-camy,0,1,ent.fl,ent.rot)
 		  
 		  --mirror sprite if moving plat
@@ -3673,26 +3672,36 @@ function play()
 		  end		
 		 --boss draw
 			elseif ent.ty == 248 then
-			 circ(ent.x-camx+1,1+ent.y-ent.headoff-camy,
-				12,8)
+			 --stem
+				local stemct=7
+				for i=0,stemct do
+				 circ(ent.x-camx+1+math.sin(time()/600+i/2)*2,ent.y-camy+1+i*2-ent.headoff+3,
+					ent.rad/4,1)
+					circ(ent.x-camx+math.sin(time()/600+i/2)*2,ent.y-camy+i*2-ent.headoff+3,
+					ent.rad/4,13)
+    end
+    --bottom leaves
+    circ(ent.x-camx,ent.y-camy+stemct*2-ent.headoff+4,
+				ent.rad/2,13)
+    
+    circ(ent.x-camx+5,ent.y-camy+1+stemct*2-ent.headoff+4,
+				ent.rad/3,1)
+				circ(ent.x-camx+4,ent.y-camy+stemct*2-ent.headoff+4,
+				ent.rad/3,13)
+				
+				circ(ent.x-camx-4,ent.y-camy+1+stemct*2-ent.headoff+4,
+				ent.rad/3,1)
+				circ(ent.x-camx-5,ent.y-camy+stemct*2-ent.headoff+4,
+				ent.rad/3,13)
+					
+				--head
 				circ(ent.x-camx,ent.y-ent.headoff-camy,
-				12,3)
-				
-	   --eyes
-	 
-	   rect(ent.x-camx-5,ent.y-ent.headoff-camy-4+math.sin(time()/600)*2,2,4-math.sin(time()/600)*2,11)
-		  rect(ent.x-camx-5,ent.y-ent.headoff-camy-4+math.sin(time()/600)*2,3,1,11)
-				
-				rect(ent.x-camx+5,ent.y-ent.headoff-camy-4+math.sin(time()/600)*2,2,4-math.sin(time()/600)*2,11)
-		  rect(ent.x-camx+5,ent.y-ent.headoff-camy-4+math.sin(time()/600)*2,3,1,11)
-		  
-				--mouth
-				pix(ent.x-camx,  ent.y-ent.headoff-camy+5,11)
-				pix(ent.x-camx-1,ent.y-ent.headoff-camy+5,11)
-				pix(ent.x-camx+1,ent.y-ent.headoff-camy+5,11)
-				pix(ent.x-camx-2,ent.y-ent.headoff-camy+5,11)
-				pix(ent.x-camx+2,ent.y-ent.headoff-camy+5,11)
-				
+				ent.rad+1,11)
+				circ(ent.x-camx+1,1+ent.y-ent.headoff-camy,
+				ent.rad,8)
+				circ(ent.x-camx,ent.y-ent.headoff-camy,
+				ent.rad,3)
+			
 				if ent.state == "launch" then
 				 circb(ent.x-camx,ent.y-ent.headoff-camy,45-ent.ct/2,2)
 		   circb(ent.x-camx,ent.y-ent.headoff-camy,40-ent.ct/2,2)
@@ -6807,10 +6816,7 @@ function entlogic()
   or ent.ty == 235 or ent.ty == 491 
   or ent.ty == 200 
   or ent.ty == 242 then
-	 
-		elseif ent.ty == 212 then
-		 ent.ct = ent.ct-1
-		
+  
 		else
 			ent.ct = ent.ct+1
 		end
@@ -7738,6 +7744,7 @@ function entlogic()
            false, --clawed
            0 --bonus
            )
+   ent.ct = 0
 		end
 		
 		
@@ -8000,6 +8007,7 @@ function entlogic()
    if ent.health == nil then
     ent.health = 6
     ent.headoff = 12
+    ent.rad = 8
    elseif ent.health <= 0 then
     if ent.state ~= "dying" then
      ent.ct = 0
@@ -8009,11 +8017,10 @@ function entlogic()
     ent.vy = 0
    end
    
-   
-   
    if ent.state == nil then 
    	ent.state = "move"
    elseif ent.state == "move" then
+    ent.headoff = lerp(ent.headoff,12,0.1)
     if ent.ct < 40 then
      if p.x<ent.x then
       ent.vx = -0.5
@@ -8035,7 +8042,7 @@ function entlogic()
 	           3*math.cos(ent.rot),--vx
 	           3*math.sin(ent.rot), --vy
 	           212, --ty
-	           15, --ct
+	           0, --ct
 	           0, --d
 	           true, --active
 	           0, --flip
@@ -8083,16 +8090,19 @@ function entlogic()
 		  ent.vx = -ent.vx
    end
    
-
    ent.rot = math.sin(time()/600)*math.pi/4+math.pi*3/2
- 
-   
+
    for k,ent in pairs(ents) do
    	if ents[k].ty == 212 
-    and ents[k].ct <=0 then
-    	dist = math.sqrt((ents[k].x-ents[i].x)^2+(ents[k].y-ents[i].y-ents[i].headoff)^2) 
-     if dist<12 then
-						ents[i].health = ents[i].health-1
+    and ents[k].bct ~= nil then
+     if ents[k].x+7>ents[i].x-ents[i].rad
+     and ents[k].x<ents[i].x+ents[i].rad
+     and ents[k].y+7>ents[i].y-ents[i].headoff-ents[i].rad
+    	and ents[k].y<ents[i].y+5 then	
+      if ents[k].carried == true then
+       p.carry = nil
+      end
+      ents[i].health = ents[i].health-1
 						splat(ents[i].x+4,ents[i].y+4,2,3)
 					 table.remove(ents,k)
 				 	goto skipent
@@ -8100,10 +8110,10 @@ function entlogic()
 			 end
 			end
    
-   
-   
-   dist = math.sqrt((p.x-ent.x)^2+(p.y-ent.y)^2) 
-   if dist<12 
+   if p.x+7>ent.x-ent.rad
+   and p.x<ent.x+ent.rad
+   and p.y+7>ent.y-ent.headoff-ent.rad
+  	and p.y<ent.y+5 
    and ent.state ~= "dying" then
     death()
    end
@@ -10079,7 +10089,9 @@ function entcheck(x,y,k)
 		   mset(x,k+y-8+(level-1)*34,repl[world])
 				end
 			end
-	 	entmake(floor(x*8)+1,floor(k*8+y*8-64),0,0,t,0,0,false,0,0,false)
+	 	entmake(floor(x*8)+1,
+			        floor(k*8+y*8-64),
+											0,0,t,0,0,false,0,0,false)
 			
 		elseif t == 64  or t == 80 then
 		 if gamestate == "play" then
@@ -10793,8 +10805,8 @@ function rotspr(s,x,y,r,w,h,fx,fy,sw,sh)
         y2=y2-sh
     end
     
-    ttri(p[1],p[2],p[3],p[4],p[5],p[6],x1,y2,x1,y1,x2,y1,0)
-    ttri(p[1],p[2],p[7],p[8],p[5],p[6],x1,y2,x2,y2,x2,y1,0)
+    ttri(p[1],p[2],p[3],p[4],p[5],p[6],x1,y2,x1,y1,x2,y1,0,0)
+    ttri(p[1],p[2],p[7],p[8],p[5],p[6],x1,y2,x2,y2,x2,y1,0,0)
 end
 
 function tablereset(tab)
@@ -10977,7 +10989,7 @@ function carrylogic(id)
 				end
 			ents[id].vx = p.vx-2*(p.fl-0.5)
 			
-			--shell
+			--shell or butternut squash
 			elseif ents[id].ty == 212 
 			and ents[id].bct == 0 then
 			 if btn(4) then
@@ -13679,7 +13691,6 @@ end
 -- 196:0000000000049000004449000049490000494900004449000004900000000000
 -- 198:00cccc000cddddc0cddeeddccdceecdccc0ee0ccc000000c0000000000000000
 -- 201:00bbbb000b2322b0b223223bb223223bb222223b0b2223b00bdbbdb00b111bb0
--- 206:002222000222bb202222b2220002222300022233333333330333333000333300
 -- 208:077777f07777777f7747477f7747477f7777777f077777f000f00f00000ff000
 -- 210:0666666660000000600000006000000060000000600000006000000006666666
 -- 211:0cccccc0cccffffccceeeefccfeeeeeccf77777ccf7777cccffccccc0cccccc0
