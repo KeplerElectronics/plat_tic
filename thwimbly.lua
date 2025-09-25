@@ -8,6 +8,7 @@
 demo = false
 lowspec = false
 controller = false
+shake = true
 
 --sky dither pattern
 dpat ={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,2,1,2,1,2,1,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,2,2,3,2,3,2,3,2,3,3,2,3,3,3,3,3,3}
@@ -2128,7 +2129,10 @@ end
 function play()
  playstart = time()
  local hasspcoin = false
- camshake()
+ --need to add an option for this
+ if shake == true then
+  camshake()
+ end
 
  if cloud == false then
   if bganim == true then
@@ -3794,7 +3798,9 @@ function play()
 				 circb(ent.x-camx,ent.y-ent.headoff-camy,45-ent.ct/2,2)
 		   circb(ent.x-camx,ent.y-ent.headoff-camy,40-ent.ct/2,2)
 		  elseif ent.state == "dying" then 
-				 circ(ent.x-camx,
+				 shakelength = 1
+					
+					circ(ent.x-camx,
 					     ent.y-camy-ent.headoff,
 										ent.ct/2,5)
 					spawnparticle(ent.x+4+math.random(-12,12),--x
@@ -5021,7 +5027,9 @@ function BDR(scnline)--bdr
 			--trees
 			pal(14,174,35,52)
 			pal(13,232,59,59)
-			pal(11,158,69,57)
+			pal(11,36,34,36)
+			
+			pal(15,26,14,35)
 			--buildings
 			if dither == 1 then
 		  pal(0,50,51,83)
@@ -10458,7 +10466,7 @@ end
 
 
 
--- menu: Return	To	Map 
+-- menu: Return	To	Map Camshake
 
 function ITEM1()
  if gamestate == "play" then
@@ -10486,9 +10494,12 @@ function ITEM2()
  end
 
 end
-function ITEM3()trace("3")end
+function ITEM3()
+ if shake == true then shake = false
+ elseif shake == false then shake = true end
+end
 
-GameMenu={ITEM1}
+GameMenu={ITEM1,ITEM3}
 
 function MENU(i)
   GameMenu[i+1]()
