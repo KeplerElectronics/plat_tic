@@ -3674,9 +3674,7 @@ function play()
 		  end		
 		 --boss draw
 			elseif ent.ty == 248 then
-			 if ent.state == nil then
-				 
-					
+			 if ent.state == nil then					
 					
 					local string="WARNING!"
  	   local width=print(string,0,-6)*3
@@ -8270,12 +8268,14 @@ function entlogic()
 				end
    end
   
-   if solid(ent.x+ent.rad,ent.y-ent.rad-ent.headoff+ent.vy) 
-			or solid(ent.x+ent.rad,ent.y+6+ent.vy) then
+   if solid(ent.x+ent.rad+ent.vx,ent.y-ent.rad-ent.headoff+ent.vy) 
+			or solid(ent.x+ent.rad+ent.vx,ent.y+6+ent.vy) then
 			 ent.vx = -ent.vx
+				ent.x = ent.x-2
 			elseif solid(ent.x-ent.rad+ent.vx,ent.y-ent.rad-ent.headoff+ent.vy)
 			or solid(ent.x-ent.rad+ent.vx,ent.y+6+ent.vy) then
 		  ent.vx = -ent.vx
+				ent.x = ent.x+2
    end
    
    ent.rot = math.sin(time()/600)*math.pi/4+math.pi*3/2
