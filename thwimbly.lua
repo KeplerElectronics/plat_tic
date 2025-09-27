@@ -233,8 +233,7 @@ function lerp(a,b,t) return (1-t)*a + t*b end
 									   [499]=true,
 												[244]=true,
 												[500]=true,
-												[247]=true,
-												[248]=true}
+												[247]=true}
 	
 	--signs. text1 is the early sign in
 	--level, text 2 is for signs
@@ -3675,168 +3674,215 @@ function play()
 		  end		
 		 --boss draw
 			elseif ent.ty == 248 then
-			 --stem
-				local stemct=3
-				for i=0,stemct do
-				 circ(ent.x-camx+math.sin(time()/600+i/2)*2,
-					ent.y-camy-i*2+3,
-					ent.rad/4+1,11)
-				 circ(ent.x-camx+1+math.sin(time()/600+i/2)*2,
-					ent.y-camy+1-i*2+3,
-					ent.rad/4,1)
-					circ(ent.x-camx+math.sin(time()/600+i/2)*2,
-					ent.y-camy-i*2+3,
-					ent.rad/4,13)
-    end
-    --bottom leaves
-    
-   
-				circ(ent.x-camx+4+math.sin(time()/600)*2,
-				     ent.y-camy+stemct*2-ent.headoff+4-math.cos(time()/600)*2,
-				     ent.rad/3+1,11)
-				
-		
-				circ(ent.x-camx-5-math.sin(time()/600)*2,
-				     ent.y-camy+stemct*2-ent.headoff+4-math.cos(time()/600)*2,
-				     ent.rad/3+1,11)
-    
-  
-				circ(ent.x-camx+4+math.sin(time()/600)*2,
-				     ent.y-camy+stemct*2-ent.headoff+4-math.cos(time()/600)*2,
-				     ent.rad/3,13)
-				
-		
-				circ(ent.x-camx-5-math.sin(time()/600)*2,
-				     ent.y-camy+stemct*2-ent.headoff+4-math.cos(time()/600)*2,
-				     ent.rad/3,13)
+			 if ent.state == nil then
+				 
+					
+					
+					local string="WARNING!"
+ 	   local width=print(string,0,-6)*3
+		   
+					local xoff = math.sin(time()/300)*7
+					local yoff = math.cos(time()/300)*7-40
+					
+					print(string,(240-width)//2+1+xoff,60+1+yoff,11,false,3)
+					print(string,(240-width)//2+xoff,  60+1+yoff,11,false,3)
+					print(string,(240-width)//2-1+xoff,60+1+yoff,11,false,3)
+					print(string,(240-width)//2-1+xoff,60+yoff,11,false,3)
+					print(string,(240-width)//2+1+xoff,60+yoff,11,false,3)
+					print(string,(240-width)//2+1+xoff,60-1+yoff,11,false,3)
+					print(string,(240-width)//2+xoff  ,60-1+yoff,11,false,3)
+					print(string,(240-width)//2-1+xoff,60-1+yoff,11,false,3)
 
-				--head bg
-				tri(ent.x-camx,
-				    -1+ent.y-camy+ent.rad-ent.headoff+1,
-				    ent.x-ent.rad-camx-math.sin(time()/400)*3-3,
-								-1+ent.y-camy-ent.headoff,
-							 ent.x+ent.rad-camx+math.sin(time()/400)*3+3,
-								-1+ent.y-camy-ent.headoff,11)
+					xoff = math.sin(time()/100)*4
+					yoff = math.cos(time()/100)*4-40
+					
+					print(string,(240-width)//2+1+xoff,60+1+yoff,3,false,3)
+					print(string,(240-width)//2+xoff,  60+1+yoff,3,false,3)
+					print(string,(240-width)//2-1+xoff,60+1+yoff,3,false,3)
+					print(string,(240-width)//2-1+xoff,60+yoff,3,false,3)
+					print(string,(240-width)//2+1+xoff,60+yoff,3,false,3)
+					print(string,(240-width)//2+1+xoff,60-1+yoff,3,false,3)
+					print(string,(240-width)//2+xoff  ,60-1+yoff,3,false,3)
+					print(string,(240-width)//2-1+xoff,60-1+yoff,3,false,3)
+					
+					xoff = 0
+					yoff = -40
+										
+					print(string,(240-width)//2+1,60+1+yoff,11,false,3)
+					print(string,(240-width)//2,  60+1+yoff,11,false,3)
+					print(string,(240-width)//2-1,60+1+yoff,11,false,3)
+					print(string,(240-width)//2-1,60+yoff,11,false,3)
+					print(string,(240-width)//2+1,60+yoff,11,false,3)
+					print(string,(240-width)//2+1,60-1+yoff,11,false,3)
+					print(string,(240-width)//2  ,60-1+yoff,11,false,3)
+					print(string,(240-width)//2-1,60-1+yoff,11,false,3)
+										
+     print(string,(240-width)//2,60+yoff,2,false,3)
+					
+					
+				else
+				 --stem
+					local stemct=3
+					for i=0,stemct do
+					 circ(ent.x-camx+math.sin(time()/600+i/2)*2,
+						ent.y-camy-i*2+3,
+						ent.rad/4+1,11)
+					 circ(ent.x-camx+1+math.sin(time()/600+i/2)*2,
+						ent.y-camy+1-i*2+3,
+						ent.rad/4,1)
+						circ(ent.x-camx+math.sin(time()/600+i/2)*2,
+						ent.y-camy-i*2+3,
+						ent.rad/4,13)
+	    end
+	    --bottom leaves
+	    
+	   
+					circ(ent.x-camx+4+math.sin(time()/600)*2,
+					     ent.y-camy+stemct*2-ent.headoff+4-math.cos(time()/600)*2,
+					     ent.rad/3+1,11)
+					
+			
+					circ(ent.x-camx-5-math.sin(time()/600)*2,
+					     ent.y-camy+stemct*2-ent.headoff+4-math.cos(time()/600)*2,
+					     ent.rad/3+1,11)
+	    
+	  
+					circ(ent.x-camx+4+math.sin(time()/600)*2,
+					     ent.y-camy+stemct*2-ent.headoff+4-math.cos(time()/600)*2,
+					     ent.rad/3,13)
+					
+			
+					circ(ent.x-camx-5-math.sin(time()/600)*2,
+					     ent.y-camy+stemct*2-ent.headoff+4-math.cos(time()/600)*2,
+					     ent.rad/3,13)
+	
+					--head bg
+					tri(ent.x-camx,
+					    -1+ent.y-camy+ent.rad-ent.headoff+1,
+					    ent.x-ent.rad-camx-math.sin(time()/400)*3-3,
+									-1+ent.y-camy-ent.headoff,
+								 ent.x+ent.rad-camx+math.sin(time()/400)*3+3,
+									-1+ent.y-camy-ent.headoff,11)
+										
+					tri(ent.x-camx,
+					    ent.y-camy+ent.rad-ent.headoff+1,
+					    -1+ent.x-ent.rad-camx-math.sin(time()/400)*3-4,
+									ent.y-camy-ent.headoff,
+									-1+ent.x-camx-math.sin(time()/400)*3-3,
+									ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-4,11)
+					
+					tri(ent.x-camx,
+					    ent.y-camy+ent.rad-ent.headoff+1,
+					    1+ent.x-ent.rad-camx-math.sin(time()/400)*3-4,
+									ent.y-camy-ent.headoff,
+									1+ent.x-camx-math.sin(time()/400)*3-3,
+									-2+ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-4,11)
 									
-				tri(ent.x-camx,
-				    ent.y-camy+ent.rad-ent.headoff+1,
-				    -1+ent.x-ent.rad-camx-math.sin(time()/400)*3-4,
-								ent.y-camy-ent.headoff,
-								-1+ent.x-camx-math.sin(time()/400)*3-3,
-								ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-4,11)
+					tri(ent.x-camx,
+					    ent.y-camy+ent.rad-ent.headoff+1,
+					    ent.x-ent.rad-camx-math.sin(time()/400)*3-4,
+									ent.y-camy-ent.headoff,
+									ent.x-camx-math.sin(time()/400)*3-3,
+									ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-4,11)
+						 
+					tri(ent.x-camx,
+					    ent.y-camy+ent.rad-ent.headoff+1,
+					    1+ent.x+ent.rad-camx+math.sin(time()/400)*3+4,
+									ent.y-camy-ent.headoff,
+									1+ent.x-camx+math.sin(time()/400)*3+3,
+									ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-4,11)
+				 
+					tri(ent.x-camx,
+					    ent.y-camy+ent.rad-ent.headoff+1,
+					    -1+ent.x+ent.rad-camx+math.sin(time()/400)*3+4,
+									ent.y-camy-ent.headoff,
+									-1+ent.x-camx+math.sin(time()/400)*3+3,
+									-2+ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-4,11)
 				
-				tri(ent.x-camx,
-				    ent.y-camy+ent.rad-ent.headoff+1,
-				    1+ent.x-ent.rad-camx-math.sin(time()/400)*3-4,
-								ent.y-camy-ent.headoff,
-								1+ent.x-camx-math.sin(time()/400)*3-3,
-								-2+ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-4,11)
-								
-				tri(ent.x-camx,
-				    ent.y-camy+ent.rad-ent.headoff+1,
-				    ent.x-ent.rad-camx-math.sin(time()/400)*3-4,
-								ent.y-camy-ent.headoff,
-								ent.x-camx-math.sin(time()/400)*3-3,
-								ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-4,11)
-					 
-				tri(ent.x-camx,
-				    ent.y-camy+ent.rad-ent.headoff+1,
-				    1+ent.x+ent.rad-camx+math.sin(time()/400)*3+4,
-								ent.y-camy-ent.headoff,
-								1+ent.x-camx+math.sin(time()/400)*3+3,
-								ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-4,11)
-			 
-				tri(ent.x-camx,
-				    ent.y-camy+ent.rad-ent.headoff+1,
-				    -1+ent.x+ent.rad-camx+math.sin(time()/400)*3+4,
-								ent.y-camy-ent.headoff,
-								-1+ent.x-camx+math.sin(time()/400)*3+3,
-								-2+ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-4,11)
-			
-			 tri(ent.x-camx,
-				    ent.y-camy+ent.rad-ent.headoff+1,
-				    ent.x+ent.rad-camx+math.sin(time()/400)*3+4,
-								ent.y-camy-ent.headoff,
-								ent.x-camx+math.sin(time()/400)*3+3,
-								ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-4,11)
-			
-    --head fg								
-				tri(ent.x-camx,
-				    ent.y-camy+ent.rad-ent.headoff+1,
-				    ent.x-ent.rad-camx-math.sin(time()/400)*3-3,
-								ent.y-camy-ent.headoff,
-							 ent.x+ent.rad-camx+math.sin(time()/400)*3+3,
-								ent.y-camy-ent.headoff,8)
-			
-				ttri(ent.x-camx,
-				     ent.y-camy+ent.rad-ent.headoff,
-				     ent.x-ent.rad-camx-math.sin(time()/400)*3-3,
-								 ent.y-camy-ent.headoff,
-								 ent.x-camx-math.sin(time()/400)*3-3,
-								 ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-3,
-								 32,168,
-								 32,160,
-								 40,160)
-			
-				ttri(ent.x-camx,
-				    ent.y-camy+ent.rad-ent.headoff,
-				    ent.x+ent.rad-camx+math.sin(time()/400)*3+3,
-								ent.y-camy-ent.headoff,
-								ent.x-camx+math.sin(time()/400)*3+3,
-								ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-3,
-								40,168,
-								40,160,
-								32,160)
-			
-			
-				if ent.state == "launch" then
-				 local ty = 13
-					
-					if ent.lastshot == nil 
-					or ent.lastshot == 212 then
-					 ty = 2
-					end
-				 circb(ent.x-camx,ent.y-ent.headoff-camy,45-ent.ct/2,ty)
-		   circb(ent.x-camx,ent.y-ent.headoff-camy,40-ent.ct/2,ty)
-		  elseif ent.state == "dying" then 
-				 shakelength = 1
-					
-					circ(ent.x-camx,
-					     ent.y-camy-ent.headoff,
-										ent.ct/2,5)
-					spawnparticle(ent.x+4+math.random(-12,12),--x
-					              ent.y+4+math.random(-12,12),--y
-																			math.random(-3,3),--vx
-																			math.random(-3,3),--vy
-																			0,--ax
-																			-0.1,--ay
-																			25+math.random(10),--life
-																			6,--typ
-																			math.random(4,5),--clr
-																			false,--wall
-																			math.random(0,4),--rad
-																			7--layer
-																			)
-					for i=0,4 do
-						tri(ent.x-camx,
-						    ent.y-ent.headoff-camy,
-						    ent.x-camx+math.cos(ent.ct/25+i*math.pi/2)*40,
-										ent.y-ent.headoff-camy+math.sin(ent.ct/25+i*math.pi/2)*20,
-										ent.x-camx+math.cos(ent.ct/26+0.1+i*math.pi/2)*40,
-										ent.y-ent.headoff-camy+math.sin(ent.ct/26+0.1+i*math.pi/2)*20,
-										6)
-					end
-					for i=0,4 do
-						tri(ent.x-camx,
-						    ent.y-ent.headoff-camy,
-						    ent.x-camx+math.cos(ent.ct/35+i*math.pi/2+math.pi/4)*30,
-										ent.y-ent.headoff-camy+math.sin(ent.ct/32+i*math.pi/2+math.pi/4)*30,
-										ent.x-camx+math.cos(ent.ct/36+0.2+i*math.pi/2+math.pi/4)*30,
-										ent.y-ent.headoff-camy+math.sin(ent.ct/32+0.2+i*math.pi/2+math.pi/4)*30,
-										4)
+				 tri(ent.x-camx,
+					    ent.y-camy+ent.rad-ent.headoff+1,
+					    ent.x+ent.rad-camx+math.sin(time()/400)*3+4,
+									ent.y-camy-ent.headoff,
+									ent.x-camx+math.sin(time()/400)*3+3,
+									ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-4,11)
+				
+	    --head fg								
+					tri(ent.x-camx,
+					    ent.y-camy+ent.rad-ent.headoff+1,
+					    ent.x-ent.rad-camx-math.sin(time()/400)*3-3,
+									ent.y-camy-ent.headoff,
+								 ent.x+ent.rad-camx+math.sin(time()/400)*3+3,
+									ent.y-camy-ent.headoff,8)
+				
+					ttri(ent.x-camx,
+					     ent.y-camy+ent.rad-ent.headoff,
+					     ent.x-ent.rad-camx-math.sin(time()/400)*3-3,
+									 ent.y-camy-ent.headoff,
+									 ent.x-camx-math.sin(time()/400)*3-3,
+									 ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-3,
+									 32,168,
+									 32,160,
+									 40,160)
+				
+					ttri(ent.x-camx,
+					    ent.y-camy+ent.rad-ent.headoff,
+					    ent.x+ent.rad-camx+math.sin(time()/400)*3+3,
+									ent.y-camy-ent.headoff,
+									ent.x-camx+math.sin(time()/400)*3+3,
+									ent.y-camy-ent.rad-ent.headoff-math.cos(time()/400)*3-3,
+									40,168,
+									40,160,
+									32,160)
+				
+				
+					if ent.state == "launch" then
+					 local ty = 13
+						
+						if ent.lastshot == nil 
+						or ent.lastshot == 212 then
+						 ty = 2
+						end
+					 circb(ent.x-camx,ent.y-ent.headoff-camy,45-ent.ct/2,ty)
+			   circb(ent.x-camx,ent.y-ent.headoff-camy,40-ent.ct/2,ty)
+			  elseif ent.state == "dying" then 
+					 shakelength = 1
+						
+						circ(ent.x-camx,
+						     ent.y-camy-ent.headoff,
+											ent.ct/2,5)
+						spawnparticle(ent.x+4+math.random(-12,12),--x
+						              ent.y+4+math.random(-12,12),--y
+																				math.random(-3,3),--vx
+																				math.random(-3,3),--vy
+																				0,--ax
+																				-0.1,--ay
+																				25+math.random(10),--life
+																				6,--typ
+																				math.random(4,5),--clr
+																				false,--wall
+																				math.random(0,4),--rad
+																				7--layer
+																				)
+						for i=0,4 do
+							tri(ent.x-camx,
+							    ent.y-ent.headoff-camy,
+							    ent.x-camx+math.cos(ent.ct/25+i*math.pi/2)*40,
+											ent.y-ent.headoff-camy+math.sin(ent.ct/25+i*math.pi/2)*20,
+											ent.x-camx+math.cos(ent.ct/26+0.1+i*math.pi/2)*40,
+											ent.y-ent.headoff-camy+math.sin(ent.ct/26+0.1+i*math.pi/2)*20,
+											6)
+						end
+						for i=0,4 do
+							tri(ent.x-camx,
+							    ent.y-ent.headoff-camy,
+							    ent.x-camx+math.cos(ent.ct/35+i*math.pi/2+math.pi/4)*30,
+											ent.y-ent.headoff-camy+math.sin(ent.ct/32+i*math.pi/2+math.pi/4)*30,
+											ent.x-camx+math.cos(ent.ct/36+0.2+i*math.pi/2+math.pi/4)*30,
+											ent.y-ent.headoff-camy+math.sin(ent.ct/32+0.2+i*math.pi/2+math.pi/4)*30,
+											4)
+						end
 					end
 				end
-			
 			 
 			elseif ent.ty == 512 then
 			
@@ -6928,7 +6974,8 @@ function entlogic()
   or ent.ty == 215 or ent.ty == 471 
   or ent.ty == 235 or ent.ty == 491 
   or ent.ty == 200 
-  or ent.ty == 242 then
+  or ent.ty == 242 
+  or ent.ty == 248 then
   
 		else
 			ent.ct = ent.ct+1
@@ -7139,8 +7186,7 @@ function entlogic()
    
   else
    --ents falling
-   if canfall[ent.ty]==true 
-   or ent.ty == 248 then
+   if canfall[ent.ty]==true then
 			 if ent.clawed == false then
      --skip falling if not onscreen
 					if p.x>ent.x-120 
@@ -7148,6 +7194,12 @@ function entlogic()
 						ent.vy = ent.vy + 0.2
 					end
     end
+   elseif ent.ty == 248 
+   and ent.state ~= nil then
+    if p.x>ent.x-120 
+					and p.x<ent.x+120 then
+						ent.vy = ent.vy + 0.2
+					end
    end
 
   end
@@ -8130,8 +8182,23 @@ function entlogic()
     ent.vy = 0
    end
    
+   if ent.sst ~= nil then
+    ent.ct = ent.ct+1
+   end
+   
    if ent.state == nil then 
-   	ent.state = "move"
+   	--ent.state = "move"
+    
+    --spawning ritual
+    if p.x>ent.x-120 
+				and p.x<ent.x+120 then
+				 ent.sst = true
+				end
+				
+				if ent.ct>=300 then
+				 ent.state = "move"
+				end
+    
    elseif ent.state == "move" then
     ent.headoff = lerp(ent.headoff,12,0.1)
     if ent.ct < 40 then
@@ -14117,13 +14184,13 @@ end
 -- 119:102030000000000000000000000000000000000000000000000000000011213100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 120:112131000000000000000000000000000000000000000000000000000011213100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 121:112131000000000000000000000000000000000000000000000000000011213100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 122:112131000000000000000000000000000000000000000000000000000011213100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+-- 122:11213100000000000000000000000000000000000000008f000000000011213100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 123:112131000000000000000000000000000000000000000000000000000011213100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 124:112131004d00000000000000000000000000000000000000000000000011213100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 125:112131788800000000000000000000000000000000000000000000000011213100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 126:112131000000000000000000000000000000000000000000000000000011213100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 127:112131000000000000000000000000000000000000000000000000000011213100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 128:11213178880000000000000000000000008f000000000000000000000011213100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+-- 128:112131788800000000000000000000000000000000000000000000000011213100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 129:112131000000000000000000000000000000000000000000000010202020202000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 130:112131000000000000000000000000000000000010202020202051212121212100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 -- 131:112141202030000000000000000000001020202051212121212121212121212100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
