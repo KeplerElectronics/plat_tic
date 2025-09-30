@@ -904,13 +904,135 @@ function TIC()
 		particlelogic()
 		
 		if btnp(4) or btnp(5) then
-		 gamestate = "worldmap"
+		 --gamestate = "worldmap"
+			
+			--do map things for twinstick
+			sync(0,6)
+			gamestate = "twinstick"
+			p.x=120
+			p.y=136/2
+			allparticles={}
+			
 			loadgame()
 			gt = 0
 			cloud = false
 			music()
 			mus = "start"
 		end
+		
+	elseif gamestate == "twinstick" then	
+		
+		local scap = 2
+		local fric = 0.96
+		--player control
+		if btn(0) and p.vy>-scap then
+		 p.vy = p.vy-0.5
+		elseif btn(1) and p.vy<scap then
+		 p.vy = p.vy+0.5
+		else
+		 p.vy = p.vy*fric
+		end
+		if btn(2) and p.vx>-scap then
+		 p.vx = p.vx-0.5
+		elseif btn(3) and p.vx<scap then
+		 p.vx = p.vx+0.5
+		else
+		 p.vx = p.vx*fric
+		end
+		
+		if p.x+p.vx<8
+		or p.x+p.vx>232 then
+		 p.vx=-p.vx
+		end
+		if p.y+p.vy<8
+		or p.y+p.vy>128 then
+		 p.vy=-p.vy
+		end
+		
+		local sang=nil
+		local pi=math.pi
+		local cos = math.cos
+		local sin=math.sin
+		
+		--there's got to be a better way!!
+		if btn(7) and btn(5) then
+		 sang = 7*pi/4
+		elseif btn(6) and btn(7) then
+		 sang = 5*pi/4
+		elseif btn(6) and btn(4) then
+		 sang = 3*pi/4
+		elseif btn(4) and btn(5) then
+		 sang = pi/4
+		elseif btn(4) then
+		 sang = pi/2
+		elseif btn(7) then
+		 sang = 3*pi/2
+		elseif btn(5) then
+		 sang = 0
+		elseif btn(6) then
+		 sang = pi
+		end
+		
+		p.sprct=p.sprct+1
+		
+		if sang~= nil then	
+		 if p.sprct >= 4 then	
+			 for i=-1,1 do
+			  spawnparticle(p.x,--x
+								           p.y,--y
+																			cos(sang+pi/21*i)*3,--vx
+																			sin(sang+pi/21*i)*3,--vy
+																			0,--ax
+																			0,--ay
+																			1000,--life
+																			6,--typ
+																			5,--clr
+																			false,--wall
+																			0,--rad
+																			7--layer
+																			)
+				end
+				p.sprct=0
+			end
+		end
+		
+		
+		p.x = p.x+p.vx
+		p.y = p.y+p.vy
+		
+		particlelogic()
+		
+		--draw sections
+		cls()
+		
+	 rectb(0,0,240,136,12)
+		rectb(1,1,238,134,12)
+		rectb(2,2,236,132,12)
+		vbank(1)
+		cls()
+		--really fricken simple particledraw
+		--no layers, all single pixels
+		if #allparticles~=0 then
+	  for i,particle in ipairs(allparticles) do
+	   circ(particle.x,particle.y,1,particle.clr)
+		 end
+		end
+		
+		circ(p.x,p.y,5,11)
+		circ(p.x,p.y,4,7)
+		if sang == nil then sang =0 end
+		
+		pix(p.x+cos(sang+pi/12)*3,
+		    p.y+sin(sang+pi/12)*3,5)
+		pix(p.x+cos(sang+pi/12)*4,
+		    p.y+sin(sang+pi/12)*4,5)
+		pix(p.x+cos(sang-pi/12)*3,
+		    p.y+sin(sang-pi/12)*3,5)
+		pix(p.x+cos(sang-pi/12)*4,
+		    p.y+sin(sang-pi/12)*4,5)
+						
+		vbank(0)
+		
 		
 	elseif gamestate == "worldmap" then
 
@@ -4850,6 +4972,15 @@ function BDR(scnline)--bdr
 		 else 
 		  pal(0,72,74,119)
 				pal(1,72,74,119)
+		 end
+			
+	elseif gamestate == "twinstick" then
+  if dither == 1 then
+		  pal(0,46,34,47)
+			elseif dither == 2 then
+		  pal(0,77,34,47)
+		 else 
+		  pal(0,46,34,47)
 		 end
 --[[			
 	elseif gamestate == "hatshop"	then
