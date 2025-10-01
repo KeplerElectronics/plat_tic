@@ -924,6 +924,14 @@ function TIC()
 		
 	elseif gamestate == "twinstick" then	
 		
+		--darken stuff
+		pal(3,46,34,47)
+		pal(15,62,53,70)
+		pal(14,98,85,101)
+		pal(13,127,112,138)
+		pal(12,155,171,178)
+		
+		
 		local pi=math.pi
 		local cos = math.cos
 		local sin=math.sin
@@ -949,89 +957,99 @@ function TIC()
 				end
 			end
 		end
-		
-		
+		local sang=nil
 		local scap = 2
 		local fric = 0.96
-		--player control
-		if btn(0) and p.vy>-scap then
-		 p.vy = p.vy-0.5
-		elseif btn(1) and p.vy<scap then
-		 p.vy = p.vy+0.5
-		else
-		 p.vy = p.vy*fric
-		end
-		if btn(2) and p.vx>-scap then
-		 p.vx = p.vx-0.5
-		elseif btn(3) and p.vx<scap then
-		 p.vx = p.vx+0.5
-		else
-		 p.vx = p.vx*fric
-		end
-		
-		if p.x+p.vx<8
-		or p.x+p.vx>232 then
-		 p.vx=-p.vx
-		end
-		if p.y+p.vy<8
-		or p.y+p.vy>128 then
-		 p.vy=-p.vy
-		end
-		
-		local sang=nil
-		
-		
-		--there's got to be a better way!!
-		if btn(7) and btn(5) then
-		 sang = 7*pi/4
-		elseif btn(6) and btn(7) then
-		 sang = 5*pi/4
-		elseif btn(6) and btn(4) then
-		 sang = 3*pi/4
-		elseif btn(4) and btn(5) then
-		 sang = pi/4
-		elseif btn(4) then
-		 sang = pi/2
-		elseif btn(7) then
-		 sang = 3*pi/2
-		elseif btn(5) then
-		 sang = 0
-		elseif btn(6) then
-		 sang = pi
-		end
-		
-		p.sprct=p.sprct+1
-		
-		if sang~= nil then	
-		 if p.sprct >= 8-wave/2 then	
-			 for i=-1,1 do
-			  spawnparticle(p.x,--x
-								           p.y,--y
-																			cos(sang+pi/21*i)*3,--vx
-																			sin(sang+pi/21*i)*3,--vy
-																			0,--ax
-																			0,--ay
-																			1000,--life
-																			6,--typ
-																			5,--clr
-																			false,--wall
-																			0,--rad
-																			7--layer
-																			)
-				end
-				p.sprct=0
+		if p.dead == false then
+			--player control
+			if btn(0) and p.vy>-scap then
+			 p.vy = p.vy-0.5
+			elseif btn(1) and p.vy<scap then
+			 p.vy = p.vy+0.5
+			else
+			 p.vy = p.vy*fric
 			end
+			if btn(2) and p.vx>-scap then
+			 p.vx = p.vx-0.5
+			elseif btn(3) and p.vx<scap then
+			 p.vx = p.vx+0.5
+			else
+			 p.vx = p.vx*fric
+			end
+			
+			if p.x+p.vx<8
+			or p.x+p.vx>232 then
+			 p.vx=-p.vx
+			end
+			if p.y+p.vy<8
+			or p.y+p.vy>128 then
+			 p.vy=-p.vy
+			end
+			
+			
+			
+			
+			--there's got to be a better way!!
+
+			if btn(7) and btn(5) then
+			 sang = 7*pi/4
+			elseif btn(6) and btn(7) then
+			 sang = 5*pi/4
+			elseif btn(6) and btn(4) then
+			 sang = 3*pi/4
+			elseif btn(4) and btn(5) then
+			 sang = pi/4
+			elseif btn(4) then
+			 sang = pi/2
+			elseif btn(7) then
+			 sang = 3*pi/2
+			elseif btn(5) then
+			 sang = 0
+			elseif btn(6) then
+			 sang = pi
+			end
+			
+			p.sprct=p.sprct+1
+			
+			if sang~= nil then	
+			 if p.sprct >= 8-wave/2 then	
+				 for i=-1,1 do
+				  spawnparticle(p.x,--x
+									           p.y,--y
+																				cos(sang+pi/21*i)*3,--vx
+																				sin(sang+pi/21*i)*3,--vy
+																				0,--ax
+																				0,--ay
+																				1000,--life
+																				6,--typ
+																				5,--clr
+																				false,--wall
+																				0,--rad
+																				7--layer
+																				)
+					end
+					p.sprct=0
+				end
+			end
+			
+			
+			p.x = p.x+p.vx
+			p.y = p.y+p.vy
+		else
+		 if deathwipetimer<120 then
+		  deathwipetimer = deathwipetimer+2
+		 end
 		end
-		
-		
-		p.x = p.x+p.vx
-		p.y = p.y+p.vy
 		
 		particlelogic()
 		
 		--draw sections
 		cls()
-		
+		for i=0,240,24 do
+			for j=0,136,24 do
+				spr(93,i,j,-1,1,0,0,3,3)
+			end
+		end
 	 rectb(0,0,240,136,13)
 		rectb(1,1,238,134,12)
 		rectb(2,2,236,132,13)
@@ -1101,19 +1119,25 @@ function TIC()
 	 end
 		
 		--player draw
-		circ(p.x,p.y,5,11)
-		circ(p.x,p.y,4,7)
-		if sang == nil then sang =0 end
-		--eyes
-		pix(p.x+cos(sang+pi/12)*3,
-		    p.y+sin(sang+pi/12)*3,5)
-		pix(p.x+cos(sang+pi/12)*4,
-		    p.y+sin(sang+pi/12)*4,5)
-		pix(p.x+cos(sang-pi/12)*3,
-		    p.y+sin(sang-pi/12)*3,5)
-		pix(p.x+cos(sang-pi/12)*4,
-		    p.y+sin(sang-pi/12)*4,5)
-						
+		if p.dead == false then
+			circ(p.x,p.y,5,11)
+			circ(p.x,p.y,4,7)
+			if sang == nil then sang =0 end
+			--eyes
+			pix(p.x+cos(sang+pi/12)*3,
+			    p.y+sin(sang+pi/12)*3,5)
+			pix(p.x+cos(sang+pi/12)*4,
+			    p.y+sin(sang+pi/12)*4,5)
+			pix(p.x+cos(sang-pi/12)*3,
+			    p.y+sin(sang-pi/12)*3,5)
+			pix(p.x+cos(sang-pi/12)*4,
+			    p.y+sin(sang-pi/12)*4,5)
+		elseif deathwipetimer<90 then
+		 local floor=math.floor
+		 rotspr(258,floor(p.x-deathwipetimer),floor(p.y-sin(deathwipetimer/40)*80),deathwipetimer/40,deathwipetimer/20+2,deathwipetimer/20+2,0,0,8,8)		
+   rotspr(hats[phat].img,floor(p.x+deathwipetimer),floor(p.y-sin(deathwipetimer/40)*80),deathwipetimer/40,deathwipetimer/20+2,deathwipetimer/20+2,0,0,8,8)
+		 	
+		end		
 		--wave count
 		rect(180,113,70,10,11)
 		rect(179,114,70,8,11)
@@ -1126,8 +1150,26 @@ function TIC()
 		rect(179,124,70,8,11)
 		rect(180,123,70,10,11)
 		print("Score:",182,125,5)
-  print(mgscore,216,125,5)	
+  print(mgscore,216,125,5)
+  
+  if p.dead == true then
+ 
+  	tri(deathwipetimer,0,
+       deathwipetimer-120,0,
+       deathwipetimer-120,136,15)
+   tri(240-deathwipetimer,136,
+       360-deathwipetimer,0,
+       360-deathwipetimer,136,15)
+       
+   tri(120,240-deathwipetimer*2,
+       120,376-deathwipetimer*2,
+       0,376-deathwipetimer*2,14)
+   tri(120,-136*2+deathwipetimer*2+32,
+       120,-136+deathwipetimer*2+32,
+       240,-136*2+deathwipetimer*2+32,14)
+		 cpt("RESULTS",30,11,5,3)
 		
+		end
 		vbank(0)
 		
 		
@@ -10624,6 +10666,22 @@ function clouds(loc,rnd,light,dark)
  end
 end
 
+function cpt(s,y,c,m,b)
+ if not b then b=1 end
+	local w=print(s,0,-6)*b
+	local p=(240-w)//2
+	local f=false
+ print(s,p-1,y,c,f,b)
+ print(s,p+1,y,c,f,b)
+ print(s,p,y+1,c,f,b)
+ print(s,p,y-1,c,f,b)
+ print(s,p-1,y+1,c,f,b)
+ print(s,p+1,y+1,c,f,b)
+ print(s,p-1,y-1,c,f,b)
+ print(s,p+1,y-1,c,f,b)
+ print(s,p,y,m,f,b)
+end
+
 function createfltxt(x,y,c1,c2,m,l)
  fltxt = {x=x,y=y,c1=c1,m=m,l=l,c2=c2}
  
@@ -13114,7 +13172,7 @@ end
 -- 020:2a2beeee2b2beeee2a2beeee22bbeeee2abeeeee2b2beeee2b22beee222beeee
 -- 021:222222222ab22b322b22eeb222e2ee2222eee2e22be2ebb223a22a3222222222
 -- 022:eeeeb222eeeeeaa2eeeeeb22eeeeeba2eeeeeaa2eeeebab2eeeeeaa2eeeeb2a2
--- 023:eeeeeeeeeffffff3effffff3effffff3effffff3effffff3effffff3e3333333
+-- 023:eeeeeeeee6ffff63effffff3effffff3effffff3effffff3e6ffff63e3333333
 -- 025:3edcdef33ed45ef33e4665f33e6cd6f33edcdef33edcdef33edcdef33edcdef3
 -- 026:eddcceefeddcceef3edcdef33ed45ef33e4665f33e6cd6f33edcdef33edcdef3
 -- 027:3edcdef33edcdef33edcdef33edcdef33e6cd6f33e4665f33ed45ef33edcdef3
@@ -15846,12 +15904,12 @@ end
 -- </PALETTE>
 
 -- <PALETTE1>
--- 000:4d9be6484a779babb2ffffffe83b3bd5e04ba2a94767663345293f9e4539cd683d4c3e24ae2334f79617fb6b1d2e2237
+-- 000:4d9be6484a779babb2ffffffe83b3bd5e04ba2a94767663345293f9e4539cd683d4c3e24ae2334f79617fb6b1d2e222f
 -- 001:b4bbff165a4ce83b3bae2334fbb954ffffffc7dcd0905ea97a3045f79617484177000001323353239063a884f36b3e75
 -- </PALETTE1>
 
 -- <PALETTE2>
--- 000:000824000000e83b3bae23343e35462e222f6766334c3e24e6904ecd683dfbb954f04f78c32454ab947a966c6c625565
+-- 000:0008241e122be83b3bae23343e35462e222f6766334c3e24e6904ecd683dfbb954f04f78c32454ab947a966c6c625565
 -- 001:b4bbff239063e83b3bae2334fbb954ffffffc7dcd0905ea97a3045e6904e4841770000013233531ebc73a884f36b3e75
 -- </PALETTE2>
 
@@ -15871,7 +15929,7 @@ end
 -- </PALETTE5>
 
 -- <PALETTE6>
--- 000:2e222fa884f391db693e3546905ea96b3e7545293ffb6b1df9c22bf796171ebc63239063c7dcd09babb27f708a694f62
+-- 000:2e222fa884f391db693e3546905ea96b3e7545293ffb6b1df9c22bf796171ebc63239063c7dcd09babb27f708a625565
 -- 001:b4bbff239063e83b3bae2334fbb954ffffffc7dcd0905ea97a3045e6904e4841770000013233531ebc73a884f36b3e75
 -- </PALETTE6>
 
