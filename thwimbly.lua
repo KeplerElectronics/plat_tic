@@ -91,6 +91,8 @@ function lerp(a,b,t) return (1-t)*a + t*b end
 	
 	basiccoins=0
 	deaths = 0
+	mgscore=0
+	wave=0
 	
 	spcoins={false,
 	         false, 
@@ -922,6 +924,33 @@ function TIC()
 		
 	elseif gamestate == "twinstick" then	
 		
+		local pi=math.pi
+		local cos = math.cos
+		local sin=math.sin
+		local waven = 12
+		if #ents == 0 then
+		 wave=wave+1
+		 waven = wave*12/2+waven
+	  for j=0,wave/2 do
+			 for i=0,waven/2 do
+					entmake(120+sin(pi*4*i/waven)*(160+j*10),
+		           136/2+cos(pi*4*i/waven)*(120+j*10),
+		           0,--vx
+		           0, --vy
+		           201, --ty
+		           0, --ct
+		           0, --d
+		           true, --active
+		           0, --flip
+		           0, --rot
+		           false, --clawed
+		           0 --bonus
+		           )
+				end
+			end
+		end
+		
+		
 		local scap = 2
 		local fric = 0.96
 		--player control
@@ -950,9 +979,7 @@ function TIC()
 		end
 		
 		local sang=nil
-		local pi=math.pi
-		local cos = math.cos
-		local sin=math.sin
+		
 		
 		--there's got to be a better way!!
 		if btn(7) and btn(5) then
@@ -976,7 +1003,7 @@ function TIC()
 		p.sprct=p.sprct+1
 		
 		if sang~= nil then	
-		 if p.sprct >= 4 then	
+		 if p.sprct >= 8-wave/2 then	
 			 for i=-1,1 do
 			  spawnparticle(p.x,--x
 								           p.y,--y
@@ -1005,23 +1032,79 @@ function TIC()
 		--draw sections
 		cls()
 		
-	 rectb(0,0,240,136,12)
+	 rectb(0,0,240,136,13)
 		rectb(1,1,238,134,12)
-		rectb(2,2,236,132,12)
+		rectb(2,2,236,132,13)
 		vbank(1)
 		cls()
 		--really fricken simple particledraw
-		--no layers, all single pixels
+		--no layers
 		if #allparticles~=0 then
 	  for i,particle in ipairs(allparticles) do
-	   circ(particle.x,particle.y,1,particle.clr)
-		 end
+				circ(particle.x,particle.y,1,particle.clr)
+			end
 		end
 		
+	 for i,ent in pairs(ents) do	
+		 local vecx = ent.x-p.x
+			local vecy = ent.y-p.y
+			local ang = math.atan(vecy,vecx)+pi/2
+			
+			ent.x = ent.x-vecx/100
+			ent.y = ent.y-vecy/100
+			
+			for k,ent in ipairs(ents) do
+	   if ents[k].x>ents[i].x-10
+				and ents[k].x<ents[i].x+10
+				and ents[k].y>ents[i].y-10
+				and ents[k].y<ents[i].y+10then
+				 vecx = ents[i].x-ents[k].x
+			  vecy = ents[i].y-ents[k].y
+					ents[k].x = ents[k].x-vecx/50
+			  ents[k].y = ents[k].y-vecy/50
+				end
+			end
+			
+			local s=201
+
+   if math.ceil((time())/300%2) == 1 then			
+			 s=457		
+			end
+			
+		 rotspr(s,
+			       ent.x,
+			       ent.y,
+									 ang,
+									 1,
+									 1,0,0,8,8)
+			if p.x>ent.x
+			and p.x<ent.x+8
+			and p.y>ent.y
+			and p.y<ent.y+8 then
+ 			--kill player
+    p.dead=true
+			end
+			
+			for d,particle in ipairs(allparticles) do
+	   if particle.x>ent.x
+				and particle.x<ent.x+8
+				and particle.y>ent.y
+				and particle.y<ent.y+8 
+				and particle.typ == 6 then
+				 splat(ent.x,ent.y,2,3)
+					splat(ent.x,ent.y,2,8)
+				 table.remove(ents,i) 
+					table.remove(allparticles,d)
+					mgscore=mgscore+1
+				end
+			end
+	 end
+		
+		--player draw
 		circ(p.x,p.y,5,11)
 		circ(p.x,p.y,4,7)
 		if sang == nil then sang =0 end
-		
+		--eyes
 		pix(p.x+cos(sang+pi/12)*3,
 		    p.y+sin(sang+pi/12)*3,5)
 		pix(p.x+cos(sang+pi/12)*4,
@@ -1031,6 +1114,20 @@ function TIC()
 		pix(p.x+cos(sang-pi/12)*4,
 		    p.y+sin(sang-pi/12)*4,5)
 						
+		--wave count
+		rect(180,113,70,10,11)
+		rect(179,114,70,8,11)
+		rect(180,113,70,10,11)
+		print("Wave:",182,115,5)
+  print(wave,216,115,5)
+  	
+		--score count
+		rect(180,123,70,10,11)
+		rect(179,124,70,8,11)
+		rect(180,123,70,10,11)
+		print("Score:",182,125,5)
+  print(mgscore,216,125,5)	
+		
 		vbank(0)
 		
 		
@@ -6767,9 +6864,10 @@ end
 function splat(x,y,r,c)
  if not r then r=0  end
  if not c then c=10 end
-
+ local ay= 0.2
+ if gamestate~= "play" then ay=0 end
  for i=1,6,1 do
-	 spawnparticle(x,y,(math.random(60)-30)/10,(math.random(60)-60)/10,0,.2,3000,0,c,false,r,8)
+	 spawnparticle(x,y,(math.random(60)-30)/10,(math.random(60)-60)/10,0,ay,300,0,c,false,r,8)
  end
 end
 
