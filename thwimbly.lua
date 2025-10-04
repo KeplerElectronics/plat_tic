@@ -1009,7 +1009,22 @@ function TIC()
 			p.y=60
 			p.dead = false
 			allparticles={}
-			
+			ents={}
+
+		 entmake(120+math.random(-90,90),
+           70+math.random(-90,90),
+           0,--vx
+           0, --vy
+           201, --ty
+           0,0,true,0,0,false,0)
+		 
+			entmake(120+math.random(-90,90),
+           70+math.random(-90,90),
+           0,--vx
+           0, --vy
+           201, --ty
+           0,0,true,0,0,false,0)
+
 			loadgame()
 			gt = 0
 			cloud = false
@@ -1023,23 +1038,20 @@ function TIC()
 		
 		cam.x=lerp(cam.x,p.x+p.vx-120,0.1)
   cam.y=lerp(cam.y,p.y+p.vy-64,0.1)
-		if #ents == 0 then
-		 entmake(120,
-           70,
-           0,--vx
-           0, --vy
-           201, --ty
-           0,0,true,0,0,false,0)
 		
-		end
 		vbank(0)
 		cls()
 	 map(0,102,30,17,-cam.x,-cam.y)
 		
 		for i,particle in ipairs(allparticles) do
 		 particle.rad=particle.rad-0.05
-			if particle.y<0 then
+			particle.life =particle.life-1
+			if particle.rad<0 
+			or particle.life<=0 then
 			 table.remove(allparticles,i)
+			end
+			if particle.typ ~=5 then
+			 particle.vy = particle.vy+0.1
 			end
 			particle.x = particle.x+particle.vx
 			particle.y=particle.y+particle.vy
@@ -1067,11 +1079,28 @@ function TIC()
 	 
 		  local d = (ang-ent.rot+3*pi)%(2*pi)-pi
 		  
-		  ent.rot = ent.rot+d/50
+		  ent.rot = ent.rot+d/50+math.random(-1,1)/20
    
 				ent.x=ent.x+math.cos(ent.rot)*ent.v
 			 ent.y=ent.y+math.sin(ent.rot)*ent.v
-	  
+
+				
+				for k,ent in pairs(ents) do
+			  if ents[k].x>ents[i].x-6
+					and ents[k].x<ents[i].x+6
+					and ents[k].y>ents[i].y-6
+					and ents[k].y<ents[i].y+6 
+					and k~=i then
+	
+			 	 splat(ents[i].x,ents[i].y,2,3)
+						splat(ents[i].x,ents[i].y,2,4)
+						splat(ents[k].x,ents[k].y,5,3)
+						splat(ents[k].x,ents[k].y,5,4)
+					 table.remove(ents,i)
+						table.remove(ents,k)
+						goto dvskpent
+					end
+				end
 			
 			 --draw
 				rotspr(336,ent.x-cam.x,ent.y-cam.y,ent.rot-pi/2,
@@ -1089,6 +1118,8 @@ function TIC()
 				rotspr(388,ent.x-cam.x,ent.y-cam.y-5,ent.rot-pi/2,
 				       2,2,0,0,16,16)											
 			end	
+		
+		::dvskpent::
 		
 		if p.dead == false then
 			if p.v==nil then p.v=0 end
@@ -1126,6 +1157,14 @@ function TIC()
 				splat(p.x,p.y,5,4)
 			end
 			
+			--smoke trail
+			nx=p.x-math.cos(p.rot+pi/20)*7
+		 ny=p.y-math.sin(p.rot+pi/20)*7
+			
+			if p.v>1 and time()%4<=1 then
+			 spawnparticle(nx,ny,math.cos(p.rot)*p.v/3,math.sin(p.rot)*p.v/3,0,0,7,5,11,false,2,4)
+   end
+
 			local xoff=p.x-cam.x-4	
 			local yoff=p.y-cam.y-5						
 			--draw car
@@ -1141,10 +1180,6 @@ function TIC()
 			       2,2,0,0,16,16)
 			rotspr(310,xoff,yoff,p.rot-pi/2,
 			       2,2,0,0,16,16)
-			pix(p.x-cam.x,p.y-cam.y,1)
-			
-			circ(p.x-cam.x+math.cos(p.rot)*8,
-			     p.y-cam.y+math.sin(p.rot)*8,1,1)
 		end	
 		
 	elseif gamestate == "twinstick" then	
