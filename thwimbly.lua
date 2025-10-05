@@ -1004,8 +1004,9 @@ function TIC()
 		if btnp(4) or btnp(5) then
 		 --gamestate = "worldmap"
 			
-			gamestate = "driving"
-			p.x = 100
+			gamestate = "maze"
+			--driving data
+			--[[p.x = 100
 			p.y=60
 			p.dead = false
 			allparticles={}
@@ -1023,7 +1024,7 @@ function TIC()
            0,--vx
            0, --vy
            201, --ty
-           0,0,true,0,0,false,0)
+           0,0,true,0,0,false,0)]]
 
 			loadgame()
 			gt = 0
@@ -1031,7 +1032,47 @@ function TIC()
 			music()
 			mus = "start"
 		end
+	elseif gamestate == "maze" then
+	 citycol()
+		vbank(0)
+		cls()
 		
+		rectb(120-34,34,68,68,8)			
+  --floor near
+  tri(52,136,
+  			 120-34,102,
+      120+34,102,8)
+  tri(52+136,136,
+      52,136,
+      120+34,102,8)
+      
+  --ceil near
+  tri(52,0,
+      52+136,0,
+      120+34,34,8)
+  tri(52,0,
+      120+34,34,
+      120-34,34,8)
+  
+  --left wall near
+  tri(52,0,
+      52,136,
+      120-34,34,9)
+  tri(52,136,
+      120-34,102,
+      120-34,34,9)
+  
+  --right wall near
+  tri(188,0,
+      188,136,
+      120+34,34,10)
+  
+		vbank(1)
+		cls()
+		
+		--borders
+		rect(0,0,240,136,1)
+		rect(52,0,136,136,0)
 		
 	elseif gamestate == "driving" then
 	 citycol()
@@ -5407,7 +5448,8 @@ function BDR(scnline)--bdr
 		 else 
 			 pl2(0,46)
 		 end
-	elseif gamestate == "driving" then
+	elseif gamestate == "driving" 
+	or gamestate == "maze" then
 	 if dither == 1 then
     pl2(0,46)
 			elseif dither == 2 then
@@ -13324,7 +13366,7 @@ end
 -- 118:ab67baabab667babab467babaab6baabbaabaaab5baaabab44bbbaab444baab5
 -- 119:baafeeaaaaaaffadaaaaaaae4aaaaaaf5aabaabb4abbbabe4a4bbbbf44445bbb
 -- 120:deefaabbeefababbefabbabbfbabbbb4bbbbbbb5ebbbbbb4fbbbb4b4bbb45444
--- 121:5522225552333325233333322cccccc32cdccdc32cddcd335233333555233355
+-- 121:5522225552222225222222322cccccc32cdccdc32cddcd335233333555233355
 -- 122:ff500044fff50444f5ff4454f55f4504f50f4504f5ff4454fff55444ff500544
 -- 123:fffffff5ff5555f45ff50f4405fff45400444454044554444450054444500044
 -- 125:4500000045000000450000004500000045000000450000004500000045000000
@@ -14455,7 +14497,8 @@ end
 -- 113:0001111111111111111111111111110000000000100000001110011000000000
 -- 128:0000111110001111111001111111000011100000000000111111111111100111
 -- 129:1000011111010011100110010011110100001100110000001111000000111111
--- 135:040400000999000099b990005544990000544900000544900005849000598849
+-- 134:040400000999000099b990005544990000544900000544900005849000598844
+-- 135:0000000000000000000000000000000000000000494000004900000099000000
 -- 136:004400000dd4000054150200cdd52000cd233500003e445000eff44500e5f544
 -- 139:0088880008151180811511188115999889995118811151180811518000888800
 -- 140:0088880008115180811151188999511881159998811511180815118000888800
