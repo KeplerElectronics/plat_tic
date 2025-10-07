@@ -1040,17 +1040,69 @@ function TIC()
 		vbank(0)
 		cls()
 		
-		if btnp(0) then p.y=p.y-1 --forward
-		elseif btnp(1) then p.y=p.y+1 end
-		
-		if btnp(2) then p.x = p.x-1
-		elseif btnp(3) then p.x=p.x+1 end
-		
 		local bm={{1,1,1,1,1,1,1,1},
 			         {1,0,1,0,0,0,0,1},
-												{1,1,0,0,1,1,0,1},
-												{1,0,1,0,0,1,0,1},
-												{1,0,0,0,0,0,0,0}}
+												{1,0,0,0,1,1,0,1},
+												{1,0,1,0,1,1,0,1},
+												{1,0,0,0,0,0,0,1},
+												{1,1,1,1,1,1,1,1}}
+
+		if btnp(2) then 
+		 if p.rot <=0 then
+			 p.rot=3
+			else
+		  p.rot=p.rot-1
+			end
+		elseif btnp(3) then 
+		 if p.rot >=3 then
+			 p.rot=0
+			else
+			 p.rot=p.rot+1 
+			end
+		end
+		
+		
+		--theres a way to simplify this but
+		--right now I don't care!
+		if btnp(0) then 
+		 if p.rot == 0 then 
+		 	if bm[p.y-1][p.x]==0 then
+				 p.y=p.y-1 --forward
+					--there should be an else here
+				end
+			elseif p.rot == 1 then
+			 if bm[p.y][p.x+1]==0 then
+			  p.x = p.x+1
+				end
+			elseif p.rot == 2 then
+			 if bm[p.y+1][p.x]==0 then
+				 p.y=p.y+1
+				end
+			else
+			 if bm[p.y][p.x-1]==0 then
+			  p.x=p.x-1
+				end
+			end
+		elseif btnp(1) then 
+		 if p.rot == 0 then 
+		 	if bm[p.y+1][p.x]==0 then
+				 p.y=p.y+1 --forward
+					--there should be an else here
+				end
+			elseif p.rot == 1 then
+			 if bm[p.y][p.x-1]==0 then
+			  p.x = p.x-1
+				end
+			elseif p.rot == 2 then
+			 if bm[p.y-1][p.x]==0 then
+				 p.y=p.y-1
+				end
+			else
+			 if bm[p.y][p.x+1]==0 then
+			  p.x=p.x+1
+				end
+			end
+		end
 			
 		--sublet chunk of map so we can see
 		--what player would see
@@ -1065,6 +1117,45 @@ function TIC()
 			  slc = {bm[p.y-i][p.x-1],
             bm[p.y-i][p.x],
 												bm[p.y-i][p.x+1]}
+				else
+				 slc={1,1,1}
+				end
+			 table.insert(m,slc)
+			end 
+		elseif p.rot==1 then
+		 for i=4,0,-1 do
+			 --slice at each dist
+				local slc={}
+				if bm[p.x+i]~=nil then
+			  slc = {bm[p.y-1][p.x+i],
+            bm[p.y][p.x+i],
+												bm[p.y+1][p.x+i]}
+				else
+				 slc={1,1,1}
+				end
+			 table.insert(m,slc)
+			end 
+		elseif p.rot==2 then
+		 for i=4,0,-1 do
+			 --slice at each dist
+				local slc={}
+				if bm[p.y+i]~=nil then
+			  slc = {bm[p.y+i][p.x+1],
+            bm[p.y+i][p.x],
+												bm[p.y+i][p.x-1]}
+				else
+				 slc={1,1,1}
+				end
+			 table.insert(m,slc)
+			end 
+		elseif p.rot==3 then
+		 for i=4,0,-1 do
+			 --slice at each dist
+				local slc={}
+				if bm[p.y+i]~=nil then
+			  slc = {bm[p.y+1][p.x-i],
+            bm[p.y][p.x-i],
+												bm[p.y-1][p.x-i]}
 				else
 				 slc={1,1,1}
 				end
@@ -1092,9 +1183,6 @@ function TIC()
   table.insert(pts,csq(116))
   table.insert(pts,csq(136))
   
-  --how to handle rotation?
-  --the important thing is the m matrix
-  --figure out those lines
   for j=1,#pts-1 do
 	  for i=1,4 do
 			 --ceil
