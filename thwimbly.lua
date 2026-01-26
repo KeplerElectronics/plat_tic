@@ -397,6 +397,7 @@ function lerp(a,b,t) return (1-t)*a + t*b end
 					 [192]=true,  
 						[248]=true, 
 						[476]=true, 
+						[256]=true,
 						--no bounce key
 						[234]=true, 
 						[490]=true, 
@@ -4255,6 +4256,8 @@ function play()
 		   spr(492,ent.x-camx+8,ent.y-camy,0,1,ent.fl,ent.rot,0)    
 				end
 			end
+
+		
    --print(ent.ct,ent.x-camx+8,ent.y-camy,2)
   elseif ent.ty == 468 then
    spr(ent.ty,ent.x-camx,(ent.y)+1-camy,0,1,ent.fl,ent.rot,0)    
@@ -4641,7 +4644,9 @@ function play()
 			and ent.ty ~= 468 
 			and ent.ty ~= 251 
 			and ent.ty ~= 229 
-			and ent.ty ~= 245 then
+			and ent.ty ~= 245 
+			and ent.ty ~= 256 
+			and ent.ty ~= 476 then
 			--make this a freakin table
  
  			if ent.ty == 217 or ent.ty == 473 then
@@ -4977,8 +4982,27 @@ function play()
 					end
 				
 				end
-		
-		
+				
+		--groundshake
+		elseif ent.ty ==256 then
+			tri(ent.x-camx,
+			    ent.y-camy+8,
+			    ent.x-camx+ent.vx*5,
+							ent.y-camy+8,
+							ent.x-camx+ent.vx*5,
+							ent.y-camy+2+math.sin(time()/200)*2,
+							1)
+		 
+			--hammer monch
+			elseif ent.ty==476 then
+    local rot=math.atan(ent.vy,ent.vx)-math.pi/2
+			 rotspr(477+math.sin(time()/300)//1,
+					       ent.x-camx,
+					       ent.y-camy,
+												rot,
+				        2,2,0,0,8,8)
+			
+			
 		 --boss draw
 			elseif ent.ty == 248 then
 			 
@@ -5033,6 +5057,32 @@ function play()
 				 if ent.bt ~= nil then
 				  ent.bt=ent.bt+10
 					end
+					
+					print(ent.state,ent.x-camx+20,
+					      ent.y-camy-20,3)
+					
+					if ent.fx~=nil then
+					 if time()%2<=1 then
+					  line(ent.fx-camx,0,
+						      ent.fx-camx,136,3)
+						end
+					 
+						for i=0,40 do
+						 circ(ent.fx-camx+math.sin(time()/600+i/2)*2,
+						 ent.fy-camy+i*5+3,
+						 5,11)
+						end
+						for i=0,40 do
+						 circ(ent.fx-camx+math.sin(time()/600+i/2)*2+1,
+						 ent.fy-camy+i*5+4,
+						 4,1)
+						 circ(ent.fx-camx+math.sin(time()/600+i/2)*2,
+						 ent.fy-camy+i*5+3,
+						 4,13)
+						end
+						
+					end
+					
 				 --stem
 					local stemct=3
 					for i=0,stemct do
@@ -5147,16 +5197,37 @@ function play()
 									32,160)
 				
 				
-					if ent.state == "launch" then
-					 local ty = 13
-						
-						if ent.lastshot == nil 
-						or ent.lastshot == 212 then
-						 ty = 2
+					if ent.state == "launch" 
+					or ent.state == "hammer" then
+
+					 circb(ent.x-camx,ent.y-ent.headoff-camy,45-ent.ct/2,2)
+			   circb(ent.x-camx,ent.y-ent.headoff-camy,40-ent.ct/2,2)
+			   
+						--[[
+						local xstart=ent.x-camx
+						local ystart=ent.y-ent.headoff-camy
+					 line(xstart+math.cos(ent.rot)*ent.rad,
+						     ystart+math.sin(ent.rot)*ent.rad,
+											xstart+math.cos(ent.rot)*ent.rad*2,
+						     ystart+math.sin(ent.rot)*ent.rad*2,2)
+					 ]]
+					elseif ent.state == "charge" then
+					 if ent.mstate == "charging" then
+						 spawnparticle(ent.x+8,--x
+					              ent.y,--y
+																			math.random(-1,3),--vx
+																			math.random(-2,2),--vy
+																			0,--ax
+																			0.2,--ay
+																			25+math.random(10),--life
+																			6,--typ
+																			math.random(5,7),--clr
+																			false,--wall
+																			3,--rad
+																			3--layer
+																			)
 						end
-					 circb(ent.x-camx,ent.y-ent.headoff-camy,45-ent.ct/2,ty)
-			   circb(ent.x-camx,ent.y-ent.headoff-camy,40-ent.ct/2,ty)
-			  elseif ent.state == "dying" then 
+					elseif ent.state == "dying" then 
 					 shakelength = 1
 						
 						circ(ent.x-camx,
@@ -8647,8 +8718,40 @@ function entlogic()
 	    ent.vy = ent.vy*(-0.6)
 	   elseif ent.ty == 248 then
 	    --ent.vy = ent.vy*(-1)
-	    ent.vy = 0
+	    if ent.vy>0.2 
+					and ent.skip~=nil then
+					 shakelength=3
+						entmake(ent.x,
+			           ent.y,
+			           2,--vx
+			           0, --vy
+			           256, --ty
+			           0, --ct
+			           0, --d
+			           true, --active
+			           0, --flip
+			           0, --rot
+			           false, --clawed
+			           0 --bonus
+			           )
+						entmake(ent.x,
+			           ent.y,
+			           -2,--vx
+			           0, --vy
+			           256, --ty
+			           0, --ct
+			           0, --d
+			           true, --active
+			           0, --flip
+			           0, --rot
+			           false, --clawed
+			           0 --bonus
+			           )
+					end
+					
+					ent.vy = 0
 					cfl=false
+					
 	    ent.vx = ent.vx*0.9
 	   end
 	   
@@ -9286,8 +9389,7 @@ function entlogic()
 		 end
 			
 			
-			for k,ent in pairs(ents) do
-			
+			for k,ent in pairs(ents) do	
 			 if ents[i] ~= nil and ents[k] ~= nil then
 				 if ents[i].x > ents[k].x-8 
 					and ents[i].x < ents[k].x+8 then
@@ -9740,7 +9842,34 @@ function entlogic()
 			end
    
    platlogic(i)
+  --groundshake
+  elseif ent.ty == 256 then
+   if ent.ct>60 
+   or math.abs(ent.vx)<0.3 then
+    table.remove(ents,i)
+    goto skipent
+   end
    
+   if p.x>ent.x-8 and p.x<ent.x+8 then
+    if p.y>ent.y-10 and p.y<ent.y+4 then
+				 death()
+    end
+   end
+   
+   for k,ent in pairs(ents) do	
+			 if ents[i] ~= nil and ents[k] ~= nil then
+				 if ents[i].x > ents[k].x-8 
+					and ents[i].x < ents[k].x+8 then
+		    if ents[i].y > ents[k].y 
+		    and  ents[i].y < ents[k].y+12
+				  and k ~= i 
+						and ents[k].ty == 212 then
+						 ents[k].vy=-2
+							ents[k].vx=ents[i].vx
+	     end
+					end
+				end
+		 end
   --boss
   elseif ent.ty == 248 then
    if ent.health == nil then
@@ -9825,7 +9954,8 @@ function entlogic()
 					ent.state = "jump"
 	   end
 		 elseif ent.state == "jump" then
-			 if  ent.ct < 40 then
+				
+				if  ent.ct < 40 then
 				  ent.headoff = ent.headoff-0.125
 
 				elseif ent.ct >= 40 
@@ -9838,8 +9968,62 @@ function entlogic()
      end
     elseif ent.ct>=160 then
      ent.ct = 0
-     ent.state = "move"
+     ent.state = "track"
     end
+    ent.lvy=ent.vy
+   elseif ent.state == "track" then
+    if ent.mstate == nil then
+     ent.mstate="follow"
+    end
+    if ent.fx~=nil then
+	    if p.x>ent.fx-12 
+	    and p.x<ent.fx+4
+	    and p.y>ent.fy then
+	     death()
+	    end
+				end
+    
+    if ent.mstate == "follow" then
+     ent.fx=p.x
+     ent.fy=270
+     if ent.ct>30 then
+      ent.mstate="poke"
+     end
+    elseif ent.mstate=="poke" then
+     ent.fy=ent.fy-3
+     if ent.fy<130 then
+      ent.mstate="retract"
+     end
+    elseif ent.mstate=="retract" then
+     ent.fy=ent.fy+4
+     if ent.fy>270 then
+      ent.mstate=nil
+      ent.state="charge"
+      ent.ct=0
+      ent.fx=nil
+     end
+    end
+   elseif ent.state == "charge" then
+    ent.headoff = lerp(ent.headoff,12,0.1)
+    if ent.ct < 20 then
+     ent.mstate="charging"
+    elseif ent.ct ==20 then
+     ent.mstate="run"
+     ent.vy=-2
+     if p.x<ent.x then
+      ent.vx = -3
+     else
+      ent.vx = 3
+     end
+    elseif ent.ct>=60 then
+     ent.vx = 0
+     ent.ct=0
+     ent.state="move"
+     ent.mstate=nil
+    end
+   elseif ent.state=="hammer" then
+    ent.state="move"
+    
    elseif ent.state == "dying" then
     if ent.ct>60 then
 	    splat(ent.x+4,ent.y+4,2,3)
@@ -9905,8 +10089,12 @@ function entlogic()
 	       ents[k].y=ents[k].y-9
 	      end
 							
-							ents[k].vx=-2*vecx/mag
-							ents[k].vy=-2*vecy/mag
+							--check if there is land below
+							--and prevent squash from 
+							--getting stuck in floor
+							
+							ents[k].vx=-5*vecx/mag
+							ents[k].vy=-5*vecy/mag
 							
 							ent.hitct=30
 							
@@ -10921,7 +11109,7 @@ function entlogic()
 			 ent.angv = .5
 			end
 			
-				--spawn axe
+				--spawn ???
 		elseif ent.ty == 235 then
 		
 		 entmake(
@@ -14544,13 +14732,15 @@ end
 -- 201:00bbbb000b2322b0b223223bb223223bb222223b0b2223b00bdbbdb00b111bb0
 -- 202:0230023022300223222322232223222322222223022222300000000000000000
 -- 203:0023230002232230222322232223222322222223022222300000000000000000
+-- 207:0000000300000033000003330000333300033333003333330333333333333333
 -- 208:077777f07777777f7747477f7747477f7777777f077777f000f00f00000ff000
 -- 210:0666666660000000600000006000000060000000600000006000000006666666
 -- 211:0cccccc0cccffffccceeeefccfeeeeeccf77777ccf7777cccffccccc0cccccc0
 -- 212:00fff0000f777f00f77b77f0f7bbb7f0f7bfff00f77bfbf0fb77bbf00fb7bf00
 -- 215:0ddd0000ddee0000def00000deffffffdeffffffdef00000ddee00000ddd0000
 -- 217:0222223022222223222322232223222302232230002323000000000000000000
--- 220:05b005b05bb005bb5bbb5bbb5bbb5bbb5bbbbbbb05bbbbb00000000000000000
+-- 220:bbb00bbbb23bb23bb23bb23bb223223bb222223bbb2223bb0bbddbb000bbbb00
+-- 221:0bbbbbb0bb2322bbb223223bb223223bb222223bbb2223bb0bbddbb000bbbb00
 -- 224:00232300022322302223222322232223222222230222223000d00100000d1000
 -- 225:0000000000000000022322302223222322232223222222230222223000d00100
 -- 226:0eeeee00eeeee7700ee7777f00e77fff000df000dd0d1001dddd111100dd1110
