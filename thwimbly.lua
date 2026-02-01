@@ -402,7 +402,8 @@ function lerp(a,b,t) return (1-t)*a + t*b end
 						[490]=true, 
 						[336]=true, 
 						[337]=true, 
-						[338]=true 
+						[338]=true,
+						[468]=true 
 	
 	
 	
@@ -623,44 +624,44 @@ function lerp(a,b,t) return (1-t)*a + t*b end
 	--hat.border to control whether it 
 	--has sprborder
 	
-	hats={[1]={img=256,os=-2,cost=0,text="simple and not classic",border = "no", owned=true, showplyr=true},
-      	[2]={img=268,os=-9,cost=164,text="Plumber",border = "out", owned=false, showplyr=true},
-      	[3]={img=266,os=-2,cost=599,text="Blue Eyed Skellington",border="yes", owned=false, showplyr=false},
-      	[4]={img=281,os=-2,cost=360,text="Chicken Child",border="yes", owned=false, showplyr=false},
-      	[5]={img=265,os=-2,cost=380,text="Corporal VHS",border="yes", owned=false, showplyr=false},
-       [6]={img=270,os=-2,cost=120,text="Cool Sunglasses",border="no", owned=false, showplyr=true},
-      	[7]={img=282,os=-2,cost=540,text="Vent Inspector",border="yes", owned=false, showplyr=false},
-      	[8]={img=269,os=-9,cost=230,text="Propeller Hat",border="out", owned=false, showplyr=true},
-      	[9]={img=285,os=-9,cost=330,text="Wah!",border="out", owned=false, showplyr=true},
-      	[10]={img=284,os=-9,cost=364,text="Definitely not a vampire plumber",border="out", owned=false, showplyr=true},
-      	[11]={img=267,os=-5,cost=120,text="Snorkle",border="no", owned=false, showplyr=true},
-      	[12]={img=271,os=-9,cost=120,text="i wanna be the cowboy baby",border="out", owned=false, showplyr=true},
-      	[13]={img=283,os=-4,cost=799,text="sbeve",border="yes", owned=false, showplyr=false},
-      	[14]={img=287,os=-2,cost=300,text="extremely shy lil guy",border="yes", owned=false, showplyr=false},
-      	[15]={img=286,os=-3,cost=140,text="the stache of legends",border="no", owned=false, showplyr=true},
-      	[16]={img=300,os=-9,cost=888,text="Lou Wiggy",border="out", owned=false, showplyr=true},
-      	[17]={img=301,os=-9,cost=321,text="7 Grand Dad",border="out", owned=false, showplyr=true},
-      	[18]={img=299,os=-9,cost=989,text="Monarch",border="out", owned=false, showplyr=true},
-      	[19]={img=298,os=-7,cost=200,text="Beautiful Bow",border="no", owned=false, showplyr=true},              	
-	      [20]={img=297,os=-9,cost=500,text="Ears of a description",border="out", owned=false, showplyr=true},
-       [21]={img=302,os=-9,cost=200,text="Yes Chef",border="out", owned=false, showplyr=true},						
-						 [22]={img=319,os=-2,cost=200,text="Neil",border="no", owned=false, showplyr=true},						
-						 [23]={img=318,os=-4,cost=160,text="Ladders, i go up and i go down",border="no", owned=false, showplyr=true},						
-						 [24]={img=317,os=-2,cost=160,text="3-Dimensional!!",border="no", owned=false, showplyr=true},						
-						 [25]={img=316,os=-4,cost=160,text="Goggle goggle",border="out", owned=false, showplyr=true},						
-						 [26]={img=333,os=-10,cost=2007,text="Professor Lampshade",border="no", owned=false, showplyr=true},						
-						 [27]={img=314,os=-9,cost=160,text="Hardest Hat",border="out", owned=false, showplyr=true},						
-						 [28]={img=313,os=-2,cost=300,text="Disguise",border="no", owned=false, showplyr=true},									
-						 [29]={img=334,os=-9,cost=300,text="Sun Hat",border="out", owned=false, showplyr=true},			
-						 [30]={img=332,os=-9,cost=300,text="Blue Mom Group",border="out", owned=false, showplyr=true},			
-						 [31]={img=335,os=-2,cost=360,text="Yarr!",border="no", owned=false, showplyr=true},			
-						 [32]={img=329,os=-2,cost=343,text="John Hello",border="no", owned=false, showplyr=false},			
-						 [33]={img=331,os=-2,cost=343,text="Save the Animals",border="no", owned=false, showplyr=false},			
-						 [34]={img=330,os=-4,cost=343,text="Two Tickets to Flavortown",border="no", owned=false, showplyr=true},			
-						
+	hats={	[1]={img=256,os=-2,cost=0,text="simple and not classic",border = "no", owned=true, showplyr=true},
+			[2]={img=268,os=-9,cost=164,text="Plumber",border = "out", owned=false, showplyr=true},
+			[3]={img=266,os=-2,cost=599,text="Blue Eyed Skellington",border="yes", owned=false, showplyr=false},
+			[4]={img=281,os=-2,cost=360,text="Chicken Child",border="yes", owned=false, showplyr=false},
+			[5]={img=265,os=-2,cost=380,text="Corporal VHS",border="yes", owned=false, showplyr=false},
+			[6]={img=270,os=-2,cost=120,text="Cool Sunglasses",border="no", owned=false, showplyr=true},
+			[7]={img=282,os=-2,cost=540,text="Vent Inspector",border="yes", owned=false, showplyr=false},
+			[8]={img=269,os=-9,cost=230,text="Propeller Hat",border="out", owned=false, showplyr=true},
+			[9]={img=285,os=-9,cost=330,text="Wah!",border="out", owned=false, showplyr=true},
+			[10]={img=284,os=-9,cost=364,text="Definitely not a vampire plumber",border="out", owned=false, showplyr=true},
+			[11]={img=267,os=-5,cost=120,text="Snorkle",border="no", owned=false, showplyr=true},
+			[12]={img=271,os=-9,cost=120,text="i wanna be the cowboy baby",border="out", owned=false, showplyr=true},
+			[13]={img=283,os=-4,cost=799,text="sbeve",border="yes", owned=false, showplyr=false},
+			[14]={img=287,os=-2,cost=300,text="extremely shy lil guy",border="yes", owned=false, showplyr=false},
+			[15]={img=286,os=-3,cost=140,text="the stache of legends",border="no", owned=false, showplyr=true},
+			[16]={img=300,os=-9,cost=888,text="Lou Wiggy",border="out", owned=false, showplyr=true},
+			[17]={img=301,os=-9,cost=321,text="7 Grand Dad",border="out", owned=false, showplyr=true},
+			[18]={img=299,os=-9,cost=989,text="Monarch",border="out", owned=false, showplyr=true},
+			[19]={img=298,os=-7,cost=200,text="Beautiful Bow",border="no", owned=false, showplyr=true},              	
+			[20]={img=297,os=-9,cost=500,text="Ears of a description",border="out", owned=false, showplyr=true},
+			[21]={img=302,os=-9,cost=200,text="Yes Chef",border="out", owned=false, showplyr=true},						
+			[22]={img=319,os=-2,cost=200,text="Neil",border="no", owned=false, showplyr=true},						
+			[23]={img=318,os=-4,cost=160,text="Ladders, i go up and i go down",border="no", owned=false, showplyr=true},						
+			[24]={img=317,os=-2,cost=160,text="3-Dimensional!!",border="no", owned=false, showplyr=true},						
+			[25]={img=316,os=-4,cost=160,text="Goggle goggle",border="out", owned=false, showplyr=true},						
+			[26]={img=333,os=-10,cost=2007,text="Professor Lampshade",border="no", owned=false, showplyr=true},						
+			[27]={img=314,os=-9,cost=160,text="Hardest Hat",border="out", owned=false, showplyr=true},						
+			[28]={img=313,os=-2,cost=300,text="Disguise",border="no", owned=false, showplyr=true},									
+			[29]={img=334,os=-9,cost=300,text="Sun Hat",border="out", owned=false, showplyr=true},			
+			[30]={img=332,os=-9,cost=300,text="Blue Mom Group",border="out", owned=false, showplyr=true},			
+			[31]={img=335,os=-2,cost=360,text="Yarr!",border="no", owned=false, showplyr=true},			
+			[32]={img=329,os=-2,cost=343,text="John Hello",border="no", owned=false, showplyr=false},			
+			[33]={img=331,os=-2,cost=343,text="Save the Animals",border="no", owned=false, showplyr=false},			
+			[34]={img=330,os=-4,cost=343,text="Two Tickets to Flavortown",border="no", owned=false, showplyr=true},			
+
 						
 						}
- 
+
  hatindex=1
  colindex=1
  
@@ -702,7 +703,8 @@ function lerp(a,b,t) return (1-t)*a + t*b end
 		 
 	
 	]]
-	
+	--the rwb stuff is for the message 
+	--unveiling display stuff
 	rwb=134
 	
 	r1w=rwb
@@ -711,187 +713,200 @@ function lerp(a,b,t) return (1-t)*a + t*b end
 	messages = { 
 	
 	 {--interaction one
-	    {247,"Hey Thwimbly!","/n","Thanks for meeting me!"},
-	    {259,"Hey Samantha, How goes the research?"},
-					{247,"I think those plants I was reading", "/n","about grow in this forest."},					
-					{247,"We've gotta find them so we can", "/n","take some measurements"},									
-					{247,"The papers I've read make them", "/n","seem dangerous. Watch out!"},					
-					{259,"Will do, I won't touch them!"},
-					{"eoi"}
+	    {247,"Hey Thwimbly!","/n","Thanks for helping me out today!"},
+	    {259,"Oh Vina, it's no problem at all!", "/n","We're looking for a specific plant?"},
+		{247,"In a manner of speaking, yes."},		
+		{247,"Normally there are some carnivorous","/n","plants in the forest around here,"},	
+		{247,"But folks have been reporting","/n","more than normal"},	
+		{259,"Like invasive species?"},			
+		{247,"Yeah.","/n","Apparently whole fields of them"},
+		{247,"Which is especially bad...","/n","because they eat people."},
+		{247,"We've gotta find them so we can", "/n","see what's up"},									
+		{247,"These plants are very dangerous."},					
+		{259,"oo-kay...", "/n","that's not concerning at all."},
+		{247,"Yeah, but we also don't want", "/n","anyone to get hurt"},
+		{"eoi"}
   },--end of interaction 1
   
   {--interaction two
 	    {247,"Hey Thwimbly, Check out that pit!"},
-	    {247,"Those are the plants I was","/n", "reading about."},
-					{259,"Do they have a name?"},
-					{247,"Yeah!!", "/n", "'Dionaea Monchula'"},
-				 {247,"It means 'Venus' Lunch'", "/n", "in some dead language"},
-				 {247,"But I just call them 'Monchers.'", "/n", "~It's kinda cute!~"},
-					{259,"They are kinda cute.","/n", "but they creep me out!"},
-				 {247,"Just don't touch them,", "/n", "and you'll be fine!"},
-				 {259,"If you say so.", "/n", "I'll stay far away :P"},
-				 
-					{"eoi"}
+	    {247,"Those are the plants I was","/n", "telling you about."},
+		{259,"Do they have a name?"},
+		{247,"Yeah!!", "/n", "'Dionaea Monchula'"},
+		{247,"It means 'Venus' Lunch'", "/n", "in some dead language"},
+	 	{247,"But I just call them 'Monchers.'", "/n", "~They're kinda cute!~"},
+		{259,"They are kinda cute.","/n", "but they eat people??"},
+	 	{247,"Ya, just don't touch them,", "/n", "and you'll be fine!"},
+		{259,"If you say so.", "/n", "I'll stay far away :P"},
+		{"eoi"}
   },--end of interaction 2
   
   {--interaction three
 	    {247,"This cave is called","/n","'Needle Cave'"},
 	    {247,"It's just a dead end","/n","but there is some Treasure!"},
-     {247,"we can ignore it if","/n","it seems too dangerous."},
-					{"eoi"}
+    	{247,"we can ignore it if","/n","it seems too dangerous."},
+		{"eoi"}
   },--end of interaction 3
   
   {--interaction 3
 	    {247,"Make sure to touch this,","/n","It's called a 'Warp Heart'"},
 	    {247,"It'll warp you back if something...","/n","unfortunate happens" },
-				 {259,"Good plan!"},
-					{"eoi"}
+		{259,"Good plan!"},
+		{"eoi"}
   },--end of interaction 3
   
   {--interaction 4
-	    {247,"Oh nice, you're here too","/n","That was quite a fall!"},
-					{259,"What are you doing?","/n","is that a flower??"},					
- 				{247,"Yeah!","/n","These flowers are awesome!"},
-					{247,"These are 'Bonum Tenetur'"},
-				 {247,"They'll give you a nice bounce!","/n","Try using them to reach that ledge!"},
-					{"eoi"}
+	    {247,"Oh nice, you made it here too","/n","That was quite a fall!"},
+		{259,"having fun bouncin around?","/n","is that a flower??"},					
+ 		{247,"Yeah!","/n","These flowers are awesome!"},
+		{247,"These are 'Bonum Tenetur'"},
+		{247,"They'll give you a nice bounce!","/n","Try using them to reach that ledge!"},
+		{"eoi"}
   },--end of interaction 4
   
   {--interaction 5
-     {247,"If my readings are right,","/n","one of my wrenches is around here."},
-     {247,"This cavern looks dangerous so don't","/n","feel obligated to explore it"},
-     {259,"what's dangerous about it?"},
-				 {247,"This is one of the fabled","/n","'kaizo caverns'"},
-     {247,"lots of intrepid explorers","/n","challenge them for fun (and glory)"},
-     {247,"they require dexterity, grit,","/n","and a love of challenge"},
-     {247,"so yeah, if you aren't feeling it, ","/n","I can find a hardware store :)"},				
+     	{247,"If my readings are right,","/n","one of my wrenches is around here."},
+    	{247,"This cavern looks dangerous so don't","/n","feel obligated to explore it"},
+    	{259,"what's dangerous about it?"},
+		{247,"This is one of the fabled","/n","'kaizo caverns'"},
+     	{247,"lots of intrepid explorers","/n","challenge them for fun (and glory)"},
+     	{247,"they require dexterity, grit,","/n","and a love of challenge"},
+     	{247,"so yeah, if you aren't feeling it, ","/n","I can find a hardware store :)"},				
 	   	{259,"oh cool, at least there's a","/n","warp heart right here!"},				
-					{247,"Just head back up the hole you","/n","came down if you want to leave"},				
+		{247,"Just head back up the hole you","/n","came down if you want to leave"},			
 	   	
-					{"eoi"}
+		{"eoi"}
   },--end of interaction 5
   
   {--interaction 6
-     {247,"Looks like these plants bounce"},
-				 {247,"I bet you could throw something","/n","to get rid of them..."},
-				 {259,"Throw something? like what?"},
-				 {247,"I just read that butternut squash","/n","grows in this forest."},
-     {259,"Butternut Squash?","/n","Yes Please!"},
-				 {247,"Exactly.","/n","There should be some nearby..."},
+     	{247,"Ok... this is unusual."},
+     	{247,"Normally, Monchulae are rooted","/n","stationary to the ground..."},
+     	{259,"invasive species","/n","and strange mutations. "},	
+     	{259,"Normal tuesday for us i guess.","/n","How do we progress?"},	
+		{247,"I bet you could throw something","/n","to get rid of them..."},
+		{259,"Throw something? like what?"},
+		{247,"I bet chucking a dense,","/n","firm vegetable would work..."},
+		{247,"I know that butternut squash","/n","grows in this forest."},
+     	{259,"Butternut Squash?","/n","Yes Please!"},
+		{247,"Exactly, ","/n","There should be some nearby..."},
 	   	{"eoi"}
   },--end of interaction 6
   
   {--interaction 7
-     {247,"There it is...","/n","The fabled Butternut Squash."},
-	   	{247,"If you walk into it while holding X,","/n","you'll pick it up and carry it!"},
-     {247,"Letting go of x will throw it","/n","in the direction you're facing"},
-     {247,"It really hurts me to see you","/n","hurt these poor plants..."},
-					{"eoi"}
+     	{247,"There it is...","/n","The fabled Butternut Squash."},
+	 	{247,"If you walk into it while holding X,","/n","you'll pick it up and carry it!"},
+    	{247,"Letting go of x will throw it","/n","in the direction you're facing"},
+     	{247,"I never like hurting plants..."},
+     	{247,"but these plants do kinda suck"},
+		{"eoi"}
   },--end of interaction 7
     
   {--interaction 8
-     {247,"oh wow, they bounce."},
-     {247,"Might be worth grabbing","/n","a squash for self defense"},
-					{"eoi"}
+     	{247,"oh wow, they bounce."},
+     	{247,"Might be worth grabbing","/n","a squash for self defense"},
+		{"eoi"}
   },--end of interaction 8
   
   {--interaction 9
-     {259,"That's a big gap..."},
-     {247,"nah it's totally chill!","/n","check this tech out!"},
-     {247,"If you hold X and run for a while,","/n","you'll run faster and jump farther!"},
-					{259,"Oh heck yeah that's sick!"},
-					{259,"~Parkour!~"},
-					{"eoi"}
+     	{259,"That's a big gap..."},
+     	{247,"nah it's totally chill!","/n","check this tech out!"},
+     	{247,"If you hold X and run for a while,","/n","you'll run faster and jump farther!"},
+		{259,"Oh heck yeah that's sick!"},
+		{259,"~Parkour!~"},
+		{"eoi"}
   },--end of interaction 9  
   
   {--interaction 10
-     {259,"rip, path is blocked.","/n","guess we have to turn back."},
-     {247,"Oh you silly goose,","/n","We still have research to do!"},     
-     {247,"Jumping into that block will turn","/n","some blocks on and others off!"},
-     {247,"Give it a shot and we","/n","can keep looking for cool plants!"},
-     {259,"Sounds like a plan","/n","I'll go hit the switch."},
-					{"eoi"}
+     	{259,"rip, path is blocked.","/n","what now?"},
+     	{247,"Back in the third age","/n","This whole area was a chokepoint"},    
+     	{247,"They set up switches and traps","/n","to fight the plants off"},   
+     	{247,"Jumping into that block will turn","/n","some blocks on and others off!"},
+     	{247,"Give it a shot and we","/n","can keep looking for cool plants!"},
+     	{259,"Sounds like a plan","/n","I'll go hit the switch."},
+		{"eoi"}
   },--end of interaction 10
   
   {--interaction 11
-     {247,"Ok, I saw one of my wrenches","/n","up on that ledge."},
-     {247,"It's too high for you to jump,","/n","but you should be able to shelljump"},
-					{259,"Shelljump?",},
-				 {247,"Oh, sorry!","/n","Squashjump. Forgot what game this is!"},
-			  {247,"Pick up the squash, jump,","/n","Throw the squash at the wall,"},
-			  {247,"and after it bounces off the wall,","/n","you should be able to bounce up!"},
-			  {247,"This is optional by the way,","/n","I don't need the wrench that bad."},					
-					{247,"I can just go to Harbor Fright","/n","Prices so low it's scary!"},					
-					{"eoi"}
+     	{247,"Ok, I saw one of my wrenches","/n","up on that ledge."},
+     	{247,"It's too high for you to jump,","/n","but you should be able to shelljump"},
+		{259,"Shelljump?",},
+		{247,"Oh, sorry!","/n","Squashjump. Forgot what game this is!"},
+		{247,"Pick up the squash, jump,","/n","Throw the squash at the wall,"},
+		{247,"and after it bounces off the wall,","/n","you should be able to bounce up!"},
+		{247,"This is optional by the way,","/n","I don't need the wrench that bad."},					
+		{247,"I can just go to Harbor Fright","/n","Prices so low it's scary!"},					
+		{"eoi"}
   },--end of interaction 11
   
   {--interaction 12
-     {247,"If you hold the up button","/n","while letting go of X,"},
+     	{247,"If you hold the up button","/n","while letting go of X,"},
     	{247,"You'll throw the squash upwards"},
     	{247,"Use it to hit the switch","/n","in the ceiling!"},    	
-     {"eoi"}
+     	{"eoi"}
   },--end of interaction 12
   
   {--interaction 13
-     {247,"Looks like we're locked out...","/n","Maybe we can find a key?"},
-     {259,"Where should I look?"},
-     {247,"I think there's a cave under here","/n","would not be surprised"},
-     {247,"Like hiding the key underneath","/n","a subterranean doormat"},    
-     {247,"just like people writing their","/n","password on a stickynote"},         
-     {247,"Anyways, once you find it,","/n","walk into it to collect it"},
-     {247,"Then just walk into the door","/n","and you'll open it"},     
-     {"eoi"}
+     	{247,"Looks like we're locked out...","/n","Maybe we can find a key?"},
+     	{259,"Where should I look?"},
+     	{247,"I think there's a cave under here","/n","would not be surprised"},
+     	{247,"Like hiding the key underneath","/n","a subterranean doormat"},    
+     	{247,"just like people writing their","/n","password on a stickynote"},         
+     	{247,"Anyways, once you find it,","/n","walk into it to collect it"},
+     	{247,"Then just walk into the door","/n","and you'll open it"},     
+     	{"eoi"}
   },--end of interaction 13
   
   {--interaction 14
-     {247,"so, uh Thwimbly..."},
-     {247,"I just took some readings."},
-     {247,"Something big is down there."},
-     {259,"oh ok, want me to go check it out?"},
-     {247,"I mean only if you want to."},
-     {259,"Nah its chill,","/n","anything you noticed?"},
-     {247,"if it ends up being mean,","/n","make sure to throw the squash"},
-     {247,"Squash only works its magic","/n","once its been thrown."},
-     {259,"got it."},
-     {259,"Hopefully,","/n","this won't end in violence."},
-     {"eoi"}
+     	{247,"so, uh Thwimbly..."},
+     	{247,"I just took some readings."},
+     	{247,"Something big is down there."},
+     	{247,"and I think it might know karate"},
+     	{259,"oh ok, want me to go check it out?"},
+     	{247,"If you can..."},
+     	{247,"You know I can only walk","/n","when nobody is looking"},
+     	{259,"Oh yeah, sorry!","/n","i forgor"},
+     	{247,"if it ends up being mean,","/n","make sure to throw the squash"},
+     	{247,"Squash only works its magic","/n","once its been thrown."},
+     	{259,"got it."},
+     	{259,"Hopefully,","/n","this won't end in violence."},
+     	{"eoi"}
   },--end of interaction 14
   
   {--interaction 15
-     {259,"Well Samantha, you were right!"},
-     {259,"There was 'something' down there"},
-     {247,"I saw!"},
-     {247,"What a magnificent specimen!"},
-     {247,"Such a shame you had to","/n","'squash' it."},
-     {247,"Thwimbly,","/n","do you know what this means?!"},
-     {259,"plants hate me?"},
-     {247,"I have never heard of any","/n","plant in the dionaea genus"},
-     {247,"that can move of its own accord.","/n","That is not natural."},
-     {259,"Samantha,","/n","it's midnight"},
-     {259,"i want to sleeb :("},
-     {247,"Thwimbly, I think something is","/n","~really~ wrong here."},
-     {247,"If these plants are evolving","/n","the ability to walk,"},
-     {247,"Then we are in real trouble"},
-     {259,"aw heck."},
-     {259,"I trust your judgement.","/n","what do we do?"},
-     {247,"We've gotta go to the","/n","botanical library"},
-     {247,"But, that only exists in the","/n","full game."},
-     {259,"darn, i guess the world will","/n","have to wait to be saved."},
-     {259,"Anyhow, thanks for playing!!"},
-     {"eoi"}
+		{259,"Well Vina, you were right!"},
+		{259,"There was 'something' down there."},
+		{247,"I saw!"},
+		{259,"I don't know if it knew karate,","/n","But it put up a good fight"},
+		{247,"Thwimbly,","/n","do you know what this means?!"},
+		{259,"plants hate me?"},
+		{247,"I have never heard of any","/n","plant in the dionaea genus"},
+		{247,"that can move of its own accord.","/n","That is not natural."},
+		{259,"Uh oh."},
+		{247,"Thwimbly, I think something is","/n","~really~ wrong here."},
+		{247,"If these plants are evolving","/n","the ability to walk,"},
+		{247,"Then we are in real trouble."},
+		{247,"This isn't just an invasive","/n","species thing anymore"},
+		{247,"This could be a return to","/n","the plant wars."},
+		{259,"aw heck."},
+		{259,"I trust your judgement.","/n","what do we do?"},
+		{247,"We've gotta go to the","/n","botanical library"},
+		{247,"But, that only exists in the","/n","full game."},
+		{259,"darn, i guess the world will","/n","have to wait to be saved."},
+		{259,"Anyhow, thanks for playing!!"},
+     	{"eoi"}
   },--end of interaction 15
   
   {--interaction 16
-     {247,"Being completely upfront...","/n","This level is optional."},
+     	{247,"Being completely upfront...","/n","This level is optional."},
     	{247,"It's also pretty difficult"},
     	{247,"You can return to the map","/n","by pressing esc (start)"},
-     {247,"and using the 'Game Menu'"},
-     {247,"If you want to take it on..."},
-     {247,"This level relies on coyote time"},
+     	{247,"and using the 'Game Menu'"},
+     	{247,"If you want to take it on..."},
+     	{247,"This level relies on coyote time"},
     	{247,"You can jump for a short","/n","while after leaving the ground"},    	
-     {247,"Use it to jump farther,","/n","or cancel a flower bounce!"},
-     {247,"Good Luck!"},
-     {"eoi"}
+     	{247,"Use it to jump farther,","/n","or cancel a flower bounce!"},
+     	{247,"Good Luck!"},
+     	{"eoi"}
   },--end of interaction 16
   
   {"eof"}
@@ -919,14 +934,14 @@ function lerp(a,b,t) return (1-t)*a + t*b end
 		lv[70]={[10]={"3-1: Into The Sea",3,1}}
 		lv[75]={[13]={"3-2: Atlantean Annex",3,2}}
 		lv[81]={[11]={"3-3: Seafloor Stroll",3,3}}
-  lv[87]={[18]={"3-4: Shallow Saunter",3,4}}
+  		lv[87]={[18]={"3-4: Shallow Saunter",3,4}}
 				
 		lv[95]={[13]={"4-1: Platform Desert",4,1}}
 		lv[101]={[15]={"4-2: Two-Jump Town",4,2}}
 		lv[103]={[22]={"4-3: Locked Compound",4,3}}
 		lv[110]={[19]={"4-4: Crusty Caverns",4,4}}
 		
-	 lv[119]={[19]={"5-1: Claw City",5,1}}
+	 	lv[119]={[19]={"5-1: Claw City",5,1}}
 		lv[125]={[19]={"5-2: Rainstorm",5,2}}
 		lv[131]={[17]={"5-3: Flash Flood!",5,3}}
 		lv[133]={[11]={"5-4: Parcel Palisade",5,4}}
@@ -960,6 +975,8 @@ function init()
     inmessage = false
 
 				bosswait=false
+    bossmode=false
+
 
     shakelength = 0
     playsound = nil
@@ -1974,9 +1991,7 @@ function TIC()
 		 smolloc=1
 			smoltimer=300
 		end
-		
-		
-		
+
   if drvtxt[smolloc]~=nil then
 			smolimg=drvtxt[smolloc][1]
 	  smoltxt=drvtxt[smolloc][2]
@@ -3464,7 +3479,7 @@ function TIC()
 		 spr(hats[phat].img,hlx,hly+hats[phat].os*2+4,0,2,p.fl,p.rot)
 		end
 		
-		--draw thwimblette
+		--draw vina
 		spritebdr(298,hlx+30-2,hly-12,0,2,1,0,1,1)
 		spritebdr(247,hlx+30,hly,0,2,1,0,1,1)
 	 spr(319,hlx+30,hly,0,2,1,0,1,1)
@@ -3563,8 +3578,8 @@ function TIC()
  
   elseif debugb == "rand" then
 	  rect(0,0,60,60,1)
-		 print("hmt",0,0,8)
-		 print(hammertimer,34,0,8)
+		 print("bm",0,0,8)
+		 print(bossmode,34,0,8)
 	  print("hfwt",0,6,8)
 			print(halfwater,34,6,8)
 			print("jump",0,12,8)
@@ -3656,13 +3671,18 @@ function play()
  
  
  if p.dead==false then
-  cam.x=lerp(camx,p.x-120,0.1)
-  
-  --detect if player flies 
-  --off top of screen and lock
- 	if p.y>10 and p.y < 240 then
-   cam.y=lerp(camy,p.y-64,0.1)
-  end
+  if bossmode~=true then
+	  cam.x=lerp(camx,p.x-120,0.1)
+	  
+	  --detect if player flies 
+	  --off top of screen and lock
+	 	if p.y>10 and p.y < 240 then
+	   cam.y=lerp(camy,p.y-64,0.1)
+	  end
+		else
+		 cam.x=lerp(camx,181*8,0.02)
+		 cam.y=lerp(camy,10*8,0.02)
+		end
   
   if world>7 then
    if cam.x<480*(kaizolv-1) then
@@ -4830,7 +4850,7 @@ function play()
 				
 				end
 				 
-			--thwimblette <3 (aka samantha)
+			--vina
 			elseif ent.ty == 247 then
 			 
 				 local flip = 0
@@ -5324,8 +5344,15 @@ function play()
 				end
 				
 			 if ent.state =="wait" then
-				 cpt("MegaMonch",10,8,2,3)
-					cpt("might know karate",30,8,2,1)
+				 					
+				 p.vx=0
+					string="MegaMonch"
+					w=(240-print(string,0,-6)*3)//2
+					bpt(string,
+					    math.sin(time()/200)*30+w,
+					    10,8,8,3)
+				 cpt(string,10,5,3,3)
+					cpt("might know karate",30,2,11,1)
 				end
 				
     
@@ -5684,8 +5711,13 @@ function play()
 	   print("z",192,mloc[2]+10,12)  
 	  end
 		end
-		
 	end
+	
+ --this is where i would put
+ 
+ if smoltxt ~= nil then
+  smolmsg()
+ end
 	
 	coincount(196,11) 
 
@@ -5735,8 +5767,6 @@ function play()
  or mget((p.x+4)//8,(p.y+7)//8+(level-1)*34) == 187
  or mget((p.x+4)//8,(p.y)//8+(level-1)*34) == 128 
  or mget((p.x+4)//8,(p.y+7)//8+(level-1)*34) == 128 then
- 
- 
   --play sound!
   sfx(59,45,-1,3)
   cascadereveal(p.x+4,p.y+4,187,128)
@@ -5916,7 +5946,9 @@ function play()
 		end
 	end
 	
-	 wipelogic()
+	
+	
+	wipelogic()
 	if deathwipe == true then
 		deathwipetimer = deathwipetimer+1
 
@@ -5948,13 +5980,18 @@ function play()
 																	
 	 end
 
-			if deathwipetimer >=150 then
-			 deathwipe = false
-			 deathwipetimer = 0
-
-			end
-		vbank(0)
+		if deathwipetimer >=150 then
+		 deathwipe = false
+		 deathwipetimer = 0
 		end
+			
+		vbank(0)
+	end
+		
+		
+		
+		
+		
 	playend = time()
 end
 
@@ -6248,7 +6285,7 @@ function BDR(scnline)--bdr
  and p.sprct < 4 then
   poke(0x3FF9,math.random(-2,2))
  end
- 
+
 
  local dither = dpat[scnline+1]
  if gamestate == "menu" then
@@ -6889,8 +6926,10 @@ function camshake()
 end
 
 function smolmsg()
-
- if smoltimer <=0 then
+ 
+ if smoltimer==nil then
+  smoltimer=300
+ elseif smoltimer <=0 then
   smoltimer=-100
  else
   smoltimer = smoltimer-1
@@ -6910,27 +6949,47 @@ function smolmsg()
  local th=12
  local tw=16+smtxt
  
+ --bright, mid, dark, bg
+ local b,m,d,bg=6,10,12,11
+ 
+ if gamestate == "driving" then
+  b=14
+  m=7
+  d=15
+  bg=1
+  
+ end
+ 
  if smoltimer >0 then
 	 
-	 rect(xs,ys-1,tw,2,14)
-	 rect(xs-1,ys,4,th,14)
+	 rect(xs,ys-1,tw,2,b)
+	 rect(xs-1,ys,4,th,b)
 	 
-	 rect(xs+tw-4,ys,5,th,15)
-	 rect(xs,ys+th-4,tw,5,15)
+	 rect(xs+tw-4,ys,5,th,d)
+	 rect(xs,ys+th-4,tw,5,d)
 	 
-	 rect(xs,ys,tw,th,7)
+	 rect(xs,ys,tw,th,m)
 	 
 	 --portrait
 	 if smolimg==417 then
+		 --vina in driving minigame
 	  spritebdr(419,xs+1,ys-3,-1,1,0,0,0,0,0)
 	  
 	  spritebdr(smolimg,xs+2,ys+2,-1,1,1,0,0,0,0)
 	  spr(418,xs+2,ys+2,0)
 	  
 	  spr(419,xs+1,ys-3,0)
+		elseif smolimg == 247 then
+		 --vina in normal levels
+		 spritebdr(298,xs+1,ys-3,-1,1,0,0,0,0,0)
+	  
+	  spritebdr(smolimg,xs+2,ys+2,-1,1,1,0,0,0,0)
+	  spr(319,xs+2,ys+2,0)
+	  
+	  spr(298,xs+1,ys-3,0)
 	 end
 	 
-	 bpt(smoltxt,xs+14,ys+th/2-3,1,5,1,false)
+	 bpt(smoltxt,xs+14,ys+th/2-3,bg,5,1,false)
  end
 end
 
@@ -8833,7 +8892,8 @@ function entlogic()
       wmult=0.2
      end
      
-					if skipfall==false then
+					if skipfall==false 
+					and bossmode == false then
 						if p.x>ent.x-120 
 						and p.x<ent.x+120 then
 							ent.vy = ent.vy + 0.2*wmult
@@ -8846,10 +8906,9 @@ function entlogic()
     end
    elseif ent.ty == 248 
    and ent.state ~= nil then
-    if p.x>ent.x-120 
-					and p.x<ent.x+120 then
-						ent.vy = ent.vy + 0.2
-					end
+				if bossmode == true then
+					ent.vy = ent.vy + 0.2
+				end
    end
 
   end
@@ -9936,6 +9995,8 @@ function entlogic()
 						music(3,0)
 						shakelength=3
 						
+						bossmode=true 
+						
 						sfx(46,60+math.random(10),20,3,7)
 						
 						for i=0,4 do
@@ -9961,6 +10022,12 @@ function entlogic()
 				end
 			elseif ent.state == "wait" then
 			 bosswait=true
+				if ent.ct == 60 then
+				 smolimg=247
+					smoltxt="OH NO! IT MIGHT KNOW KARATE!"
+     smoltimer=120
+				end
+				
 				if ent.ct>=130 then
 				 ent.sst=false
 				 ent.state="move"
@@ -10065,12 +10132,12 @@ function entlogic()
      ent.mstate="run"
      ent.vy=-2
      if p.x<ent.x then
-      ent.vx = -3
+      ent.vx = -2
      else
-      ent.vx = 3
+      ent.vx = 2
      end
-    elseif ent.ct>=60 then
-     ent.vx = 0
+    elseif ent.ct>=80 then
+     --
      ent.ct=0
      ent.state="hammer"
      ent.mstate=nil
@@ -10080,13 +10147,12 @@ function entlogic()
     if ent.ct<20 then
      ent.mstate = "charge"
     
-    
     elseif ent.ct==20
     or ent.ct==50
     or ent.ct==90 then
     
      local vecx=(p.x-ent.x)
-					local vecy=(p.y-ent.y-12)
+					local vecy=(p.y-ent.y)
 					local mag=math.sqrt(vecx^2+vecy^2)
 						
 					local dir=vecx/mag
@@ -10124,12 +10190,17 @@ function entlogic()
      ent.mstate=nil
     end
    elseif ent.state == "dying" then
+    if ent.fy ~= nil then
+     ent.fy=ent.fy+2
+    end
     if ent.ct>60 then
 	    splat(ent.x+4,ent.y+4,2,3)
 					splat(ent.x+4,ent.y+4,1,5)
 					splat(ent.x+4,ent.y+4,4,6)
 					splat(ent.x+4,ent.y+4,6,5)
 					splat(ent.x+4,ent.y+4,3,6)
+					
+					bossmode=false
 					
 					--spawn key
 					entmake(ent.x,
@@ -11515,7 +11586,7 @@ function entlogic()
 
 			end
 		
-		--samantha thwimblette
+		--vina
 		elseif ent.ty == 247 then
 		
    if ent.gloc == nil then
@@ -11543,8 +11614,6 @@ function entlogic()
 				end
 			end
 		
-
-			
    if ent.triglaunch == nil then
 				if mget((ents[i].x-4)//8,
 	           (ents[i].y+4)//8+(level-1)*34) == 176 then
@@ -12280,7 +12349,10 @@ function cascadereveal(x,y,til,til2)
 end
 
 function carrylogic(id)
- if bosswait == true then return end
+ if bosswait == true then 
+  ents[id].vx=0
+  return
+ end
  solids[49]=true
  --side collision with walls
  if ents[id].y>0 then
@@ -13127,7 +13199,7 @@ end
 -- 175:0000000099999999aaaaaaaaaa9999aa99aaaa99aaaaaaaa9999999988888888
 -- 176:333333323222222132f22f21322ff221322ff22132f22f213222222121111111
 -- 177:3333333232222221322ff22132f22f2132f22f21322ff2213222222121111111
--- 178:fddddddfdeeeeeecde3ee3ecdee33eecdee33eecde3ee3ecdeeeeeecfccccccf
+-- 178:fddddddfdeeeeee9de3ee3e9dee33ee9dee33ee9de3ee3e9deeeeee9f999999f
 -- 179:fefeefefeffffffeffeffeffeffeeffeeffeeffeffeffeffeffffffefefeefef
 -- 180:f555555f566666675663366756366367563663675663366756666667f777777f
 -- 181:f6f66f6f6ffffff6fff66fff6f6ff6f66f6ff6f6fff66fff6ffffff6f6f66f6f
@@ -13191,7 +13263,7 @@ end
 -- 243:023002302230022322232223222322232222222302222230000d1000011d1110
 -- 244:555566660005600000056000000560000eeeeee0ee77777fe77777ff0ffffff0
 -- 245:00ddd100001ddd100001ddd1dddddddddddddddd1111ddd1000ddd1000ddd100
--- 247:01ddddd01ddddddd1dd5d5dd1dd5d5dd1ddddddd01ddddd00010010000100100
+-- 247:01ddddd01ddddddd1ddddddd1ddddddd1ddddddd01ddddd00010010000100100
 -- 248:5555555555555555535555355535535555555555355555535333333555555555
 -- 250:055ee7705eee77775ee77777ee77777fe77777ff77777fff7777ffff077ffff0
 -- 251:0000000000000000000000000000000002255220225522552255225503366330
@@ -14833,7 +14905,7 @@ end
 -- 242:20020002022222200233338002b3b38022b3b388023333800288888020008008
 -- 243:002323000223223022232223222322232222222302222230000d1000011d1110
 -- 244:005566000005600000056000000560000eeeeee0ee77777fe77777ff0ffffff0
--- 247:0000000001ddddd01ddddddd1dd5d5dd1dd5d5dd1ddddddd01ddddd000100100
+-- 247:0000000001ddddd01ddddddd1ddddddd1ddddddd1ddddddd01ddddd000100100
 -- 248:0ffffff0f000000ff0ffff0ff0f00f0ff0f0ff0ff0f0000ff000000f0ffffff0
 -- 249:0fffeee0e000000fe0eeee0fe0e00e0ff0e0ee0ef0e0000ef000000e0eeefff0
 -- 250:0efffee0e000000ee0eeee0ff0e00e0ff0e0ee0ff0e0000ee000000e0eefffe0
@@ -15546,15 +15618,15 @@ end
 -- 003:0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000b70000000000000000000000000000000000000000001020202020300000000000000404000000000000000000718181a082828282828282828282828282828282b08181818181815252522121615252529115000000000000000000000000000000000000000000000000000000000000000000000000008d00b7d3007181310000000000
 -- 004:000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e3c5c5c5c51020202020202030150000000000000000000000000000008d0000b7008d00000000000000000000000000001020202020512140222232000000000000000000007585858585858571818191a8a8a8a8a8a8f8a8a867fca8a86767a8718181818181818181816152818181819115000000000000008db70000008d00000000000000000000000000000000000000000000000000a4b700007181310000000000
 -- 005:00007373002700007373000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e3e3c5a8a8c5f4116262626262624120202030150000000000000000000000000000b7000000000000000000000000000000001121212121402232676767950000000000000000007686868610202071818191a8a8a8a8f8a867a8e8f8a8a8a8a867a87282b08181818181818181818181818191150000000000000000b7c3d300000000000000000000000000000000000000000000000000000000b700007181310000000000
--- 006:00102020202020202030000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ddc5a8a8c5f4f512222222222250626262623185858585950000000000000000a4b4b700000000000000000000000000000000122222222232866767676786857080808090858585b6868686715281525281910ca8e855555567555555f8a8e8f8a8a8a8e67181818181818181818181818181911500000000000000a4b7c4d400000000000000000000000000000000000000de0073737300e70000b773737181310000000000
--- 007:00112121212121212131000000000000040000000000000000000000000000000000000000000000008d0000000000000000000000008d00008d000000000000000000000000000000c5a8a8c5e5f500768686868686715362626231868686869600000000000000000000b7c3d3000000000075858595000000000075b6fc8667868667a8a867868671528181910808080808080871528152818191a8e8558686865586868655a86755f8a8a8a8718181818181818181818181818191150000000000000000b7000000000000000000004c4c0000000000000010202020202030705454545454907181310000000000
+-- 006:00102020202020202030000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ddc5a8a8c5f4f512222222222250626262623185858585950000000000000000a4b4b700000000000000000075950000000000122222222232866767676786857080808090858585b6868686715281525281910ca8e855555567555555f8a8e8f8a8a8a8e67181818181818181818181818181911500000000000000a4b7c4d400000000000000000000000000000000000000de0073737300e70000b773737181310000000000
+-- 007:00112121212121212131000000000000040000000000000000000000000000000000000000000000008d0000000000000000000000008d00008d000000000000000000000000000000c5a8a8c5e5f500768686868686715362626231868686869600000000000000000000b7c3d300000000007585b696000000000075b6fc8667868667a8a867868671528181910808080808080871528152818191a8e8558686865586868655a86755f8a8a8a8718181818181818181818181818191150000000000000000b7000000000000000000004c4c0000000000000010202020202030705454545454907181310000000000
 -- 008:0012225021212140223200000000000000000000000000000000000000000000000000000000000000000000000000008d0000000000000000000000000000008d0000000000000000c5a8c5f3000000768686860f86715253626231687886868685858585950000000000b7c4d40000000000768686960000000075b68686865586866767a867b87052a0b08191bbbbbbbbbbbbbb728152525281915555868686868686868686a8e88655f8f8d67181a082828282b08181818181819115000000000000a4b4b7000000000000000000004c4c0000000000000011212121212131718181818181917181310000000000
 -- 009:00000071818181910000000000000000000000000000000000000000000000000000000000000000000000000000b70000008db700000000000000000000b700000000b78d00000000e5e3e30000000076868686868671525252529186558686868686868696000000a4b4b700000000000000768686a685858585b6868686868686708090687888715291718191bbbbbbbbbbbbbbb25252815252918787878787b5868686708080908686557080b18191e867a8a87181a08282828292150000000000000000b7000000000000000000004c4c000000000000d711615252525231728282828282927282920000000000
 -- 010:000000728282829200000000000000000000000000000000000000000000000000000000000000000000008d0000b700000000b7000000000000008d00a4b700000000b7000000000000fcf4ec000000708080808080b18152816091878787878786868686868595000000b700000000000000768686868686868686868686866878718191a8a8a8715291718191bbbbbbbbbbbbbb7081528152529115000000007686860c71528191868670b181818191ec67a86772829267fc67a896000000000000000000b700000000000000000000000000000000007080b18152818181a1809070901517171700170000000000
 -- 011:000000000000000000000000008d0000000400000000000000000000000000000000000000000000000000d400c3b78d00d400b700008d00000000000000b78d000000b7b4b30000000000f500000000728181818181818152814032000000000076868686b88696000000b700400000000075b68686868686868686868686868686718191a8a8a8728191718191bbbbbbbbbbbbbb7152818181529185859500007787b5867152529186867282b0818191a8a8a8a8a8a8a8a867a8559600000000007373f700b7007373f700000000687888687888d2c5c5718181525281818181819172921500000000000000000000
--- 012:0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000d4c4b700000000b700d40000000000000000b7b30000a4b7000000000000000000000000b252608181818181816031150000000000768686b867b886950000b7007f0000ce00768686868686a58787b5868686131313715291a8a8a8b25291715291bbbbbbbbbbbbbb71a08282828292868696000000007787718152a1908686a871818191a8a8a8a8a8a8a8a867a886960075858585705454545454545490e3c5e3e3e3d2f4c5c5f3c5c5d27181525281818181a0829215000000000000000000000000
--- 013:00000000000000008d00000000000000000000000000000000000000000000000000000000000000000000000000b7b4b3d400b70000000000000000a4b4b700000000b700000000000000000000000070626260816060606262311500000000007686b8676767b89600645454545454808080808090687868000070808080808080b15291a8a867708191715291bbbbbbbbbbbbbb7191a867a867a8b886a695000000000071815281918686a872b08191a8a8a8a8a8a867a8a8a88696007686b8b8715252525252525291c5d2e3d2c5c5f5c5c5c5f4c570b1818181818181a092150000000000000000000000000000
--- 014:00000000000000000000008d00000000e3d2e3000000000000008d00000000000000000000000000000000d40000b700000000b7c3d30000000000000000b700007585b78585950000000000000000001250626260626262626231150000000000102020205454545454b18181815252525252525291878797000071815252525281525291a8a867718191715291bbbbbbbbbbbbbb7191a84ca867a8a8868696000000000071815252918686556771819167a8a8a867a8677080808080808090676772b052525281a08292e2c5f4e2e5e50017c5c5f5f371818181818181819115000000000000000000000000000000
+-- 012:0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000d4c4b700000000b700d40000000000000000b7b30000a4b7000000000000000000000000b252608181818181816031150000000000768686b867b886950000b7007f0000ce0076868686a587878787b5868686131313715291a8a8a8b25291715291bbbbbbbbbbbbbb71a08282828292868696000000007787718152a1908686a871818191a8a8a8a8a8a8a8a867a886960075858585705454545454545490e3c5e3e3e3d2f4c5c5f3c5c5d27181525281818181a0829215000000000000000000000000
+-- 013:00000000000000008d00000000000000000000000000000000000000000000000000000000000000000000000000b7b4b3d400b70000000000000000a4b4b700000000b700000000000000000000000070626260816060606262311500000000007686b8676767b89600645454545454808080808090960000000070808080808080b15291a8a867708191715291bbbbbbbbbbbbbb7191a867a867a8b886a695000000000071815281918686a872b08191a8a8a8a8a8a867a8a8a88696007686b8b8715252525252525291c5d2e3d2c5c5f5c5c5c5f4c570b1818181818181a092150000000000000000000000000000
+-- 014:00000000000000000000008d00000000e3d2e3000000000000008d00000000000000000000000000000000d40000b700000000b7c3d30000000000000000b700007585b78585950000000000000000001250626260626262626231150000000000102020205454545454b18181815252525252525291970000000071815252525281525291a8a867718191715291bbbbbbbbbbbbbb7191a84ca867a8a8868696000000000071815252918686556771819167a8a8a867a8677080808080808090676772b052525281a08292e2c5f4e2e5e50017c5c5f5f371818181818181819115000000000000000000000000000000
 -- 015:0000000000000000000000b70000730010203015000000000000000000008d00000000008d8d0000000000a4b4b4b70000a4b4b7c4d40000000000007585b785858686b7868696000000000000000000171162212121622121623185950000000011212121818181818160606081815281528152819128282828287181815252818152819167a8a8718191728292bbbbbbbbbbbbbb7191a84ca84c67678686a69500000000718181529186868655728292a8a86878686878718152818181819167a8677181528181911500e5e5f5e500000000c51700e5728282b08181a0829215000000000000000000000000000000
 -- 016:0000000000000000000000b700731020512131150000000000000000000000000000008d00000000000000000000b700000000b700000000000000007686b786868686b7868686859500000000000075851222222222502121213186960000000011212121606060606021212160606060528152819129292929297181818152818181609167a8a87281a190bbbbbbbbbbbbbbbbbb7191a84c674c67678686869600000000715281529186868686a8e886a8676767a8a8a87181815281818191a8555571815281819115000000000000000000170000007080907181a092709015000000000000000000000000000000
 -- 017:0000000000000000001020202020512140223215000000008d0000000000b7008db7000000000000000000000000b700000000b7000000002000000076866454545454548686868696737373000000768686f8a8fcd81222222232788800000000112121212121212121212121212121215281528191292929292971818160608181602191672e67b2528191bbbbbbbbbbbbbbbbbb7191a8a8a84c6767868686a695000000715281529186868686a8558655a8a8a8a8a867718181528181819155a587728282b08191150000000000000000000000000071819171819170b19115000000000000000000000000000000
@@ -15565,8 +15637,8 @@ end
 -- 022:0400007585b8b867676767555555676767869600000000d4b70000b700a4b70000b7b300000000006878887181815281525252525281815252a180808080b1818181818152818181815281525281a1808090861386867080808080908585b65567122232862323a8a8a8a867e8f8718152528181819129292929297686868686868686868686868671a18090a8a8a8a8a8a8a8a8a8728292a8b886b8a8a8a871819188a867a867a8a8a8a8a8a87282b081a082828282828282b0525252528191154c4c00004c00004c004c4c00000000000000d771819171818181819115000000000000000000000000000000000000
 -- 023:00000076b867676755555586868655676786960000000000b7b4b3b70000b70000b7000000007373e5e5e57282828282828282b081818152818181818181818181818181528181818181818152815252819113708080b181818181918686868667672386b867a8a8a8a8a8a8a8a8718152528181819129292929297686864c4c4c4c4c4c868686867181819113a867a8a8a86767a8a8a8a8a8f8b8d8a84ca8718191a867a8a867a84c4c4ca8a8a8a872b091bbbbbbbbbbbbbb71815281525291154c4c00000000004c004c4c0070808080808080b1819171818181819115000000000000000000000000000000000000
 -- 024:000075b6676755558787878787b586675586960000000000b70000b70000b770808090687888709028282876f86767a8a8a867718181815281818181818181818181818181818181818181815281815281a180b181818181818181a1908686865567b8b86767a84c4c4c4c4c4ca8718181528181819129292929297686864c4c4c4c4c4c868686b8718181a180906767a867d867a8a8a8a850a8f8a8a84ca8718191a867a8a8a8a84c4c4ca8a8a867a87292bb4c4c4c4c4cbb71815281815291154c00006868680000000000007181818181818181819171818181819115000000000000000000000000000000000000
--- 025:e30076866755a5970000000000778755868670901500a4b4b70000b7708080b1528191e3c5e5719129292976554c4c4c4ca8a8718181818181818181818181818181818181818181818181815281815281818181818181818181818191868686865567676767a84c4c4c4c4c4ca87181818181818191292929292976868686868686868686862ed8718181815291a867a867a8c8a8a8a8a87fa867f8a84ca87181a180808090a8a84c4c4ca8a8a8a8a8bbbbbb4c4c4c4c4cbb71525281818191150000c5a8a8f36868686878887181818181818181819171818181819115000000000000000000000000000000000000
--- 026:102030865586960000000000000000768686719115000000b70000b771818152818191c5c500723129292976864c4c4c4ca8a871818181818181818181818181818181818181818181818181818181528181818181818181818181819188b886308667676767a84c4c4c4c4c4ca87181818181818191292929292970808080808080907878708080b18152525291a8a8a8a8a8e8a8a8a8a8a8a8a8f8a8a8a8718181528152a190a8a8a8a8a80ca8a867bbbbbb4c4c4c4c4cbb715252818181911500c5c5a8c5c5d2a8a8c5a8f37181818181818181819171818181819115000000000000000000000000000000000000
+-- 025:e30076866755a59700000000007787558686709015001000b70000b7708080b1528191e3c5e5719129292976554c4c4c4ca8a8718181818181818181818181818181818181818181818181815281815281818181818181818181818191868686865567676767a84c4c4c4c4c4ca87181818181818191292929292976868686868686868686862ed8718181815291a867a867a8c8a8a8a8a87fa867f8a84ca87181a180808090a8a84c4c4ca8a8a8a8a8bbbbbb4c4c4c4c4cbb71525281818191150000c5a8a8f36868686878887181818181818181819171818181819115000000000000000000000000000000000000
+-- 026:102030865586960000000000000000768686719115007f00b70000b771818152818191c5c500723129292976864c4c4c4ca8a871818181818181818181818181818181818181818181818181818181528181818181818181818181819188b886308667676767a84c4c4c4c4c4ca87181818181818191292929292970808080808080907878708080b18152525291a8a8a8a8a8e8a8a8a8a8a8a8a8f8a8a8a8718181528152a190a8a8a8a8a80ca8a867bbbbbb4c4c4c4c4cbb715252818181911500c5c5a8c5c5d2a8a8c5a8f37181818181818181819171818181819115000000000000000000000000000000000000
 -- 027:1121318686869600000000000000007787b571a18080545454548080b1818152528191687888123229292976b84c4c4c4ca8a87181818181818181818181818181818181818181818181818181818152818181818181818181818181916767b87f866713131367a8a8a8a8a8a8c671818181818181912929292929715252525252a09267677282828282bbbbbbbba8a8a8a8e867a8a8a8a80ca8a867a80ca871818181815281a18080808080808080808090bbbbbbbbbbbbbb7181818181819168687888c5d2c5e3a8c5c5f3e27181a0828282828282927282b081a09215000000000000000000000000000000000000
 -- 028:125041808080808080808090157300000070b181815252818181818181815252528191c5c5f4171729292976d867a8a8a8a8c67181818181606060606060606060606060606060606060606060818181818181818181818181818181a18080808080808080808080808080808080b1818181818181912929292929715281525252918667a8a8a8a8a8a8bb8181a18080808080808080808080808080808080b18181815281818181815252528181525281a180808080808080b1818181818191a8a8c5e2c5c5c5f3e3c5c5e3f4718191151717007080808080b181911500000000000000000000000000000000000000
 -- 029:76122282828282b0535353a18080808080b18181815252818181815252525281525291e3c5f500002929297080808080808080b1818181602121212121212121212121212121212121212121636060608181606060818160606060608181818181818181818181818181818181818181818181818191292929292971528181528191866767a8a8a8a8a8bb8181818181818181818181818181818181818181818181525281818181525281525281528181818181818181818181818181818191a8f4c5e3171700e30000c500f57181911500000071818181818181911500000000000000000000000000000000000000
@@ -15591,11 +15663,11 @@ end
 -- 048:0000006878888686868686a58787970000000000000000000000000000000000765555e8960000007f00004d0072b05291718152525281a082828292788888a8718181818181917282829271818181819129292929297282828282828282b08181212121213188866770808080808080b152528181525281818181819167a8a871819178888686292929d8a8a8a8a871819155863f86a8a8715281815252818181818152525252525252815252525252528191a8a8c8718181a08282828292a8c8d8a86767a8a8a8a8a8a84ca8a8a8a8b886a6858595000000b70073b773737300de0000737373b77300b77373000000
 -- 049:730075a8a855868686878696e5000000000000000000000000000000008d0000778787708080808080808080809072829271818181818191a8675555a8b8d8a8718181818181a180907080b18181818191292929292900768686868686867181815281818191a8866771818181818181818181818181528181818181916767a8718191a8a8b886292929a867a867a87181918686868655a8715252818152525252528181525252525252525281818181818191a8a8a871818191c8676767a8a8a8a8a8a8a8a8a8a8a84ca8a86767a8a8a8b8b8b88696007373b700102020202020202020202020202020202020300000
 -- 050:687888a8e886868696007797000000000000000000008d00000000b7b3000000000000718181818181818181819170809072828282828292a8558686a8c8d8a871a08282828282829271818181818181912929292929007786864c4c4c867181818181818191a8b8687181a082828282828282828282828282b0818191787888728292a86767862929295567a8788872829288863f8686a8715281815252525252525252525281525252528152525252528191a867a872828292a8c867a8a8a8a8a8a8a8a8a8a84ca8a8a8a8676710202020202020202020202030116262626262626262626262622121626262310000
--- 051:778686a8558686a5970000e5000000000000000000000000000000b7c20000000000007282828282828282b081917181a1808080809067a85586868667a888887191bbbbbbbbbbbbbb71818181818181912929292929000076864c4c4c86728282b081818191a8a8a8718191e8f8a8a8a86786868686a8e8f87181819167a8a8676767a867678629292967a8a867a86767555586868686557152815281bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb815291a867b88686676767a8a8e867a8a8a867a8a84ca8a8a8a8a8e8555511214242424242424242424231116262622162626262626152525252616261910000
+-- 051:778686a8558686a5970000e5000000000000000000000000000000b7c20000000000007282828282828282b081917181a1808080809067a855863f8667a888887191bbbbbbbbbbbbbb71818181818181912929292929000076864c4c4c86728282b081818191a8a8a8718191e8f8a8a8a86786868686a8e8f87181819167a8a8676767a867678629292967a8a867a86767555586868686557152815281bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb815291a867b88686676767a8a8e867a8a8a867a8a84ca8a8a8a8a8e8555511214242424242424242424231116262622162626262626152525252616261910000
 -- 052:00766888864c869600000000000000000000000000000000b7b300b700008d000000007080808080808090718191718181818181819167a8868686865567a8a87191bbbbbbbbbbbbbb71818181818181912929292929000076864c4c4c86868686718181819188a8a8718191a8a8a8a86767868686865555a871818191670ca8a8a8a86755d8b829292967a8a8a8a8a8678686863f867080b152815252bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb815291a8a8c8b88667d8a8a8a86767a8a867a8a84ca8a8a8a855e855868611615252525252525252525291716221424242626242528181818181816281910000
--- 053:007655a8864c86960000000000000000008d000000000000b78d00b7c3d3000000000071818181818181917282927282828282828292a867868686868667a8a87191bbbb4c4c4c4cbb71818181a0828292292929292900758686864c4c4c4c4c867181818191c855a8718191a867675567558686860f868667718181a18080808080907888788829292967a867a8a8a867868686868671818181818152bb4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4cbb525291a8a867c8b8d8a8a8a8a8a8a8a867a8a8a8a8a8a8a8e8865586868671818181818181818181818191716261525252426152528181818181606181910000
--- 054:687888a8864c8696000000000000000000b7c3d300000000b7a4b4b7c4d400758585857181a08282828292a8a8a8fca8a8a8a8a8a8a8a8c8b8868688888888887292bbbb4c4c4c4cbb7181818191a88696292929292970808090864c4c4c4c4c867181818191678668718191a867558667868686868686865571818181818181818191a8a8a867292929676767a8a8a867b886863f8671818181815252bb4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4cbb525291a8a86767a8a8a8a8a8a8a8a8a8a8a8a8a8a8a855e855868686868671818181818181818181818191718181818152528181818181816060618181910000
--- 055:7655a8e8864c8697000000000000000000b7c4d48d00a4b4b70000b70000007686b8b8718191a8e8f8a8a8a8a8a8a8a8a867a8e855a8a8a8c8b886676767a8a8bbbbbbbb4c4c4c4cbb72828282926786972929292929718181918686864c4c4c867181818191c88667718191675586865586868686868686867181a180809081818191a8a8a855292929787888a8a870808080808080b1818181525252bb4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4cbb5281a180808080808080808080808080808090558655865586868686868671818181818181818181818191718181818152818181818181602121818181910000
+-- 053:007655a8864c86960000000000000000008d000000000000b78d00b7c3d3000000000071818181818181917282927282828282828292a86786863f868667a8a87191bbbb4c4c4c4cbb71818181a0828292292929292900758686864c4c4c4c4c867181818191c855a8718191a867675567558686860f868667718181a18080808080907888788829292967a867a8a8a867868686868671818181818152bb4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4cbb525291a8a867c8b8d8a8a8a8a8a8a8a867a8a8a8a8a8a8a8e8865586868671818181818181818181818191716261525252426152528181818181606181910000
+-- 054:687888a8864c8696000000000000000000b7c3d300000000b7a4b4b7c4d400758585857181a08282828292a8a8a8fca8a8a8a8a8a8a8a8c8b88686b8888888887292bbbb4c4c4c4cbb7181818191a88696292929292970808090864c4c4c4c4c867181818191678668718191a867558667868686868686865571818181818181818191a8a8a867292929676767a8a8a867b886863f8671818181815252bb4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4cbb525291a8a86767a8a8a8a8a8a8a8a8a8a8a8a8a8a8a855e855868686868671818181818181818181818191718181818152528181818181816060618181910000
+-- 055:7655a8e8864c8697000000000000000000b7c4d48d00a4b4b70000b70000007686b8b8718191a8e8f8a8a8a8a8a8a8a8a867a8e855a8a8a8c8b83f676767a8a8bbbbbbbb4c4c4c4cbb72828282926786972929292929718181918686864c4c4c867181818191c88667718191675586865586868686868686867181a180809081818191a8a8a855292929787888a8a870808080808080b1818181525252bb4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4cbb5281a180808080808080808080808080808090558655865586868686868671818181818181818181818191718181818152818181818181602121818181910000
 -- 056:7686a85586869600000000000000008d00b7000000000000b70000b700758586b8a8a8718191a8a867a8a8a8a8a8a8a867555555b855a8a867c8865567a8a8a8bbbbbbbb4c4c4c4cbbbbbbbbbbbb6796002929292929718181a18090868686868671818181918886d8718191678686b8868670808080808080b181818181918181819167a8678629292967676767677181818181818181818152818152bb4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4cbb5252525252528181525252525252818181819186868686868686a086868671818181818181818181818191718181818152818181818160212142528181910000
 -- 057:1020308686869700000000000000000000b7c3d300000000b7c3d3b70076b8b8a8e8a8728292a8a85567a8a8a8a8555555868686677080808080808080808080808090bb4c4c4c4cbbbbbbbbbbbb67960029292929297181818181a18080808080b1818181918686d871819155868667868671818181818181818181818191828282925567558629292967787878887181818181818181818152818152bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb868686868686867f8686867282828282828282b081818191718181818181818181818142424252528181910000
 -- 058:112131868696000000000000000000a4b4b7c4d400000000b7c4d4b70076a8a8e855a8fca8a8a8a88667a8a8a867868787876878887181818181818181818181818191bbbbbbbbbbbbbbbbbbbbbb67960029292929297181818181818181818181818181819186866871819186868667b886718181818181818181818181910000007686678686292929a867a8a8a871818181818181818181528181525252815281525252525252818181525252525252525252815252525252525252525252818181808080808080808080808080808080808080907282828292718181818181818181818152525252528181910000
@@ -15642,37 +15714,37 @@ end
 -- 099:0000122222222222222222222222222222228282828282828282828282828282828282828282828282828282828282223229292929000000000000000000000000000000778786868687878770b1818181818181818181818181818181818181818181818181818181910000000000000071818181818181818181818181818181818181818181910000007787878797000000000071818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818191150000000000000000000000000000000000
 -- 100:000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002a29292a00000000000000000000000000000000007787970000007282828282828282828282828282828282828282828282828282828282920000000000000072828282828282828282828282828282828282828282920000000000000000000000000072828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828292150000000000000000000000000000000000
 -- 101:00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002a2a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
--- 102:000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202030102030000000000000000000000000000000000000000000000000000000000000
--- 103:000000000000000000270000730000007300007300737373007300000000000073737373000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001161532161525321216152525321626262216152525252525252525252525252536262626221626262626262622162626261536152532121626221626221212121212121212121212121212121212121212121212121212121212131112131150000000000000000000000000000000000000000000000000000000000
--- 104:0000000000001020202020202020202020202020202020202020202020202020202020301500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000072828282b081a0828282b081a0828282b081a0828282828282828282828282b0818140222222222222222222222222b08181818181a02222222222222222225021214022222222222222222222222222222222222222222222222232112131150000000000000000000000000000000000000000000000000000000000
--- 105:000000000000728282828282b052528181815252528181818181525321212162626221311500000000ae0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008d0000008d00000000008d000076868686728292a8c8d8718191a8a8f87282928696171717001717000017177181403215000000000000000000000071818181818191150000000000000000125021310000000000000000000000007686556767a8a8a867f8a8a8677181a1809000000000000000000000000000000000000000000000000000000000
--- 106:00000000000000000000000072828282b08181815252818181815281525253626261529115000000000000000000000000000000000000000000000000000000000000000000000075858585858595000000000000000000000000000000000000000000000000b7000000000000000000b700768686868686a8a8a8a8718191a8a8a8868686869600000000000000000000718131150000000000000000000000007282b0818181911500000000000000000011213100000000000000000000000076868667a8a8a8a867a8a8a8a871528181a180900000000000000000000000000000000000000000000000000000
--- 107:000000000000000000000000000000007282828282828282b0818181525252525252529115000000000000000000000000000000000000000000000000000000000000000000000076868686868696000000000000000000000000000000000000000000000000b7000000000000008d00b700768686868686a8a8a8a8728292a8a8a8b886868696000000000000000000007181a12030150000000000000000000000007282b081911500000000000000000011213100000000000000000000000076868667a8a867a8a8f8a8a8a8718181818181910000000000000000000000000000000000000000000000000000
--- 108:000000000000000000000000000000000000000000000000728282715281528152815291858585858595000000000000000000000000000000000000000000000000000000000000768686868686960000000000000000000000000000000000000000b7008d00b7000000000000000000b78d768686ae868655a8a8a8a8a86767a86767868686960000000000000000ae00718181213115007585950000000000000000000071819115000000000000000000116191000000000000000000007585b686866767a8a8a8a8a8a8a8a871818181a082920000000000000000000000000000000000000000000000000000
--- 109:000000000000000000000000000000000000000000000000000075718181818152818191b8b8b8b8b8960000000000000000000000000000000000000000000000000000000000007686868686869600000000000000000000000000000000008d0000b7000000b700000000004c000000b70076868686868686c8d8a8a8a86767a8c855868686a68595000000000000000071818121318585b8b896000000000000000000007282921500000000000000000071529100000000000000007585b6868686865567a8a8a8a8a8a8a8a8718181819100000000000000000000000000000000000000000000000000000000
--- 110:00000000000000000000000000000000000000000000000000007671a0b08181528181916767a8a8c8b8957568687888889500000000007568788888000000000000000000000075868686868686960000000000000000000000000000000000000000b7000000b700000000004c000000b70077868686868686a8a8a8a8a8a8d8a8d8b88686868686a685950073730000001160602131b8b8a8a89600000000000000000000000000000000000000000000007152910000000000007585b68686868686868667a8a8a8a8a8a867a8715281a09200000000000000000000000000000000000000000000000000000000
--- 111:000000000000000000000000000000000000000000000000000076719171a0b081818191c8d8a8a8a8678686f8f8a8a855a68585858585b8b8c8d8a8950000000000000000000076868686868686a68585950000000000000000000000000000000000b7000000b700004c00004c000000b7000076868686868655a8a8c8d8a867a8a86786868686868686102020202020205121212131a8a8a8a896000000ce0000000000000000000000f000000000007585718191000000758585b68686868686868686865567a8a8a8a8a8a8a8715281919600000000000000000000000000000000000000000010202030150000
--- 112:0000000000000000000000000000000000000000000000000000767292719171a0b08191676767c8d8a8b8b867c8a867b8b8b8b8b8b8b8d8a8a8f867960000000000000000007586868686868686868686868585858585858595000000000000000000b7000000b700004c000000000000b7000076868686868686e8f8f8a8a86767a8d8b8b8b8b81313105121212121212121212121310ca8a8a8a67080808080808080808090150073737f00000000007686718191858585b68686868686868686868686868667a8a867a8a867a87152a0929600000000000000000000000000000000000000000011212131150000
--- 113:000000000000000000000000000000000000000000000000000076868671917191718191c8d8a8a8a8a8a8a8a8a8a8a8c8d8a8a8a8a8a8e855555568787888950000000000007686868668786868788686868686868686868696000000000000000000b7000000b700004c006868680000b7000076868686868686555555f8a8c867a8a867671020202051212121212121212121212131a8a8a8686871818181818181818181a180808080809015007585b68671529186868686868686868686868686868686866767a867a8a8a8a8718191a89600000000000000000000000000000000000000000011212131150000
--- 114:0000000000000000000000000000000000000000000000000000778686719172927181915555a8a8676755555555c8d8a8a8a8675555555586878755f8a8f886950000000070908787875567a8d8678686866868687868868686858585858585950000b7000000b700000000e086e00000b700007786868686860c86868655a8a867a8a8a8d811212121212121424242424242212121910ca8a8670c718181818181818181815252a08282829215007686868671529186868686868686868686868686868686866767a867f8a867a8718191678685950000000000000000000000000000000000000011212131150000
--- 115:00000000000000000000000000000000000000000000000000000076867292e8f87181918686555555558787878667a86767555587878787970000768667c8b8866868687871911500007755a8c8d8868686f8f8a8e8f8868686868686868686868585b7000000b700686868f086f00000b700000076868668686868688686a8a8a8a86868681142422121424281a0828282b0424242916767a867677181818181818181818181529170808090708090b8b8b8715291b8b88686868686868686868686868686865567a867a8a8a8a8718191558686868595000000000000000000000000000000000011212131859500
--- 116:00000000000000000000000000000000000000000000000000000076868686555571819186868787879700000076c8d8555587970000000000000077b555e8f8b8b8f8a8a871911500000076c867e88686866767a86767b86868786886868686868686b7858595b700e086e0f086d00000b700000076868667f867e8678686a8a8a8d867a8f871818142428181819170809071818181910c67a8670c7181818181818181815252819171a0829272b0916767677152916767b886868686868686868686868686868667d867f8a86767715291868686868686950000000000000000000000000000000011212131869600
--- 117:00000000000000000000000000000000000000000000000000000077878787879771819186960000000000000076f8f886970000000000000000000077b5a8a8a8f8c8c8d8719128282828b8a8f8e88686865567a8a86767f8e855f886686878688686b7868696b700c086868686860000b700007586868667c8d855678686a8a867a8d8a8c87181818181818181917181917181818191a867a8a8a87181818181818181815252819171917080907191a86767715291676767b8b88686868686868686868686868655f8c867f8a8a87282928686868686868685858585858595000000de000000000011212131869600
--- 118:00000000000000000000000000000000000000000000008d00000000000000000071819186a685950000000075b6d8a89600000000000000000000000076f8a8a8c8708080b1912929292967c855f88686868667a8e867d8a8a8b867b8f86755f8b8b87080808080808080808080901500b700007686868667d8678668686868a8a8a8a8a8a871818181818181819172829271818181910ca867a80c7181818181818181818181819171917152917191a8a867715291a867676767868686868686868686868686868655556755f8a801a86786868686868686868686b886102020202020202068686851402232869600
--- 119:00000000000000000000000000000000000000000000000000b700000000007585728292868686960000000076b867a8960000000000000000000000007755f8e8f8718181819129292929a867865586868686a8a8a8d8a8a8a8a8a8c8d867b867676771a0828282b0a0828282b0911573b7758586868686d8c86767a8a8e8a8a8a8a8a8a8a87181818181818181a1907080b181818191a8a86767677181818181818181818181819171917152917191a8a867715291a867a8a8678686b8b8b8b8b8b8b8b88686868686865586a8a8016755b88686868686868686b867b81121212121626252bbbbbb213155a5879700
--- 120:00000000008d00000000000000000000000000000000000000b7008d00000076b8860167868686a685950075b66767a8960000000000000000000000000076677080b18181819129292929a8c8b88686868686f8a8a8a8a8a8f8a8a8a8a8e867708080b191708090719170809071a180808090868686866868686867a8a8a8a8a8a8a8a8a8a87282828282828282829272828282b081910ca8a8670c7181818181818181818181819171917181917191a8a867728292a867a8a86786b8a867a867a86767a8b886868f868686b8a8a80167b867b8b88686868686b86767671121216262626252bbbbbb52318696000000
--- 121:000000000000b700008d000000000000000000000000000000b7000000000076a8b801a88686868686a685b6b8d8a867960000000000007373730000000076677181818181819129292929a8a867868686868655f8a8a8a8a86767f8a8a8a867718181819171819171917181917181818181a1809086b8a8a8e8c8d8d8a8f8a8a8a8a8a8f8a8a8a8c8d80167016701a8016701a8718191a8a8a867a87181818181818181818181819171917282927191a8a867a8a867a867a8a867b8a8a8a8a867a867a8a8a8b8868686b8b8a8a8a8016767676767b886b88686676767551121212121626252bbbbbb52318696000000
--- 122:000000000000b7000000000000000000000000000000000000b700000000007655c801a8868686b8868686b8d8a8a8f8a69500000000708080809068686868687181818181819129292929e8a8c886868686868655a8a8c8d8c8676770808080b18181819172829271917282927181818181818191b8d8a8a8a8a8a8a8a8c8a8a8a8a8a855a8a8aea8a801a8016701a8016701a87181910ca8a867677181818181818181818181819171a1907080b19167a8a8a867a8a8a8a86767a8a8a8a8a8a8a867a8a8a8a8b886b8a8a8a8a8a801676767676767b867b8b8676755861121212121626252bbbbbb52918696000000
--- 123:0000008d0000b70000000000000000000000000000ae000000b70000007585b686670167b886b8d6b8b8b8d8a8a8a8c8b896000068687152528191a8a8a867677181818181819129292929c8a8a88686868686868668686868a8c8677181818181818181a1907080b1a1907080b181818181a08292d8a8a8a8a868788867a8c8a8a8a8f886f8a8aeaea801a801a801a801a801a872829267a8a8a867718181818181818181818181917282927282829267a8a8a8a8a8a8a8a8a8a867a8a8a8a8a8a86767a8a8a8a8b8a867a8a8a8a801a855676767670167676767550c861121216262626252bb0fbb81918696000000
--- 124:000000000000b7000000000000000000000000000000000000b700000076868686670167a87080808080808080808090c8960000c0f07181528191a8a8aea8677181818181819129292929a8a8a886868686868686f8a8a8a8a8a8c872b08181818181a08292728282829272b0818181818191a8e8f8a8a8a8555555c8d8a8a8a8a8a8c88655a8a8aea8016701a8016701a801a8a8a8a867a8a8a867718181525252818181818181a180808080808090a8a8a8a8a8a8a8a84da8a867a8a8a8a8a86767a8a8a867a8a8a867a8a8a8a801a8b8a8a8a8677f676767671020205121216262216252bbbbbb81918696000000
+-- 102:000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020203010203000000000000000000000000000000000000000000000000000000000
+-- 103:000000000000000000270000730000007300007300737373007300000000000073737373000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001161532161525321216152525321626262216152525252525252525252525252536262626221626262626262622162626261536152532121626221626221212121212121212121212121212121212121212121212121212121212121213111213115000000000000000000000000000000000000000000000000000000
+-- 104:0000000000001020202020202020202020202020202020202020202020202020202020301500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000072828282b081a0828282b081a0828282b081a0828282828282828282828282b0818140222222222222222222222222b08181818181a02222222222222222225021214022222222222222222222222222222222222222222222222222223211213115000000000000000000000000000000000000000000000000000000
+-- 105:000000000000728282828282b052528181815252528181818181525321212162626221311500000000ae0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008d0000008d00000000008d000076868686728292a8c8d8718191a8a8f87282928696171717001717000017177181403215000000000000000000000071818181818191150000000000000000125021310000000000000000000000007686556767a8a8a867f8a8f8a8a8677181a180900000000000000000000000000000000000000000000000000000
+-- 106:00000000000000000000000072828282b08181815252818181815281525253626261529115000000000000000000000000000000000000000000000000000000000000000000000075858585858595000000000000000000000000000000000000000000000000b7000000000000000000b700768686868686a8a8a8a8718191a8a8a8868686869600000000000000000000718131150000000000000000000000007282b0818181911500000000000000000011213100000000000000000000000076868667a8a8a8a867a8a8a8a8a8a871528181a18090000000000000000000000000000000000000000000000000
+-- 107:000000000000000000000000000000007282828282828282b0818181525252525252529115000000000000000000000000000000000000000000000000000000000000000000000076868686868696000000000000000000000000000000000000000000000000b7000000000000008d00b700768686868686a8a8a8a8728292a8a8a8b886868696000000000000000000007181a12030150000000000000000000000007282b081911500000000000000000011213100000000000000000000000076868667a8a867a8a8f8a8f8a8a8a871818181818191000000000000000000000000000000000000000000000000
+-- 108:000000000000000000000000000000000000000000000000728282715281528152815291858585858595000000000000000000000000000000000000000000000000000000000000768686868686960000000000000000000000000000000000000000b7008d00b7000000000000000000b78d768686ae868655a8a8a8a8a86767a86767868686960000000000000000ae00718181213115007585950000000000000000000071819115000000000000000000116191000000000000000000007585b686866767a8a8a8a8a8a8a8a8a8a871818181a08292000000000000000000000000000000000000000000000000
+-- 109:000000000000000000000000000000000000000000000000000075718181818152818191b8b8b8b8b8960000000000000000000000000000000000000000000000000000000000007686868686869600000000000000000000000000000000008d0000b7000000b700000000004c000000b70076868686868686c8d8a8a8a86767a8c855868686a68595000000000000000071818121318585b8b896000000000000000000007282921500000000000000000071529100000000000000007585b6868686865567a8a8a8a8a8a8a8a8a8a871818181910000000000000000000000000000000000000000000000000000
+-- 110:00000000000000000000000000000000000000000000000000007671a0b08181528181916767a8a8c8b8957568687888889500000000007568788888000000000000000000000075868686868686960000000000000000000000000000000000000000b7000000b700000000004c000000b70077868686868686a8a8a8a8a8a8d8a8d8b88686868686a685950073730000001160602131b8b8a8a89600000000000000000000000000000000000000000000007152910000000000007585b68686868686868667a8a8a8a8a8a8a8a867a8715281a0920000000000000000000000000000000000000000000000000000
+-- 111:000000000000000000000000000000000000000000000000000076719171a0b081818191c8d8a8a8a8678686f8f8a8a855a68585858585b8b8c8d8a8950000000000000000000076868686868686a68585950000000000000000000000000000000000b7000000b700004c00004c000000b7000076868686868655a8a8c8d8a867a8a86786868686868686102020202020205121212131a8a8a8a896000000ce0000000000000000000000f000000000007585718191000000758585b68686868686868686865567a8a8a8a8a8a8a8a8a871528191960000000000000000000000000000000000000010202030150000
+-- 112:0000000000000000000000000000000000000000000000000000767292719171a0b08191676767c8d8a8b8b867c8a867b8b8b8b8b8b8b8d8a8a8f867960000000000000000007586868686868686868686868585858585858595000000000000000000b7000000b700004c000000000000b7000076868686868686e8f8f8a8a86767a8d8b8b8b8b81313105121212121212121212121310ca8a8a8a67080808080808080808090150073737f00000000007686718191858585b68686868686868686868686868667a8a867a8a867a867a87152a092960000000000000000000000000000000000000011212131150000
+-- 113:000000000000000000000000000000000000000000000000000076868671917191718191c8d8a8a8a8a8a8a8a8a8a8a8c8d8a8a8a8a8a8e855555568787888950000000000007686868668786868788686868686868686868696000000000000000000b7000000b700004c006868680000b7000076868686868686555555f8a8c867a8a867671020202051212121212121212121212131a8a8a8686871818181818181818181a180808080809015007585b68671529186868686868686868686868686868686866767a867a8a8a8a8a8a8718191a8960000000000000000000000000000000000000011212131150000
+-- 114:0000000000000000000000000000000000000000000000000000778686719172927181915555a8a8676755555555c8d8a8a8a8675555555586878755f8a8f886950000000070908787875567a8d8678686866868687868868686858585858585950000b7000000b700000000e086e00000b700007786868686860c86868655a8a867a8a8a8d811212121212121424242424242212121910ca8a8670c718181818181818181815252a08282829215007686868671529186868686868686868686868686868686866767a867f8a867a867a871819167960000000000000000000000000000000000000011212131150000
+-- 115:00000000000000000000000000000000000000000000000000000076867292e8f87181918686555555558787878667a86767555587878787970000768667c8b8866868687871911500007755a8c8d8868686f8f8a8e8f8868686868686868686868585b7000000b700686868f086f00000b700000076868668686868688686a8a8a8a86868681142422121424281a0828282b0424242916767a867677181818181818181818181529170808090708090b8b8b8715291b8b88686868686868686868686868686865567a8a8a8a8a8a8a8a871819155868595000000000000000000000000000000000011212131859500
+-- 116:00000000000000000000000000000000000000000000000000000076868686555571819186868787879700000076c8d8555587970000000000000077b555e8f8b8b8f8a8a871911500000076c867e88686866767a86767b86868786886868686868686b7858595b700e086e0f086d00000b700000076868667f867e8678686a8a8a8d867a8f871818142428181819170809071818181910c67a8670c7181818181818181815252819171a0829272b0916767677152916767b886868686868686868686868686868667d8a8a8a8a8a8a86771529186868686950000000000000000000000000000000011212131869600
+-- 117:00000000000000000000000000000000000000000000000000000077878787879771819186960000000000000076f8f886970000000000000000000077b5a8a8a8f8c8c8d8719128282828b8a8f8e88686865567a8a86767f8e855f886686878688686b7868696b700c086868686860000b700007586868667c8d855678686a8a867a8d8a8c87181818181818181917181917181818191a867a8a8a87181818181818181815252819171917080907191a86767715291676767b8b88686868686868686868686868655f8a8a8a8a8a8a8a8728292868686868685858585858595000000de000000000011212131869600
+-- 118:00000000000000000000000000000000000000000000008d00000000000000000071819186a685950000000075b6d8a89600000000000000000000000076f8a8a8c8708080b1912929292967c855f88686868667a8e867d8a8a8b867b8f86755f8b8b87080808080808080808080901500b700007686868667d8678668686868a8a8a8a8a8a871818181818181819172829271818181910ca867a80c7181818181818181818181819171917152917191a8a867715291a867676767868686868686868686868686868655a8a8a8a8a8a8a801a8678686868686868686b886102020202020202068686851402232869600
+-- 119:00000000000000000000000000000000000000000000000000b700000000007585728292868686960000000076b867a8960000000000000000000000007755f8e8f8718181819129292929a867865586868686a8a8a8d8a8a8a8a8a8c8d867b867676771a0828282b0a0828282b0911573b775858686861313c86767a8a8e8a8a8a8a8a8a8a87181818181818181a1907080b181818191a8a86767677181818181818181818181819171917152917191a8a867715291a867a8a8678686b8b8b8b8b8b8b8b88686868686a8a8a8a8a8a8a8016755b8868686868686b867b81121212121626252bbbbbb213155a5879700
+-- 120:00000000008d00000000000000000000000000000000000000b7008d00000076b8860167868686a685950075b66767a8960000000000000000000000000076677080b18181819129292929a8c8b88686868686f8a8a8a8a8a8f8a8a8a8a8e867708080b191708090719170809071a180808090868686866868686867a8a8a8a8a8a8a8a8a8a87282828282828282829272828282b081910ca8a8670c7181818181818181818181819171917181917191a8a867728292a867a8a86786b8a867a867a86767a8b886868f86a8a8a8a8a8a8a80167b867b886868686b86767671121216262626252bbbbbb52318696000000
+-- 121:000000000000b700008d000000000000000000000000000000b7000000000076a8b801a88686868686a685b6b8d8a867960000000000007373730000000076677181818181819129292929a8a867868686868655f8a8a8a8a86767f8a8a81313718181819171819171917181917181818181a1809086b8a8a8e8c8d8d8a8f8a8a8a8a8a8f8a8a8a8c8d80167016701a8016701a8718191a8a8a867a87181818181818181818181819171917282927191a8a867a8a867a867a8a867b8a8a8a8a867a867a8a8a8b8868686a8a8a8a8a8a8a8016767676786b88686676767551121212121626252bbbbbb52318696000000
+-- 122:000000000000b7000000000000000000000000000000000000b700000000007655c801a8868686b8868686b8d8a8a8f8a69500000000708080809068686868687181818181819129292929e8a8c8868686868686551313c8d8c8676770808080b18181819172829271917282927181818181818191b8d8a8a8a8a8a8a8a8c8a8a8a8a8a855a8a8aea8a801a8016701a8016701a87181910ca8a867677181818181818181818181819171a1907080b19167a8a8a867a8a8a8a86767a8a8a8a8a8a8a867a8a8a8a8b886b8a8a8a8a8a8a8a80167676767b867b8b8676755861121212121626252bbbbbb52918696000000
+-- 123:0000008d0000b70000000000000000000000000000ae000000b70000007585b686670167b886b8d6b8b8b8d8a8a8a8c8b896000068687152528191a8a8a867677181818181819129292929c8a8a88686868686868668686868a8c8677181818181818181a1907080b1a1907080b181818181a08292d8a8a8a8a868788867a8c8a8a8a8f886f8a8aeaea801a801a801a801a801a872829267a8a8a867718181818181818181818181917282927282829267a8a8a8a8a8a8a8a8a8a867a8a8a8a8a8a86767a8a8a8a8b8a8a8a8a8a8a8a8a801a85567670167676767550c861121216262626252bb0fbb81918696000000
+-- 124:000000000000b7000000000000000000000000000000000000b700000076868686670167a87080808080808080808090c8960000c0f07181528191a8a8aea8677181818181819129292929a8a8a886868686868686f8a8a8a8a8a8c872b08181818181a08292728282829272b0818181818191a8e8f8a8a8a8555555c8d8a8a8a8a8a8c88655a8a8aea8016701a8016701a801a8a8a8a867a8a8a867718181525252818181818181a180808080808090a8a8a8a8a8a8a8a84da8a867a8a8a8a8a86767a8a8a867a8a8a8a8a8a8a8a8a8a801a8b8a8a87f676767671020205121216262216252bbbbbb81918696000000
 -- 125:000000000000b7008d0000000000000000000000000000e000b7007585b6b8b8b8a80167a871818181818181818181a1809015000000718181819167a8a8f8a87181818181819129292929a8a8e886868686868686555568686878a8a87181818181a092bbbbbbbbbbbbbbbb7181818181a09267a8a8a8a8e8b886b8d867555570808090b886d8a8a8e8016701a8016701670167a8a8a86767a8a86771818152525252818181818181815252525252a1808080808080808080808080808080808080808090708080808080808080808080808080808080808080205121212121626262626262bbbbbbbb918696000000
 -- 126:000000000000b7000000000000000000000000000000007f00b7007686b8a8a8c8a801a8a87181818181818181818181819128282828728282829267e855c8f87282828282829229292929a8e8558686868686868686865555a8a8a8e872b08181a092bbbbbbbbbbbbbbbbbb718181818191a8a8a8a8a8a8a8c886d8a86786867282827080808080808080808080808080808080808090a867a80ca87181815252525281818181818181818152525252525252525252525252525252525252525252528191715252525252525252525252525252818181818181532121212121615252525252bbbbbbbbbb8797000000
--- 127:000000000000b70000000000000000e3687888e3e310202020202020209008087080808080b1a082828282b081818181819129292929f8a8f8e8f8e85586f8c8bbbbbbbbbbbbbb29292929e855868686868686868668687868a8a8e8a8a87181a092bbbbbbbbbbbbbbbbbbbb72b08181a092a8a8a8a8a8a8a8677080905586b8a8f8a871818181818181818181818181818181818181a18080808080b181815252528181818181818181818181525252525281818152525252525281525252525281818191715252525252525252525252528181818181818181816152536261818181818181bb0cbbbbbb1500000000
--- 128:000000000000b700000000000000e3c586c5c5e3f4122222222222502191bbbb71818181a08292e8676767718181818181912929292955a8a8a8a867b8b8a8f8bbbbbbbbbbbbbb29292929558686879776868686b8f8e8a8f8a8a8a8a8a8718191bbbbbbbbbbbbaebbbbbbbbbb71818191a8a8a8a8a8a8a86770b1819186b8d8a8c8a8728282828282828282828282828282828282828282b0818181818181818181818181818181818181818181525281818181815252815252818181815252818181819171818181525252818152525281818181818181818181818181525281818181818180808080906868680000
--- 129:000073000000b700000000000000e3c58686c5e3f57667bbbbbbbb718191bbbb7282828292a8e8a8a867a87181818181819129292929b8f8a8a8e8a8a8a8a867bbbbbbbbbbbbbb29292929868696000076687878686767a867e855a8a8a8728292bbbbbbbbbbbbbbbbbbbbbbbb71818191a8a867a8a8677080b18181a190d86767a8a8a8a8a8a8bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb718181818181818181818181818181818181818181815281818181818181528181528181818152818181818191728282b0815281818181815281818181818181818181818181818181818181818181818181916767960000
+-- 127:000000000000b70000000000000000e3687888e3e310202020202020209008087080808080b1a082828282b081818181819129292929f8a8f8e8f8e85586f8c8bbbbbbbbbbbbbb29292929e855868686868686868668687868a8a8e8a8a87181a092bbbbbbbbbbbbbbbbbbbb72b08181a092a8a8a8a8a8a8a86786d8a85586b8a8f8a871818181818181818181818181818181818181a18080808080b181815252528181818181818181818181525252525281818152525252525281525252525281818191715252525252525252525252528181818181818181816152536261818181818181bb0cbbbbbb1500000000
+-- 128:000000000000b700000000000000e3c586c5c5e3f4122222222222502191bbbb71818181a08292e8676767718181818181912929292955a8a8a8a867b8b8a8f8bbbbbbbbbbbbbb29292929558686879776868686b8f8e8a8f8a8a8a8a8a8718191bbbb3fbbbbbbaebbbbbbbbbb71818191a8a8a8a8a8a8a8677080809086b8d8a8c8a8728282828282828282828282828282828282828282b0818181818181818181818181818181818181818181525281818181815252815252818181815252818181819171818181525252818152525281818181818181818181818181525281818181818180808080906868680000
+-- 129:000073000000b700000000000000e3c58686c5e3f57667bbbbbbbb718191bbbb7282828292a8e8a8a867a87181818181819129292929b8f8a8a8e8a8a8a8a867bbbbbbbbbbbbbb29292929868696000076687878686767a867e855a8a8a8728292bbbbbb3fbbbbbbbbbb3fbbbb71818191a8a867a8a8677080b18181a190d86767a8a8a8a8a8a8bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb718181818181818181818181818181818181818181815281818181818181528181528181818152818181818191728282b0815281818181815281818181818181818181818181818181818181818181818181916767960000
 -- 130:001020301573b7737373000000e3c5c50c86c5c5007667bbbbbbbb728292bbbbbbbbbba8a8a867a8aea8a87181818181819129292929d8c8e8f855d6a80ca867708080808080902929292986869700007655f8a8f8a867a8a85586a86767bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb72828292a867a8a8a86771818181818191a8c8d8a8a8a8a8a8a8bbbbbbbb4c4c4c4c4c4c4c4c4c4c4c4cbb71818181818181818181818181818181818181818181528181818181818152818181818181815281818181819170809071815281818181818181818181818181818181818181818181818181818181818181915555970000
--- 131:0011212120202020202020202020202020202020203067bbbbbbbbbbbbbbbbbbbbbbbbf8a8f86767a8a8a8718181818181912929292970808080808080808080b181818181a092292929298697000000778655f86767a8a8e886b8a8a8a8bbbbbbbbbbbbbb7080808090bbbbbbbbbbbbbba867a8a86767718181818181a18090a8a8a8a8a867a8bb4cbbbb4c4c4c4c4c4c4c4c4c4c4c4cbb71818181818181818181818181818181818181818181818181818181818152818181818181818181818181819171819171818181818181818181818181818181818181818181818181818181818181818181918797000000
--- 132:007181212121212121212121212121212121626262a1808090bbbbbbbbbbbbbbbbbba8a8a8c8d667a8a8d871818181a0829229292929718181818181818181818181818181911529292929708080808080808080808080808090d6a8a867bbbbbbbbbbbbbb7181818191bbbbbbbbbbbbbb67a8a8a8c8d8728282828282828292a8c867131313a8bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb71818181818181818181818181818181818181818181818181818181818181818181818181818181818181819172829271818181818181818181818181818181818181818181818181818181818181818181911500000000
+-- 131:0011212120202020202020202020202020202020203067bbbbbbbbbbbbbbbbbbbbbbbbf8a8f86767a8a8a8718181818181912929292970808080808080808080b181818181a0922929292986970000007786551313131313e886b8a8a8a8bbbbbbbbbbbbbb7080808090bb3fbbbbbbbbbba867a8a86767718181818181a18090a8a8a8a8a867a8bb4cbbbb4c4c4c4c4c4c4c4c4c4c4c4cbb71818181818181818181818181818181818181818181818181818181818152818181818181818181818181819171819171818181818181818181818181818181818181818181818181818181818181818181918797000000
+-- 132:007181212121212121212121212121212121626262a1808090bbbbbbbbbbbbbbbbbba8a8a8c8d667a8a8d871818181a0829229292929718181818181818181818181818181911529292929708080808080808080808080808090d6a8a867bbbbbbbbbbbbbb7181818191bbbbbbbbbbbbbb67a8a8a81313728282828282828292a8c867131313a8bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb71818181818181818181818181818181818181818181818181818181818181818181818181818181818181819172829271818181818181818181818181818181818181818181818181818181818181818181911500000000
 -- 133:007181815252525281818181818181818181818181815252a1808080808080808080808080808080808080b18181a0921500292a2929728282828282828282b081818181819115292a29297181818181818181818181818181a18080808080808080808080b1818181a180808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080b181818181818181818181818181818181818181818181818181818181818181818181818181818181818181a1907080b1818181818181818181818181818181818181818181818181818181818181818181911500000000
 -- 134:00728282b0818152525252a0828282828282828282b081818181818181818181818181818181818181818181a082921500002a002a2a00000000000000000072828282828292152a002a2a728282828282828282828282b08181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181818181a08282828282828282828282828282828282828282828282828282828282828282828282828282828292728282828282828282828282828282828282828282828282828282828282828282828282921500000000
 -- 135:000000007282828282828292150017170000000000728282828282828282828282828282828282828282828292150000000000000000000000000000000000000000000000000000000000000000000000000000000000728282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282920000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
