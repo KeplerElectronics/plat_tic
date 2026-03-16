@@ -3686,12 +3686,13 @@ function play()
  
  if p.dead==false then
   if bossmode~=true then
-	  cam.x=lerp(camx,p.x-120,0.1)
-	  
+	  --cam.x=lerp(camx,p.x-120,0.1)
+	  cam.x=p.x-120
 	  --detect if player flies 
 	  --off top of screen and lock
 	 	if p.y>10 and p.y < 240 then
-	   cam.y=lerp(camy,p.y-64,0.1)
+	   --cam.y=lerp(camy,p.y-64,0.1)
+				cam.y=p.y-64
 	  end
 		else
 		 cam.x=lerp(camx,181*8,0.02)
@@ -5547,8 +5548,8 @@ function play()
 			
 	   line(floor(p.x+2-camx)-1,(p.y+5-camy+1),math.floor(p.x+2+2*math.sin(time()*p.vx/100)-camx)-1,(p.y+p.legy-camy),11)
 	   line(floor(p.x+2-camx)+1,(p.y+5-camy+1),math.floor(p.x+2+2*math.sin(time()*p.vx/100)-camx)+1,(p.y+p.legy-camy),11)
-	   line(floor(p.x+2-camx),  (p.y+5-camy),math.floor(p.x+2+2*math.sin(time()*p.vx/100)-camx),(p.y+p.legy-camy),15)
-			
+	   line(floor(p.x+2-camx),(p.y+5-camy+1),math.floor(p.x+2+2*math.sin(time()*p.vx/100)-camx),(p.y+p.legy-camy),15)
+	   
 		 	line(floor(p.x+5-camx)-1,(p.y+5-camy+1),math.floor(p.x+5+2*math.sin(time()*p.vx/100+math.pi)-camx)-1,(p.y+p.legy-camy),11)
 		 	line(floor(p.x+5-camx)+1,(p.y+5-camy+1),math.floor(p.x+5+2*math.sin(time()*p.vx/100+math.pi)-camx)+1,(p.y+p.legy-camy),11)
 		 	line(floor(p.x+5-camx),  (p.y+5-camy),math.floor(p.x+5+2*math.sin(time()/100*p.vx+math.pi)-camx),(p.y+p.legy-camy),15)
@@ -7406,28 +7407,15 @@ function control()
 	   jumpframes=8
 	  end
 			
-			if p.jct<=jumpframes then
-	
-					local jumplv = {0.5,
-					                0.55,
-																					0.6,
-					                0.6,
-																					0.65,
-																					0.6,
-																					0.55,
-																					0.5,
-																					--p-speed extra frame
-																					0.3}
-     
-     
+			if p.jct<=jumpframes then     
      
 				 if p.stuckceil == true then
 					 p.vy=p.vy+.2
 						p.y=p.y+1
 					elseif grv>0 then
-					 p.vy=p.vy-jumplv[p.jct+1]
+					 p.vy=p.vy-0.55
 					elseif grv<0 then
-					 p.vy=p.vy+jumplv[p.jct+1]
+					 p.vy=p.vy+0.55
 					end
 					
 			elseif p.jct>7 then
